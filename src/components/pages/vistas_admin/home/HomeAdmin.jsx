@@ -1,7 +1,21 @@
+import { useEffect, useState } from "react";
+
+import axios from "axios"; 
 
 const HomeAdmin = () => {
+
+  const [alumnos, setAlumnos] = useState([]);
+  useEffect( () => {
+    const promise = axios.get("https://campus-virtual-backend.vercel.app/alumnos");
+    promise.then((res) => setAlumnos(res.data).catch(err => console.log(err)))
+  }, [])
+
   return (
-    <div>HomeAdmin</div>
+    <div>
+      {alumnos.map((alumno) => (
+        <h1 key={alumno._id}>{alumno.nombre}</h1>
+      ))}
+    </div>
   )
 }
 
