@@ -6,6 +6,7 @@ const HomeAdmin = () => {
 
   const [alumnos, setAlumnos] = useState([]);
   useEffect( () => {
+    axios.defaults.withCredentials = true;
     const promise = axios.get("https://campus-virtual-backend.vercel.app/alumnos");
     promise.then((res) => setAlumnos(res.data).catch(err => console.log(err)))
   }, [])
