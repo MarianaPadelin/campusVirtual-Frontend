@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
-
+import { Button } from "@mui/material"
 const Muestra = () => {
   return (
-    <>
+    <div className="basicContainer">
       <h1>¿Qué perfil querés ver?</h1>
 
       <Link to="/alumnos">
-        <button>Ver perfil de alumno</button>
+        <Button variant="contained">Ver perfil de alumno</Button>
       </Link>
+
       <Link to="/admin">
-        <button>Ver perfil de admin</button>
+        <Button variant="contained" color="secondary">
+          Ver perfil de admin
+        </Button>
       </Link>
-    </>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import './App.css'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { rutasApp } from './routes/rutasApp';
-import Layouts from './layouts/Layouts';
+import Layouts from './components/layouts/Layouts';
 import Error from './components/pages/vistas_alumnos/error/Error';
 import Muestra from './components/pages/muestra_2vistas/Muestra';
 

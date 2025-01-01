@@ -1,23 +1,50 @@
-import { useEffect, useState } from "react";
+import "./HomeAdmin.css"
+import EditIcon from "@mui/icons-material/Edit";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
-import axios from "axios"; 
 
-const HomeAdmin = () => {
+const HomeAdmin = ({ alumnos, eliminarElemento }) => {
 
-  const [alumnos, setAlumnos] = useState([]);
-  useEffect( () => {
-    axios.defaults.withCredentials = true;
-    const promise = axios.get("https://campus-virtual-backend.vercel.app/alumnos");
-    promise.then((res) => setAlumnos(res.data).catch(err => console.log(err)))
-  }, [])
+  
 
   return (
-    <div>
-      {alumnos.map((alumno) => (
-        <h1 key={alumno._id}>{alumno.nombre}</h1>
-      ))}
+    <div className="basicContainer">
+      <>
+        <table>
+          <tbody>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Celular</th>
+            </tr>
+            {alumnos.map((alumno) => (
+              <tr key={alumno._id}>
+                <td>{alumno.nombre}</td>
+                <td>{alumno.apellido}</td>
+                <td>{alumno.email}</td>
+                <td>{alumno.celular}</td>
+                <td>
+                  <Link to={`info/${alumno._id}`}>
+                    <Button>
+                      <EditIcon />
+                    </Button>
+                  </Link>
+                </td>
+                <td>
+                  <Button onClick={eliminarElemento}>
+                    <HighlightOffIcon />
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
     </div>
-  )
-}
+  );
+};
 
-export default HomeAdmin
+export default HomeAdmin;

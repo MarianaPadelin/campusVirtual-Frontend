@@ -1,6 +1,6 @@
 // import Muestra from "../components/pages/muestra_2vistas/Muestra";
 import CargarMaterialContainer from "../components/pages/vistas_admin/cargar_material/CargarMaterialContainer";
-import HomeAdmin from "../components/pages/vistas_admin/home/HomeAdmin";
+import HomeAdminContainer from "../components/pages/vistas_admin/home/HomeAdminContainer";
 import InfoContainer from "../components/pages/vistas_admin/info_alumno/InfoContainer";
 import RegistroContainer from "../components/pages/vistas_admin/registrar_alumno/RegistroContainer";
 import RegistrarAsistenciasContainer from "../components/pages/vistas_admin/registrar_asistencias/RegistrarAsistenciasContainer";
@@ -49,7 +49,7 @@ export const rutasApp = [
   {
     id: "homeAdmin",
     path: "/admin",
-    Element: HomeAdmin,
+    Element: HomeAdminContainer,
   },
   {
     id: "cargar_material",
@@ -58,7 +58,7 @@ export const rutasApp = [
   },
   {
     id: "info",
-    path: "/admin/info",
+    path: "/admin/info/:id",
     Element: InfoContainer,
   },
   {
