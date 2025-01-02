@@ -6,8 +6,11 @@ const InfoContainer = () => {
 const [alumno, setAlumno] = useState({});
 const { id } = useParams()
 
+const URL = "https://campus-virtual-backend.vercel.app";
+// const URL = "http://localhost:3000";
+
 useEffect(() => {
-   const promise = fetch(`http://localhost:8080/alumnos/${id}`);
+   const promise = fetch(`${URL}/alumnos/${id}`);
    promise
      .then((res) => res.json())
      .then((res) => setAlumno(res.alumno[0]))
