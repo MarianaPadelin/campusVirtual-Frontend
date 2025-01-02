@@ -11,6 +11,7 @@ const HomeAdminContainer = () => {
     const promise = fetch(URL);
     promise
       .then((res) => res.json())
+      .then((res) => console.log(res))
       .then((res) => setAlumnos(res))
       .catch((err) => console.log(err));
     // axios.defaults.withCredentials = true;
