@@ -1,22 +1,17 @@
 import { useEffect, useState } from 'react';
 import HomeAdmin from './HomeAdmin'
-// import axios from "axios"; 
+import axios from "axios"; 
 
 const HomeAdminContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
 
-  const URL = "https://campus-virtual-backend.vercel.app";
-  // const URL = "http://localhost:3000";
+
+  axios.defaults.withCredentials = true;
   useEffect(() => {
-    const promise = fetch(`${URL}/alumnos`);
+    const promise = axios.get(`/alumnos`)
     promise
-      .then((res) => res.json())
-      .then((res) => setAlumnos(res))
-      // .then(() => console.log(alumnos))
+      .then((res) => setAlumnos(res.data))
       .catch((err) => console.log(err));
-    // axios.defaults.withCredentials = true;
-    // const promise = axios.get("https://localhost:3000/alumnos");
-    // promise.then((res) => setAlumnos(res.data).catch(err => console.log(err)))
   }, []);
 
   const eliminarElemento = () => {

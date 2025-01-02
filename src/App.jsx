@@ -5,7 +5,11 @@ import { rutasApp } from './routes/rutasApp';
 import Layouts from './components/layouts/Layouts';
 import Error from './components/pages/vistas_alumnos/error/Error';
 import Muestra from './components/pages/muestra_2vistas/Muestra';
+import axios from 'axios';
 
+axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
+// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.withCredentials = true;
 function App() {
   return (
     <div className="main">
