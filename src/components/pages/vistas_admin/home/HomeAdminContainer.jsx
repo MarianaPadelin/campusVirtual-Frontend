@@ -8,14 +8,14 @@ const HomeAdminContainer = () => {
   const URL = "https://campus-virtual-backend.vercel.app";
   // const URL = "http://localhost:3000";
   useEffect(() => {
-    const promise = fetch(URL);
+    const promise = fetch(`${URL}/alumnos`);
     promise
       .then((res) => res.json())
-      .then((res) => console.log(res))
       .then((res) => setAlumnos(res))
+      // .then(() => console.log(alumnos))
       .catch((err) => console.log(err));
     // axios.defaults.withCredentials = true;
-    // const promise = axios.get("https://localhost:8080/alumnos");
+    // const promise = axios.get("https://localhost:3000/alumnos");
     // promise.then((res) => setAlumnos(res.data).catch(err => console.log(err)))
   }, []);
 

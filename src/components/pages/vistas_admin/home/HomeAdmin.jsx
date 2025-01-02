@@ -20,7 +20,7 @@ const HomeAdmin = ({ alumnos, eliminarElemento }) => {
               <th>Email</th>
               <th>Celular</th>
             </tr>
-            {alumnos.map((alumno) => (
+            {alumnos && alumnos.map((alumno) => (
               <tr key={alumno._id}>
                 <td>{alumno.nombre}</td>
                 <td>{alumno.apellido}</td>
