@@ -1,7 +1,8 @@
+import CargarMaterial from "./CargarMaterial"
 
 const CargarMaterialContainer = () => {
   return (
-    <div>CargarMaterialContainer</div>
+    <><CargarMaterial /></>
   )
 }
 

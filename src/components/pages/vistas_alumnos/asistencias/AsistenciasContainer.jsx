@@ -1,6 +1,8 @@
+import Asistencias from "./Asistencias"
+
 const AsistenciasContainer = () => {
   return (
-    <div>AsistenciasContainer</div>
+    <><Asistencias /></>
   )
 }
 

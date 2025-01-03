@@ -1,6 +1,8 @@
+import Tp from "./Tp"
+
 const TpContainer = () => {
   return (
-    <div>TpContainer</div>
+    <><Tp /></>
   )
 }
 

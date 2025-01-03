@@ -1,11 +1,13 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 //mostrarlo como un formulario, con el placeholder que tenga el dato viejo
+//const {} = useFormik({
+//   initialValues: { nombre: {alumnoEncontrado.nombre}}
 const Info = ({ alumnoEncontrado }) => {
   return (
     <div className="basicContainer">
-      <h1>Datos de contacto</h1>
-      <ul>
+  <Typography className="titles" variant="h4">Datos de contacto </Typography>
+         <ul>
         <li>{alumnoEncontrado.nombre}</li>
         <li>{alumnoEncontrado.apellido}</li>
         <li>{alumnoEncontrado.email}</li>

@@ -1,7 +1,8 @@
+import Notas from "./Notas"
 
 const NotasContainer = () => {
   return (
-    <div>NotasContainer</div>
+    <><Notas /></>
   )
 }
 

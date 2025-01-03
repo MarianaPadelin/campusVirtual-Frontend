@@ -1,7 +1,8 @@
+import RegistrarAsistencias from "./RegistrarAsistencias"
 
 const RegistrarAsistenciasContainer = () => {
   return (
-    <div>RegistrarAsistenciasContainer</div>
+    <div><RegistrarAsistencias /></div>
   )
 }
 

@@ -1,7 +1,8 @@
+import Material from "./Material"
 
 const MaterialContainer = () => {
   return (
-    <div>MaterialContainer</div>
+    <><Material /></>
   )
 }
 

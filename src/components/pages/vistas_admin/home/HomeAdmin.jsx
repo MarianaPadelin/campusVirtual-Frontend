@@ -1,48 +1,53 @@
 import "./HomeAdmin.css"
 import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { Button } from "@mui/material";
+import { Button, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
-const HomeAdmin = ({ alumnos, eliminarElemento }) => {
-
+const HomeAdmin = ({ alumnos }) => {
+//eliminarElemento
   
 
   return (
     <div className="basicContainer">
-      <>
-        <table>
-          <tbody>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Celular</th>
-            </tr>
-            {alumnos && alumnos.map((alumno) => (
-              <tr key={alumno._id}>
-                <td>{alumno.nombre}</td>
-                <td>{alumno.apellido}</td>
-                <td>{alumno.email}</td>
-                <td>{alumno.celular}</td>
-                <td>
-                  <Link to={`info/${alumno._id}`}>
-                    <Button>
-                      <EditIcon />
+        <Typography className="titles" variant="h4">Listado de alumnos</Typography>
+        <Table>
+            <TableHead>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Apellido</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Celular</TableCell>
+              <TableCell>Editar</TableCell>
+              <TableCell>Eliminar</TableCell>
+            </TableHead>
+            {alumnos &&
+              alumnos.map((alumno) => (
+                <TableRow key={alumno._id}>
+                  <TableCell>{alumno.nombre}</TableCell>
+                  <TableCell>{alumno.apellido}</TableCell>
+                  <TableCell>{alumno.email}</TableCell>
+                  <TableCell>{alumno.celular}</TableCell>
+                  <TableCell>
+                    <Link to={`info/${alumno._id}`}>
+                      <Button color="secondary">
+                        <EditIcon />
+                      </Button>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    {/* <Button onClick={(eliminarElemento(alumno._id))}> */}
+                    <Button color="secondary">
+                      <HighlightOffIcon />
                     </Button>
-                  </Link>
-                </td>
-                <td>
-                  <Button onClick={eliminarElemento}>
-                    <HighlightOffIcon />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </>
+
+                    {/* </Button> */}
+                  </TableCell>
+                </TableRow>
+              ))}
+    
+        </Table>
+      
     </div>
   );
 };

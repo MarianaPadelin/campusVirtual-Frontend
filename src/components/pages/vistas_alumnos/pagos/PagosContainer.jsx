@@ -1,7 +1,8 @@
+import Pagos from "./Pagos"
 
 const PagosContainer = () => {
   return (
-    <div>PagosContainer</div>
+    <><Pagos /></>
   )
 }
 
