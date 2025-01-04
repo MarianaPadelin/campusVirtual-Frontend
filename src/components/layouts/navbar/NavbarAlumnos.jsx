@@ -8,8 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
+// import Avatar from "@mui/material/Avatar";
+// import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 // import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
@@ -21,28 +21,29 @@ const pages = [
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
   { name: "Ver material didáctico", path: "/alumnos/material" },
+  { name: "Logout", path: "/alumnos"}
 ];
 
 
-const settings = ["Logout"]
+// const settings = ["Logout"]
 const NavbarAlumnos = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  // const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (e) => {
     setAnchorElNav(e.currentTarget);
   };
-  const handleOpenUserMenu = (e) => {
-    setAnchorElUser(e.currentTarget);
-  };
+  // const handleOpenUserMenu = (e) => {
+  //   setAnchorElUser(e.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   return (
     <AppBar position="static">
@@ -139,8 +140,10 @@ const NavbarAlumnos = () => {
                 </Button>
               </Link>
             ))}
+
+            
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -170,7 +173,7 @@ const NavbarAlumnos = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

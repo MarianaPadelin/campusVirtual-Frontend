@@ -9,7 +9,7 @@ const RegistrarNotas = ({alumnos}) => {
       <div className="subContainer">
         <span className="spanTable">
           <FormControl color="secondary" className="classSelector">
-            <InputLabel id="label-clase">Seleccionar clase</InputLabel>
+            <InputLabel id="label-clase">Clase</InputLabel>
             <Select
               labelId="label-clase"
               // id="demo-simple-select"
@@ -24,7 +24,7 @@ const RegistrarNotas = ({alumnos}) => {
           </FormControl>
 
           <FormControl color="secondary" className="classSelector">
-            <InputLabel id="label-año">Seleccionar año</InputLabel>
+            <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
               // id="demo-simple-select"

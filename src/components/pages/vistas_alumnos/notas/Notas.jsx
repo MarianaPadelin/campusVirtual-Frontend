@@ -17,7 +17,7 @@ const Notas = () => {
         Notas
       </Typography>
       <FormControl className="classSelector">
-        <InputLabel id="demo-simple-select-label">Seleccionar año</InputLabel>
+        <InputLabel id="demo-simple-select-label">Año</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

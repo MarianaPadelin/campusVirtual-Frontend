@@ -5,6 +5,8 @@ import { Button, Table, TableCell, TableHead, TableRow, Typography } from "@mui/
 import { Link } from "react-router-dom";
 
 
+//hacer un condicional para celu donde solo se vea el nombre, editar y eliminar
+
 const HomeAdmin = ({ alumnos }) => {
 //eliminarElemento
   

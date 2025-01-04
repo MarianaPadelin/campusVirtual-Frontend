@@ -35,7 +35,7 @@ const RegistrarAsistencias = () => {
           </LocalizationProvider>
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">
-              Seleccionar clase
+              Clase
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
