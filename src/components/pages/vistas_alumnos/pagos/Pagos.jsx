@@ -7,29 +7,30 @@ const Pagos = () => {
       <Typography className="titles" variant="h4">
         Pagos
       </Typography>
-
-      <Table>
-        <TableHead>
-          <TableCell>Mes</TableCell>
-          <TableCell>Estado</TableCell>
-        </TableHead>
-        <TableRow>
-          <TableCell>Marzo</TableCell>
-          <TableCell>Pagado</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Abril</TableCell>
-          <TableCell>Pagado</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Mayo</TableCell>
-          <TableCell>Debe</TableCell>
-        </TableRow>
-      </Table>
-      <span>
-        <WarningIcon color="error" />
-        <Typography> Su deuda al día de hoy es: $...</Typography>
-      </span>
+      <div className="secondaryContainer">
+        <Table>
+          <TableHead>
+            <TableCell>Mes</TableCell>
+            <TableCell>Estado</TableCell>
+          </TableHead>
+          <TableRow>
+            <TableCell>Marzo</TableCell>
+            <TableCell>Pagado</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Abril</TableCell>
+            <TableCell>Pagado</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Mayo</TableCell>
+            <TableCell>Debe</TableCell>
+          </TableRow>
+        </Table>
+        <span>
+          <WarningIcon color="error" />
+          <Typography> Su deuda al día de hoy es: $...</Typography>
+        </span>
+      </div>
     </div>
   );
 };

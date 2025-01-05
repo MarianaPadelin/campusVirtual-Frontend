@@ -1,6 +1,7 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 
 const CargarMaterial = () => {
@@ -18,7 +19,9 @@ const CargarMaterial = () => {
 
   return (
     <div className="basicContainer">
-        <Typography className="titles" variant="h4">Cargar material didáctico</Typography>
+      <Typography className="titles" variant="h4">
+        Cargar material didáctico
+      </Typography>
       <Button
         color="secondary"
         component="label"
@@ -34,6 +37,40 @@ const CargarMaterial = () => {
           multiple
         />
       </Button>
+
+      <div className="secondaryContainer">
+        <Typography className="titles" variant="h5">
+          Material subido
+        </Typography>
+        <Table>
+          <TableHead>
+            <TableCell>Clase</TableCell>
+            <TableCell>Fecha de subida</TableCell>
+            <TableCell>Archivo</TableCell>
+          </TableHead>
+          <TableRow>
+            <TableCell>Acrobacia</TableCell>
+            <TableCell>05/02/25</TableCell>
+            <TableCell>
+              <Link>Descargar archivo</Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Preparación física</TableCell>
+            <TableCell>05/03/25</TableCell>
+            <TableCell>
+              <Link>Descargar archivo</Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Danza</TableCell>
+            <TableCell>15/03/25</TableCell>
+            <TableCell>
+              <Link>Descargar archivo</Link>
+            </TableCell>
+          </TableRow>
+        </Table>
+      </div>
     </div>
   );
 }

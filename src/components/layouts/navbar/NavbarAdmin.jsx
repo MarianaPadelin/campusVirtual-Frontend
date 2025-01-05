@@ -15,11 +15,12 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 
 const pages = [
-  {name: "Registrar alumno", path: "/admin/registro"},
-  {name: "Asistencias", path: "/admin/asistencias"},
-  {name: "Subir notas", path:"/admin/notas"},
- {name: "Subir pagos", path: "/admin/pagos"},
- {name:  "Subir material", path: "/admin/material"},
+  { name: "Registrar alumno", path: "/admin/registro" },
+  { name: "Asistencias", path: "/admin/asistencias" },
+  { name: "Subir notas", path: "/admin/notas" },
+  { name: "Subir pagos", path: "/admin/pagos" },
+  { name: "Subir material", path: "/admin/material" },
+  { name: "Cerrar sesión", path: "/" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavbarAdmin = () => {

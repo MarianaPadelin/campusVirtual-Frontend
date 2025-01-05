@@ -21,7 +21,7 @@ const pages = [
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
   { name: "Ver material didáctico", path: "/alumnos/material" },
-  { name: "Logout", path: "/alumnos"}
+  { name: "Cerrar sesión", path: "/"}
 ];
 
 
@@ -70,7 +70,7 @@ const NavbarAlumnos = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
+              // size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"

@@ -6,7 +6,7 @@ const RegistrarNotas = ({alumnos}) => {
       <Typography className="titles" variant="h4">
         Registro de notas
       </Typography>
-      <div className="subContainer">
+      <div className="secondaryContainer">
         <span className="spanTable">
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="label-clase">Clase</InputLabel>
@@ -39,32 +39,31 @@ const RegistrarNotas = ({alumnos}) => {
             </Select>
           </FormControl>
         </span>
+        <Table>
+          <TableHead>
+            <TableCell>Alumno</TableCell>
+            <TableCell>Nota julio</TableCell>
+            <TableCell>Nota diciembre</TableCell>
+          </TableHead>
+
+          {alumnos &&
+            alumnos.map((alumno) => (
+              <TableRow key={alumno._id}>
+                <TableCell>{alumno.nombre}</TableCell>
+                <TableCell>
+                  <TextField variant="outlined" className="inputPagos" />
+                </TableCell>
+                <TableCell>
+                  <TextField variant="outlined" className="inputPagos" />
+                </TableCell>
+              </TableRow>
+            ))}
+        </Table>
+
+        <Button variant="contained" color="secondary">
+          Enviar
+        </Button>
       </div>
-
-      <Table>
-        <TableHead>
-          <TableCell>Alumno</TableCell>
-          <TableCell>Nota julio</TableCell>
-          <TableCell>Nota diciembre</TableCell>
-        </TableHead>
-
-        {alumnos &&
-          alumnos.map((alumno) => (
-            <TableRow key={alumno._id}>
-              <TableCell>{alumno.nombre}</TableCell>
-              <TableCell>
-                <TextField variant="outlined" className="inputPagos" />
-              </TableCell>
-              <TableCell>
-                <TextField variant="outlined" className="inputPagos" />
-              </TableCell>
-            </TableRow>
-          ))}
-      </Table>
-
-      <Button variant="contained" color="secondary">
-        Enviar
-      </Button>
     </div>
   );
 }

@@ -27,16 +27,14 @@ const RegistrarAsistencias = () => {
       <Typography className="titles" variant="h4">
         Registro de asistencias
       </Typography>
-      
-      <div className="subContainer">
+
+      <div className="secondaryContainer">
         <span className="spanTable">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker label="Seleccionar fecha" />
           </LocalizationProvider>
           <FormControl color="secondary" className="classSelector">
-            <InputLabel id="demo-simple-select-label">
-              Clase
-            </InputLabel>
+            <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -56,13 +54,11 @@ const RegistrarAsistencias = () => {
             columns={columns}
             pageSizeOptions={[5, 10]}
             checkboxSelection
-            sx={{ border: 0 }}
           />
-
-          <Button variant="contained" color="secondary">
-            Enviar
-          </Button>
         </Paper>
+        <Button variant="contained" color="secondary">
+          Enviar
+        </Button>
       </div>
     </div>
   );
