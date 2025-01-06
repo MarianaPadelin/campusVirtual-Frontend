@@ -10,6 +10,9 @@ import { config } from './config';
 
 // axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.baseURL= config.backendURL;
+console.log(axios.defaults.baseURL)
+
+
 axios.defaults.withCredentials = true;
 function App() {
   return (
