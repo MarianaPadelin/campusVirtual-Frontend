@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import Info from "./Info"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import Loader from "../../../common/loader/Loader"
 
 const InfoContainer = () => {
 const [alumno, setAlumno] = useState({});
@@ -18,7 +19,9 @@ useEffect(() => {
     
 
   return (
-    <><Info alumnoEncontrado={alumno} /></>
+    <>
+    {alumno._id ? (
+    <Info alumnoEncontrado={alumno} />) : ( <Loader />)}</>
   )
 }
 

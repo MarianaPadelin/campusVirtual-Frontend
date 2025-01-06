@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import HomeAdmin from "./HomeAdmin";
 import axios from "axios";
 import Swal from "sweetalert2";
-
-//ordenar por apellido
+import Loader from "../../../common/loader/Loader";
 
 const HomeAdminContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
@@ -44,7 +43,11 @@ const HomeAdminContainer = () => {
   };
   return (
     <>
-      <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
+      {alumnos.length > 0 ? (
+        <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

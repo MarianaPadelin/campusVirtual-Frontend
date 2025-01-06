@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Notas from "./Notas";
 import axios from "axios";
+import Loader from "../../../common/loader/Loader";
 
 const NotasContainer = () => {
   const [notas, setNotas] = useState([]);
@@ -20,7 +21,8 @@ const id = "677c4ea0899ac18cdb7cfcb5";
   
   return (
     <>
-      <Notas notas={notas} />
+    {notas.length > 0 ? ( <Notas notas={notas} />) : (<Loader />)}
+     
     </>
   );
 };
