@@ -38,7 +38,7 @@ const Tp = () => {
         <Typography className="titles" variant="h5">
           Trabajos prácticos subidos
         </Typography>
-        <Table>
+        <Table className="asistencias">
           <TableHead>
             <TableCell>Clase</TableCell>
             <TableCell>Fecha de subida</TableCell>

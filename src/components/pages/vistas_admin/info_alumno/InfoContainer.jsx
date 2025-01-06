@@ -12,7 +12,6 @@ useEffect(() => {
    const promise = axios.get(`/alumnos/${id}`);
    promise
      .then((res) => setAlumno(res.data.alumno[0]))
-    //  .then(() => console.log(alumno))
      .catch((err) => console.log("Hubo un error: " + err));
 }, [id])
     //vuelve a hacer la consulta (1 vez) cada vez que cambia el id

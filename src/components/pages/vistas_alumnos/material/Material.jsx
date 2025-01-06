@@ -15,7 +15,7 @@ const Material = () => {
       </Typography>
 
       <div className="secondaryContainer">
-        <Table>
+        <Table className="asistencias">
           <TableHead>
             <TableCell>Clase</TableCell>
             <TableCell>Fecha de subida</TableCell>

@@ -31,7 +31,7 @@ const RegistrarAsistencias = () => {
       <div className="secondaryContainer">
         <span className="spanTable">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker label="Seleccionar fecha" />
+            <DatePicker  className="datePicker" label="Seleccionar fecha" />
           </LocalizationProvider>
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
@@ -48,7 +48,7 @@ const RegistrarAsistencias = () => {
             </Select>
           </FormControl>
         </span>
-        <Paper sx={{ height: 450, width: "100%" }}>
+        <Paper sx={{ height: 450, width: "100%" }} className="asistenciasContainer">
           <DataGrid
             rows={rows}
             columns={columns}

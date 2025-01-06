@@ -64,9 +64,17 @@ a{
     width: 5vw;
 }
 
+.datePicker{
+    width: 30vw;
 }
 
+}
 
+.spanTable{
+    display: block;
+    text-align: center;
+
+}
 th{
     max-width: 6vw;
     flex-wrap: wrap;
@@ -76,12 +84,24 @@ th{
 }
 
 td {
-  text-align: center;
- 
+text-align: center;
+width: 20vw;
 }
 
+.asistencias td{
+     max-width: 5vw;
+
+}
 span{
     display: flex;
     justify-content: center;
 }
 
+.asistenciasContainer{
+    margin: 3vw;
+}
+
+
+.datePicker{
+    width: 60vw;
+}

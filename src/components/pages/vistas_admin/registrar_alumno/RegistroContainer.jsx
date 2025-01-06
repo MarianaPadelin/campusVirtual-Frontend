@@ -1,17 +1,13 @@
 import axios from "axios";
 import Registro from "./Registro"
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 //alerta cuando el alumno ya esté registrado
 
 const RegistroContainer = () => {
-  // let data = {
-  //   nombre: "Test harcodeado",
-  //   apellido: "Test harcodeado",
-  //   email: "Testharcodeado@gmail.com",
-  //   celular: 3344
-  // };
 
+  const navigate = useNavigate()
 
   const registrarAlumno = (data) => {
     //el segundo parámetro es lo que quiero mandar en el body del POST
@@ -19,6 +15,7 @@ const RegistroContainer = () => {
 
       promise
         .then(() => Swal.fire(`Alumno ${data.nombre} ${data.apellido}registrado con éxito`))
+        .then(navigate("/admin"))
         .catch((err) => console.log("Hubo un error: " + err));
 
   }

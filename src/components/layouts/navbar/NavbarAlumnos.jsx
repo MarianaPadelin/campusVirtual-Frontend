@@ -116,13 +116,8 @@ const NavbarAlumnos = () => {
               component="a"
               href="#app-bar-with-responsive-menu"
               sx={{
-                mr: 2,
+                mr: 4,
                 display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
               }}
             >
               CIRCO DE LAS ARTES

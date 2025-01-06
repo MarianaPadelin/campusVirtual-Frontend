@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const Notas = () => {
+const Notas = ({notas}) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
@@ -31,33 +31,21 @@ const Notas = () => {
             <MenuItem value={3}>2024</MenuItem>
           </Select>
         </FormControl>
-        <Table>
+        <Table className="asistencias">
           <TableHead>
             <TableCell>Clase</TableCell>
-            <TableCell>Profesor</TableCell>
+            {/* <TableCell>Profesor</TableCell> */}
             <TableCell>Nota julio</TableCell>
             <TableCell>Nota diciembre</TableCell>
           </TableHead>
-          <TableRow>
-            <TableCell>Acrobacia</TableCell>
-            <TableCell>Profesor A</TableCell>
-            <TableCell>5</TableCell>
-            <TableCell>8</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Preparación física</TableCell>
-            <TableCell>Profesor B</TableCell>
-
-            <TableCell>3</TableCell>
-            <TableCell>7</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Danza</TableCell>
-            <TableCell>Profesor C</TableCell>
-
-            <TableCell>2</TableCell>
-            <TableCell>10</TableCell>
-          </TableRow>
+          {notas &&
+            notas.map((nota) => (
+              <TableRow key={nota._id}>
+                <TableCell>{nota.clase} </TableCell>
+                <TableCell>{nota.notaJulio}</TableCell>
+                <TableCell>{nota.notaDiciembre}</TableCell>
+              </TableRow>
+            ))}
         </Table>
       </div>
     </div>

@@ -7,7 +7,7 @@ const Asistencias = () => {
         Asistencias
       </Typography>
       <div className="secondaryContainer">
-        <Table>
+        <Table className="asistencias">
           <TableHead>
             <TableCell>Clase</TableCell>
             <TableCell>Ausentes</TableCell>
@@ -19,7 +19,7 @@ const Asistencias = () => {
             <TableCell>8</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Preparación física</TableCell>
+            <TableCell>Elongación</TableCell>
             <TableCell>3</TableCell>
             <TableCell>7</TableCell>
           </TableRow>

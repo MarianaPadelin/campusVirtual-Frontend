@@ -6,9 +6,10 @@ import Layouts from './components/layouts/Layouts';
 import Error from './components/pages/vistas_alumnos/error/Error';
 import Muestra from './components/pages/muestra_2vistas/Muestra';
 import axios from 'axios';
+import { config } from './config';
 
-axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 // axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL= config.backendURL;
 axios.defaults.withCredentials = true;
 function App() {
   return (

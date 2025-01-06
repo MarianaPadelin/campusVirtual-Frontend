@@ -7,7 +7,6 @@ const HomeCelu = ({ alumnos }) => {
     <div className="basicContainer">
       <Table>
         <TableHead>
-          <TableCell>Nombre</TableCell>
           <TableCell>Apellido</TableCell>
           <TableCell>Editar</TableCell>
           <TableCell>Eliminar</TableCell>
@@ -16,7 +15,6 @@ const HomeCelu = ({ alumnos }) => {
         {alumnos &&
           alumnos.map((alumno) => (
             <TableRow key={alumno._id}>
-              <TableCell>{alumno.nombre}</TableCell>
               <TableCell>{alumno.apellido}</TableCell>
              
               <TableCell>
