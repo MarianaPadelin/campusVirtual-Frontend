@@ -11,7 +11,7 @@ import axios from 'axios';
 // axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL= config.backendURL;
 axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
-console.log(axios.defaults.baseURL)
+// console.log(axios.defaults.baseURL)
 
 
 axios.defaults.withCredentials = true;
