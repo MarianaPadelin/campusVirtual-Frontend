@@ -36,12 +36,12 @@ const HomeDesktop = ({ alumnos }) => {
                 </Link>
               </TableCell>
               <TableCell>
-                {/* <Button onClick={(eliminarElemento(alumno._id))}> */}
-                <Button color="secondary">
+                <Button
+                  color="secondary"
+                  // onClick={eliminarElemento(alumno._id)}
+                >
                   <HighlightOffIcon />
                 </Button>
-
-                {/* </Button> */}
               </TableCell>
             </TableRow>
           ))}

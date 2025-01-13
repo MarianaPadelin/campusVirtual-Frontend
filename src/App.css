@@ -61,7 +61,7 @@ a{
 }
 
 .inputPagos{
-    width: 5vw;
+    width: 15vw;
 }
 
 .datePicker{
@@ -70,16 +70,33 @@ a{
 
 }
 
+
+.inputLista{
+    margin-right: 3vw;
+}
 .spanTable{
     display: block;
     text-align: center;
 
 }
+
+
 th{
     max-width: 6vw;
     flex-wrap: wrap;
     font-weight: bolder!important;
     font-size: large!important;
+
+}
+
+.signoPesos{
+    align-self: center;
+    margin-right: 2vw!important;
+}
+
+.buttonForm{
+    margin-top: 3vh!important;
+    align-self: center!important;
 
 }
 

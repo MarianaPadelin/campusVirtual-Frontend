@@ -1,4 +1,5 @@
 // import Muestra from "../components/pages/muestra_2vistas/Muestra";
+import CargarAlumnosContainer from "../components/pages/vistas_admin/cargar_alumnos/CargarAlumnosContainer";
 import CargarMaterialContainer from "../components/pages/vistas_admin/cargar_material/CargarMaterialContainer";
 import HomeAdminContainer from "../components/pages/vistas_admin/home/HomeAdminContainer";
 import InfoContainer from "../components/pages/vistas_admin/info_alumno/InfoContainer";
@@ -80,5 +81,10 @@ export const rutasApp = [
     id: "registroPagos",
     path: "/admin/pagos",
     Element: RegistrarPagosContainer,
+  },
+  {
+    id: "cargarAlumnos",
+    path: "/admin/lista",
+    Element: CargarAlumnosContainer,
   },
 ];

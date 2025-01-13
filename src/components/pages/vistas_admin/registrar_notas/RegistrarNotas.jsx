@@ -1,71 +1,124 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Table, TableCell, TableHead, TableRow, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-const RegistrarNotas = ({alumnos}) => {
+
+const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange, handleChangeClases, handleChangeAño, handleSelectStudent, handleSubmit, values }) => {
+
+
+   
+        
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
         Registro de notas
       </Typography>
+
       <div className="secondaryContainer">
         <span className="spanTable">
-          <FormControl color="secondary" className="classSelector">
-            <InputLabel id="label-clase">Clase</InputLabel>
+          {/* {clases &&
+            clases.map((c) => { */}
+          <FormControl
+            // key={c.name}
+            color="secondary"
+            className="classSelector"
+          >
+            <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
-              labelId="label-clase"
-              // id="demo-simple-select"
-              // value={clase}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={clase}
               label="Clase"
-              // onChange={handleChange}
+              onChange={handleChangeClases}
             >
-              <MenuItem value={1}>Acrobacia</MenuItem>
-              <MenuItem value={2}>Preparación física</MenuItem>
-              <MenuItem value={3}>Danza</MenuItem>
+              {clasesDisponibles &&
+                clasesDisponibles.map((c) => {
+                  return (
+                    <MenuItem key={c} value={c}>
+                      {c}
+                    </MenuItem>
+                  );
+                })}
             </Select>
           </FormControl>
-
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
-              // id="demo-simple-select"
-              // value={clase}
+              value={año}
               label="Clase"
-              // onChange={handleChange}
+              onChange={handleChangeAño}
             >
-              <MenuItem value={1}>2022</MenuItem>
-              <MenuItem value={2}>2023</MenuItem>
-              <MenuItem value={3}>2024</MenuItem>
-              <MenuItem value={3}>2025</MenuItem>
+              <MenuItem value={2022}>2022</MenuItem>
+              <MenuItem value={2023}>2023</MenuItem>
+              <MenuItem value={2024}>2024</MenuItem>
+              <MenuItem value={2025}>2025</MenuItem>
             </Select>
           </FormControl>
         </span>
-        <Table>
-          <TableHead>
-            <TableCell>Alumno</TableCell>
-            <TableCell>Nota julio</TableCell>
-            <TableCell>Nota diciembre</TableCell>
-          </TableHead>
+        <form onSubmit={handleSubmit}>
+          <Table>
+            <TableHead>
+              <TableCell>Alumno</TableCell>
+              <TableCell>Nota julio</TableCell>
+              <TableCell>Nota diciembre</TableCell>
+            </TableHead>
 
-          {alumnos &&
-            alumnos.map((alumno) => (
-              <TableRow key={alumno._id}>
-                <TableCell>{alumno.nombre}</TableCell>
-                <TableCell>
-                  <TextField variant="outlined" className="inputPagos" />
-                </TableCell>
-                <TableCell>
-                  <TextField variant="outlined" className="inputPagos" />
-                </TableCell>
-              </TableRow>
-            ))}
-        </Table>
+            {alumnos &&
+              alumnos.map((alumno) => (
+                <TableRow
+                  key={alumno._id}
+                  onClick={() => handleSelectStudent(alumno._id)}
+                >
+                  {/* <TableCell name="id_alumno" value={value}>{alumno._id}</TableCell> */}
 
-        <Button variant="contained" color="secondary">
-          Enviar
-        </Button>
+                  <TableCell name="id_alumno" value={values._id}>
+                    {alumno.nombre} {alumno.apellido}
+                  </TableCell>
+
+                  <TableCell>
+                    <TextField
+                      variant="outlined"
+                      className="inputPagos"
+                      name="notaJulio"
+                      onChange={handleChange}
+                      // value={values.notaJulio}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      variant="outlined"
+                      className="inputPagos"
+                      name="notaDiciembre"
+                      onChange={handleChange}
+                      // value={values.notaDiciembre}
+                    />
+                  </TableCell>
+                  <Button
+                    className="buttonForm"
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Enviar
+                  </Button>
+                </TableRow>
+              ))}
+          </Table>
+        </form>
       </div>
     </div>
   );
-}
+};
 
-export default RegistrarNotas
+export default RegistrarNotas;

@@ -16,6 +16,7 @@ import { useState } from "react";
 
 const pages = [
   { name: "Registrar alumno", path: "/admin/registro" },
+  { name: "Cargar alumnos", path: "/admin/lista" },
   { name: "Asistencias", path: "/admin/asistencias" },
   { name: "Subir notas", path: "/admin/notas" },
   { name: "Subir pagos", path: "/admin/pagos" },
