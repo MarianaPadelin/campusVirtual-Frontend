@@ -1,28 +1,11 @@
 import { Button, TextField, Typography } from "@mui/material";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+
 
 //Mandar la primer letra en mayúscula
 
-const Registro = ({ registrarAlumno }) => {
+const Registro = ({ handleChange, handleSubmit, errors }) => {
 
-const { handleSubmit, handleChange, errors } = useFormik({
-    //3 parámetros: los valores iniciales, la función con onsubmit, y las validaciones
-  initialValues: {
-    nombre: "",
-    apellido: "",
-    email: "",
-    celular: "",
-  },
-  onSubmit: (datosIngresados) => {
-    registrarAlumno(datosIngresados)
-  },
-  validateOnChange: false, 
-  validationSchema: Yup.object({
-    email: Yup.string().required("Campo obligatorio"),
-    celular: Yup.number("Debe ser un número")
-  })
-});
+
 
  
   return (

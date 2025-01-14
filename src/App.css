@@ -52,6 +52,7 @@ a{
 
 @media only screen and (min-width: 720px) {
 .spanTable{
+    flex-direction: row!important;
     width: 100%;
 }
 
@@ -75,12 +76,16 @@ a{
     margin-right: 3vw;
 }
 .spanTable{
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    gap: 3vw; 
 
 }
 
-
+table{
+    min-width: 60vw;
+}
 th{
     max-width: 6vw;
     flex-wrap: wrap;

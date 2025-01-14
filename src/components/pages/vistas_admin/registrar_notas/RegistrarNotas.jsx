@@ -11,9 +11,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+// import Loader from "../../../common/loader/Loader";
 
 
-const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange, handleChangeClases, handleChangeAño, handleSelectStudent, handleSubmit, values }) => {
+const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange, handleChangeClases, handleChangeAño, handleSelectStudent, handleSubmit, values, errors }) => {
 
 
    
@@ -26,13 +27,7 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
 
       <div className="secondaryContainer">
         <span className="spanTable">
-          {/* {clases &&
-            clases.map((c) => { */}
-          <FormControl
-            // key={c.name}
-            color="secondary"
-            className="classSelector"
-          >
+          <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -66,56 +61,72 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
             </Select>
           </FormControl>
         </span>
-        <form onSubmit={handleSubmit}>
-          <Table>
-            <TableHead>
-              <TableCell>Alumno</TableCell>
-              <TableCell>Nota julio</TableCell>
-              <TableCell>Nota diciembre</TableCell>
-            </TableHead>
+        {clase && (
+          <form onSubmit={handleSubmit}>
+            <Table>
+              <TableHead>
+                <TableCell>Alumno</TableCell>
+                <TableCell>Nota julio</TableCell>
+                <TableCell>Nota diciembre</TableCell>
+              </TableHead>
 
-            {alumnos &&
-              alumnos.map((alumno) => (
-                <TableRow
-                  key={alumno._id}
-                  onClick={() => handleSelectStudent(alumno._id)}
-                >
-                  {/* <TableCell name="id_alumno" value={value}>{alumno._id}</TableCell> */}
-
-                  <TableCell name="id_alumno" value={values._id}>
-                    {alumno.nombre} {alumno.apellido}
-                  </TableCell>
-
-                  <TableCell>
-                    <TextField
-                      variant="outlined"
-                      className="inputPagos"
-                      name="notaJulio"
-                      onChange={handleChange}
-                      // value={values.notaJulio}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <TextField
-                      variant="outlined"
-                      className="inputPagos"
-                      name="notaDiciembre"
-                      onChange={handleChange}
-                      // value={values.notaDiciembre}
-                    />
-                  </TableCell>
-                  <Button
-                    className="buttonForm"
-                    type="submit"
-                    variant="contained"
-                    color="secondary"
+              {(alumnos && alumnos.length > 0) ? (
+                alumnos.map((alumno) => (
+                  <TableRow
+                    key={alumno._id}
+                    onClick={() => handleSelectStudent(alumno._id)}
                   >
-                    Enviar
-                  </Button>
+
+                    <TableCell name="id_alumno" value={values._id}>
+                      {alumno.nombre} {alumno.apellido}
+                    </TableCell>
+
+                    <TableCell>
+                      <TextField
+                        variant="outlined"
+                        className="inputPagos"
+                        name="notaJulio"
+                        onChange={handleChange}
+                        error={errors.notaJulio ? true : false}
+                        helperText={errors.notaJulio}
+
+                        // value={values.notaJulio}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        variant="outlined"
+                        className="inputPagos"
+                        name="notaDiciembre"
+                        onChange={handleChange}
+                        error={errors.notaDiciembre ? true : false}
+                        helperText={errors.notaDiciembre}
+
+                        // value={values.notaDiciembre}
+                      />
+                    </TableCell>
+                    <Button
+                      className="buttonForm"
+                      type="submit"
+                      variant="contained"
+                      color="secondary"
+                    >
+                      Enviar
+                    </Button>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colspan="3">
+                    <Typography>
+                      No hay alumnos para la clase {clase} del año {año}
+                    </Typography>
+                  </TableCell>
                 </TableRow>
-              ))}
-          </Table>
-        </form>
+              )}
+            </Table>
+          </form>
+        )}
       </div>
     </div>
   );

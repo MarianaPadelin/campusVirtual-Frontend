@@ -1,9 +1,9 @@
 import {
   Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  // FormControl,
+  // InputLabel,
+  // MenuItem,
+  // Select,
   Table,
   TableCell,
   TableHead,
@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const RegistrarPagos = ({ alumnos, meses, handleChangeMes, handleChange, handleSelectStudent, handleSubmit }) => {
+const RegistrarPagos = ({ alumnos, handleChange, handleSelectStudent, handleSubmit, errors }) => {
  
   return (
     <div className="basicContainer">
@@ -20,7 +20,7 @@ const RegistrarPagos = ({ alumnos, meses, handleChangeMes, handleChange, handleS
         Registro de pagos
       </Typography>
       <div className="secondaryContainer">
-        <FormControl color="secondary" className="classSelector">
+        {/* <FormControl color="secondary" className="classSelector">
           <InputLabel id="label-clase">Mes</InputLabel>
           <Select
             labelId="label-clase"
@@ -37,7 +37,7 @@ const RegistrarPagos = ({ alumnos, meses, handleChangeMes, handleChange, handleS
               );
             })}
           </Select>
-        </FormControl>
+        </FormControl> */}
         <form onSubmit={handleSubmit}>
           <Table>
             <TableHead>
@@ -57,12 +57,13 @@ const RegistrarPagos = ({ alumnos, meses, handleChangeMes, handleChange, handleS
                   <TableCell>
                     <span>
                       <Typography className="signoPesos">$</Typography>
-                      {/* verificar que sea numero */}
                       <TextField
                         variant="outlined"
                         className="inputPagos"
                         name="monto"
                         onChange={handleChange}
+                        error={errors.monto ? true : false}
+                        helperText={errors.monto}
                       />
                     </span>
                   </TableCell>

@@ -1,26 +1,13 @@
-import { DataGrid } from "@mui/x-data-grid";
+// import { DataGrid } from "@mui/x-data-grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-import Paper from "@mui/material/Paper";
-import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+// import Paper from "@mui/material/Paper";
+import { Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
-const RegistrarAsistencias = () => {
-  const columns = [
-    { field: "Alumno", headerName: "Alumno", width: 70 },
-   
-  ];
-
-  const rows = [
-    { id: 1, Alumno: "Test 1" },
-    { id: 2, Alumno: "Test 2" },
-    { id: 3, Alumno: "Test 3" },
-    { id: 4, Alumno: "Test 4" },
-    { id: 5, Alumno: "Test 5" },
-    { id: 6, Alumno: "Test 6" },
-  ];
+const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectStudent, handleSubmit, values }) => {
 
   return (
     <div className="basicContainer">
@@ -30,35 +17,82 @@ const RegistrarAsistencias = () => {
 
       <div className="secondaryContainer">
         <span className="spanTable">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker  className="datePicker" label="Seleccionar fecha" />
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            onChange={handleChangeAño}
+          >
+            <DatePicker className="datePicker" label="Seleccionar fecha" />
           </LocalizationProvider>
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              // value={clase}
+              value={clase}
               label="Clase"
-              // onChange={handleChange}
+              onChange={handleChangeClases}
             >
-              <MenuItem value={1}>Acrobacia</MenuItem>
-              <MenuItem value={2}>Preparación física</MenuItem>
-              <MenuItem value={3}>Danza</MenuItem>
+              {clasesDisponibles &&
+                clasesDisponibles.map((c) => {
+                  return (
+                    <MenuItem key={c} value={c}>
+                      {c}
+                    </MenuItem>
+                  );
+                })}
             </Select>
           </FormControl>
         </span>
-        <Paper sx={{ height: 450, width: "100%" }} className="asistenciasContainer">
+        {/* <Paper
+          sx={{ height: 450, width: "100%" }}
+          className="asistenciasContainer"
+        >
           <DataGrid
             rows={rows}
             columns={columns}
             pageSizeOptions={[5, 10]}
             checkboxSelection
           />
-        </Paper>
-        <Button variant="contained" color="secondary">
-          Enviar
-        </Button>
+        </Paper> */}
+        {clase && (
+          <form onSubmit={handleSubmit}>
+            <Table>
+              <TableHead>
+                <TableCell>Alumno</TableCell>
+                <TableCell>Asistencia</TableCell>
+              </TableHead>
+
+              {alumnos && alumnos.length > 0 ? (
+                alumnos.map((alumno) => (
+                  <TableRow
+                    key={alumno._id}
+                    onClick={() => handleSelectStudent(alumno._id)}
+                  >
+                    <TableCell name="id_alumno" value={values._id}>
+                      {alumno.nombre} {alumno.apellido}
+                    </TableCell>
+
+                    <TableCell>
+                      <Checkbox nombre="asistencia"  />
+
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell >
+                    <Typography>
+                      No hay alumnos para la clase {clase} del año {año}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              )}
+            </Table>
+            <Button type="submit" variant="contained" color="secondary">
+              Enviar
+            </Button>
+          </form>
+        )}
       </div>
     </div>
   );

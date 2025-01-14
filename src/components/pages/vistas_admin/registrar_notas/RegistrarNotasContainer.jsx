@@ -3,6 +3,7 @@ import RegistrarNotas from "./RegistrarNotas";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import * as Yup from "yup";
 
 //está registrando solo la última nota
 //agarrar el error cuando no existe una clase para un determinado año
@@ -32,41 +33,40 @@ const RegistrarNotasContainer = () => {
   useEffect(() => {
     const promise = axios.get(`/clases/${clase}/${año}`);
     promise
-      // .then((res) => console.log(res.data))
-      .then((res) => setAlumnos(res.data))
+      .then((res) => {
+        if (res.data.status == 404) {
+          setAlumnos([]);
+        }
+        setAlumnos(res.data.result);
+      })
       .catch((err) => console.log(err));
   }, [clase, año]);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //           console.log(e);
-
-  //   const valores = {
-  //         clase,
-  //         id_alumno: "677c5007899ac18cdb7cfcc0",
-
-  //       }
-  //       console.log(valores);
-  // }
-
-  // ---con formik---
-  const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
-    initialValues: {
-      clase: "",
-      id_alumno: "",
-      notaJulio: "",
-      notaDiciembre: "",
-    },
-    onSubmit: (datosIngresados) => {
-      datosIngresados.clase = clase;
-      // datosIngresados.id_alumno = value;
-      console.log(datosIngresados.id_alumno);
-      registrarNotas(datosIngresados);
-      // setFieldValue("notaJulio", "");
-      // setFieldValue("notaDiciembre", "");
-    },
-    // falta validación de que sea un numero del 1 al 10
-  });
+  const { handleSubmit, handleChange, values, setFieldValue, errors } =
+    useFormik({
+      initialValues: {
+        clase: "",
+        id_alumno: "",
+        notaJulio: 0,
+        notaDiciembre: 0,
+      },
+      onSubmit: (datosIngresados) => {
+        datosIngresados.clase = clase;
+        console.log(datosIngresados.id_alumno);
+        registrarNotas(datosIngresados);
+      },
+      validateOnChange: false,
+      validationSchema: Yup.object({
+        notaJulio: Yup.number()
+          .typeError("Debe ser un número válido") 
+          .min(0, "Debe ser un número del 1 al 10")
+          .max(10, "Debe ser un número del 1 al 10"),
+        notaDiciembre: Yup.number()
+          .typeError("Debe ser un número válido") 
+          .min(0, "Debe ser un número del 1 al 10")
+          .max(10, "Debe ser un número del 1 al 10"),
+      }),
+    });
 
   // Function to handle student selection and set the _id into Formik
   const handleSelectStudent = (alumnoId) => {
@@ -95,6 +95,7 @@ const RegistrarNotasContainer = () => {
         handleSelectStudent={handleSelectStudent}
         handleSubmit={handleSubmit}
         values={values}
+        errors={errors}
       />
     </>
   );
