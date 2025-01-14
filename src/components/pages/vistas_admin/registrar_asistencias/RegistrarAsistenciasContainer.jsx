@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import RegistrarAsistencias from "./RegistrarAsistencias";
 import axios from "axios";
 import { useFormik } from "formik";
+import dayjs from "dayjs";
+import Swal from "sweetalert2";
+
+//falta capturar varias asistencias a la vez
 
 const RegistrarAsistenciasContainer = () => {
   const [clase, setClase] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [alumnos, setAlumnos] = useState([]);
   const [año, setAño] = useState(2025); //Esto agarrarlo del datePicker
-
-  //fecha/setFecha
+  const [fecha, setFecha] = useState("");
+  // const [listaAsistencias, setListaAsistencias] = useState([]); // Array to store assistance records
 
   useEffect(() => {
     const promise = axios.get(`/clases`);
@@ -23,14 +27,20 @@ const RegistrarAsistenciasContainer = () => {
     setClase(claseSeleccionada);
   };
 
-  const handleChangeAño = (e) => {
-    console.log("año seleccionado: ", e.target.value);
-    const añoSeleccionado = e.target.value;
-    setAño(añoSeleccionado);
+  const handleChangeAño = (date) => {
+    if (date) {
+      const añoSeleccionado = dayjs(date).year();
+      const fechaFormateada = dayjs(date).format("DD/MM/YYYY"); // Format the date as dd/mm/yyyy
+
+      setAño(añoSeleccionado);
+
+      setFecha(fechaFormateada);
+      // console.log(fechaFormateada);
+    }
   };
 
   useEffect(() => {
-    console.log(clase, año);
+    // console.log(clase, año);
     const promise = axios.get(`/clases/${clase}/${año}`);
     promise
       .then((res) => {
@@ -42,24 +52,55 @@ const RegistrarAsistenciasContainer = () => {
       .catch((err) => console.log(err));
   }, [clase, año]);
 
-  const { handleSubmit, values, setFieldValue, errors } =
-    useFormik({
-      initialValues: {
-        clase: "",
-        fecha: "", 
-        id_alumno: "",
-        asistencia: false,
-      },
-      onSubmit: (datosIngresados) => {
-        datosIngresados.clase = clase;
-        console.log(datosIngresados);
-      },
-    });
+  const { handleSubmit, values, setFieldValue, errors } = useFormik({
+    initialValues: {
+      clase: "",
+      fecha: "",
+      id_alumno: "",
+      asistencia: false,
+    },
+    onSubmit: (datosIngresados) => {
+      datosIngresados.clase = clase;
+      datosIngresados.fecha = fecha;
+      console.log(datosIngresados);
+      registrarAsistencias(datosIngresados);
+
+      // subirListaAsistencias(listaAsistencias)
+    },
+  });
 
   const handleSelectStudent = (alumnoId) => {
     setFieldValue("id_alumno", alumnoId);
-    setFieldValue("asistencia", true)
   };
+
+  const handleSelectAsistencia = (e) => {
+    const isChecked = e.target.checked;
+    
+    return setFieldValue("asistencia", isChecked);
+  };
+
+  const registrarAsistencias = (data) => {
+    const promise = axios.post("/asistencias", data);
+
+    promise
+      .then((res) => {
+        if (res.data.status === 200) {
+           Swal.fire({
+            icon: "success",
+            text: "Asistencias registradas con éxito",
+          });
+          // setListaAsistencias([])
+          return
+        }
+        return Swal.fire({
+          icon: "error",
+          text: "Error desconocido",
+        });
+      })
+
+      .catch((err) => console.log("Hubo un error: " + err));
+  };
+
   return (
     <div>
       <RegistrarAsistencias
@@ -71,6 +112,7 @@ const RegistrarAsistenciasContainer = () => {
         handleChangeAño={handleChangeAño}
         // handleChange={handleChange}
         handleSelectStudent={handleSelectStudent}
+        handleSelectAsistencia={handleSelectAsistencia}
         handleSubmit={handleSubmit}
         values={values}
         errors={errors}

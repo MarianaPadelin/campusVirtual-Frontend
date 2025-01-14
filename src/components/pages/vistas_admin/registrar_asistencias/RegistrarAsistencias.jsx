@@ -5,9 +5,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 // import Paper from "@mui/material/Paper";
-import { Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
-const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectStudent, handleSubmit, values }) => {
+const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectStudent, handleSelectAsistencia, handleSubmit, values }) => {
 
   return (
     <div className="basicContainer">
@@ -17,11 +17,12 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
 
       <div className="secondaryContainer">
         <span className="spanTable">
-          <LocalizationProvider
-            dateAdapter={AdapterDayjs}
-            onChange={handleChangeAño}
-          >
-            <DatePicker className="datePicker" label="Seleccionar fecha" />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              className="datePicker"
+              label="Seleccionar fecha"
+              onChange={handleChangeAño}
+            />
           </LocalizationProvider>
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
@@ -61,32 +62,36 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
                 <TableCell>Alumno</TableCell>
                 <TableCell>Asistencia</TableCell>
               </TableHead>
+              <TableBody>
+                {alumnos && alumnos.length > 0 ? (
+                  alumnos.map((alumno) => (
+                    <TableRow
+                      key={alumno._id}
+                      onClick={() => handleSelectStudent(alumno._id)}
+                    >
+                      <TableCell name="id_alumno" value={values._id}>
+                        {alumno.nombre} {alumno.apellido}
+                      </TableCell>
 
-              {alumnos && alumnos.length > 0 ? (
-                alumnos.map((alumno) => (
-                  <TableRow
-                    key={alumno._id}
-                    onClick={() => handleSelectStudent(alumno._id)}
-                  >
-                    <TableCell name="id_alumno" value={values._id}>
-                      {alumno.nombre} {alumno.apellido}
-                    </TableCell>
-
-                    <TableCell>
-                      <Checkbox nombre="asistencia"  />
-
+                      <TableCell>
+                        <Checkbox
+                          onChange={handleSelectAsistencia}
+                          nombre="asistencia"
+                          sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colspan="2">
+                      <Typography>
+                        No hay alumnos para la clase {clase} del año {año}
+                      </Typography>
                     </TableCell>
                   </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell >
-                    <Typography>
-                      No hay alumnos para la clase {clase} del año {año}
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              )}
+                )}
+              </TableBody>
             </Table>
             <Button type="submit" variant="contained" color="secondary">
               Enviar

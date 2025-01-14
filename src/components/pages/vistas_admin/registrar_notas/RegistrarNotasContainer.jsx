@@ -74,7 +74,6 @@ const RegistrarNotasContainer = () => {
   };
 
   const registrarNotas = (data) => {
-    console.log(data);
     const promise = axios.post("/notas", data);
 
     promise

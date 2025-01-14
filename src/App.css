@@ -1,129 +1,120 @@
-body{
-    background-color: 
-#E6E6FA;
+body {
+  background-color: #e6e6fa;
 }
 
-.titles{
-    margin: 2vw!important;
-    text-align: center;
+.titles {
+  margin: 2vw !important;
+  text-align: center;
 }
 
-.basicContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1vw;
-    max-width: 95vw;
+.basicContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vw;
+  max-width: 95vw;
 }
 
-.secondaryContainer{
-    background-color: silver;
-    width: 90%;
-    padding: 4vw;
-    margin-left: 1vw;
-    margin-top: 3vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.secondaryContainer {
+  background-color: silver;
+  width: 90%;
+  padding: 4vw;
+  margin-left: 1vw;
+  margin-top: 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.registro{
-    width: unset;
+.registro {
+  width: unset;
 }
 
-.formContainer{
-    display: flex;
-    flex-direction: column;
-    margin: 2vw;
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 2vw;
 }
 
-a{
-    text-decoration: none;
-    color:inherit; 
-    margin: 1vw; 
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 1vw;
 }
 
-
-.classSelector{
-    width: 60vw;
+.classSelector {
+  width: 60vw;
 }
 
 
 
 @media only screen and (min-width: 720px) {
-.spanTable{
-    flex-direction: row!important;
+  .spanTable {
+    flex-direction: row !important;
     width: 100%;
-}
+  }
 
-.classSelector{
-    width: 25vw; 
+  .classSelector {
+    width: 25vw;
     margin: 3vw;
-}
+  }
 
-.inputPagos{
+  .inputPagos {
     width: 15vw;
-}
+  }
 
-.datePicker{
+  .datePicker {
     width: 30vw;
+  }
 }
 
+.inputLista {
+  margin-right: 3vw;
+}
+.spanTable {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 3vw;
 }
 
-
-.inputLista{
-    margin-right: 3vw;
+table {
+  min-width: 60vw;
 }
-.spanTable{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 3vw; 
-
+th {
+  max-width: 6vw;
+  flex-wrap: wrap;
+  font-weight: bolder !important;
+  font-size: large !important;
 }
 
-table{
-    min-width: 60vw;
-}
-th{
-    max-width: 6vw;
-    flex-wrap: wrap;
-    font-weight: bolder!important;
-    font-size: large!important;
-
+.signoPesos {
+  align-self: center;
+  margin-right: 2vw !important;
 }
 
-.signoPesos{
-    align-self: center;
-    margin-right: 2vw!important;
-}
-
-.buttonForm{
-    margin-top: 3vh!important;
-    align-self: center!important;
-
+.buttonForm {
+  margin-top: 3vh !important;
+  align-self: center !important;
 }
 
 td {
-text-align: center;
-width: 20vw;
+  text-align: center;
+  width: 20vw;
 }
 
-.asistencias td{
-     max-width: 5vw;
-
+.asistencias td {
+  max-width: 5vw;
 }
-span{
-    display: flex;
-    justify-content: center;
-}
-
-.asistenciasContainer{
-    margin: 3vw;
+span {
+  display: flex;
+  justify-content: center;
 }
 
+.asistenciasContainer {
+  margin: 3vw;
+}
 
-.datePicker{
-    width: 60vw;
+.datePicker {
+  width: 60vw;
 }
