@@ -62,33 +62,35 @@ const CargarAlumnos = ({ clasesDisponibles, clase, handleChangeClases, año, alu
             </Select>
           </FormControl>
         </span>
-        <Table>
-          <TableHead>
-            <TableCell>Alumno</TableCell>
-          </TableHead>
-          {alumnos &&
-            alumnos.map((alumno) => (
-              <TableRow key={alumno._id}>
-                {/* <TableCell name="id_alumno" value={value}>{alumno._id}</TableCell> */}
+        {clase && (
+          <Table>
+            <TableHead>
+              <TableCell>Alumno</TableCell>
+            </TableHead>
+            {alumnos &&
+              alumnos.map((alumno) => (
+                <TableRow key={alumno._id}>
+                  {/* <TableCell name="id_alumno" value={value}>{alumno._id}</TableCell> */}
 
-                <TableCell name="id_alumno" value={alumno._id}>
-                  {alumno.nombre} {alumno.apellido}
-                </TableCell>
-              </TableRow>
-            ))}
-        </Table>
-        <form onSubmit={handleSubmit}>
-          <Typography>Agregar alumno a la clase</Typography>
-          <Input
-            className="inputLista"
-            name="apellido"
-            onChange={handleChange}
-            value={values.apellido}
-          ></Input>
-          <Button type="submit" variant="contained" color="secondary">
-            Enviar
-          </Button>
-        </form>
+                  <TableCell name="id_alumno" value={alumno._id}>
+                    {alumno.nombre} {alumno.apellido}
+                  </TableCell>
+                </TableRow>
+              ))}
+            <form onSubmit={handleSubmit}>
+              <Typography>Agregar alumno a la clase</Typography>
+              <Input
+                className="inputLista"
+                name="apellido"
+                onChange={handleChange}
+                value={values.apellido}
+              ></Input>
+              <Button type="submit" variant="contained" color="secondary">
+                Enviar
+              </Button>
+            </form>
+          </Table>
+        )}
       </div>
     </div>
   );
