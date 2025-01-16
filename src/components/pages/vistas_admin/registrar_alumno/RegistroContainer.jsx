@@ -34,7 +34,10 @@ const RegistroContainer = () => {
       const promise = axios.post(`/alumnos`, data);
 
       promise
-        .then(() => Swal.fire(`Alumno ${data.nombre} ${data.apellido}registrado con éxito`))
+        .then(() => Swal.fire({
+          icon:"success",
+          text: 
+          `Alumno ${data.nombre} ${data.apellido} registrado con éxito`}))
         .then(navigate("/admin"))
         .catch((err) => console.log("Hubo un error: " + err));
 

@@ -2,7 +2,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { Button, Table, TableCell, TableHead, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
-const HomeCelu = ({ alumnos }) => {
+const HomeCelu = ({ alumnos, eliminarElemento }) => {
   return (
     <div className="basicContainer">
       <Table>
@@ -25,12 +25,10 @@ const HomeCelu = ({ alumnos }) => {
                 </Link>
               </TableCell>
               <TableCell>
-                {/* <Button onClick={(eliminarElemento(alumno._id))}> */}
-                <Button color="secondary">
-                  <HighlightOffIcon />
+                <Button onClick={() => {eliminarElemento(alumno._id)}}>
+                  <HighlightOffIcon color="secondary" />
                 </Button>
 
-                {/* </Button> */}
               </TableCell>
             </TableRow>
           ))}

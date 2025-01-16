@@ -31,8 +31,12 @@ const CargarAlumnosContainer = () => {
   useEffect(() => {
     const promise = axios.get(`/clases/${clase}/${año}`);
     promise
-      // .then((res) => console.log(res.data))
-      .then((res) => setAlumnos(res.data))
+      .then((res) => {
+        if (res.data.status == 404) {
+          setAlumnos([]);
+        }
+        setAlumnos(res.data.result);
+      })
       .catch((err) => console.log(err));
   }, [clase, año]);
 
@@ -64,10 +68,9 @@ const CargarAlumnosContainer = () => {
         }
       })
       .then(() => {
-        //this is where i want to refresh the page
         axios
           .get(`/clases/${clase}/${año}`)
-          .then((res) => setAlumnos(res.data))
+          .then((res) => setAlumnos(res.data.result))
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log("Hubo un error: " + err));
@@ -83,6 +86,42 @@ const CargarAlumnosContainer = () => {
     },
   });
 
+  const borrarAlumnoLista = (id) => {
+    Swal.fire({
+      title:
+        `¿Desea eliminar al alumno de la clase ${clase} ${año}?` ,
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: `Cancelar`,
+    })
+      .then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          const promise = axios.delete(`/clases/${clase}/${año}/${id}`);
+
+          promise
+            .then(() =>
+              Swal.fire({
+                icon: "success",
+                text: "Alumno eliminado",
+              })
+            )
+            .then(() => {
+              axios
+                .get(`/clases/${clase}/${año}`)
+                .then((res) => setAlumnos(res.data.result))
+                .catch((err) => console.log(err));
+            })
+            .catch((err) =>
+              console.log(
+                "Hubo un error: " + err + ". El id recibido es: " + id
+              )
+            );
+        }
+      })
+      .catch((err) => console.log("Hubo un error: ", err));
+  };
+
   return (
     <>
       <CargarAlumnos
@@ -96,6 +135,7 @@ const CargarAlumnosContainer = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         values={values}
+        borrarAlumnoLista={borrarAlumnoLista}
       />
     </>
   );

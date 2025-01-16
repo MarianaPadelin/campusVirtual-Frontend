@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-const HomeDesktop = ({ alumnos }) => {
+const HomeDesktop = ({ alumnos, eliminarElemento }) => {
   return (
     <div className="basicContainer">
       <Table>
@@ -37,10 +37,11 @@ const HomeDesktop = ({ alumnos }) => {
               </TableCell>
               <TableCell>
                 <Button
-                  color="secondary"
-                  // onClick={eliminarElemento(alumno._id)}
+                  onClick={() => {
+                    eliminarElemento(alumno._id);
+                  }}
                 >
-                  <HighlightOffIcon />
+                  <HighlightOffIcon color="secondary" />
                 </Button>
               </TableCell>
             </TableRow>

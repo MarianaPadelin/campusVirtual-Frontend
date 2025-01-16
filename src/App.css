@@ -26,6 +26,12 @@ body {
   align-items: center;
 }
 
+.inputDiv {
+  display: flex;
+  justify-content: center;
+  padding: 3vw;
+}
+
 .registro {
   width: unset;
 }
@@ -33,6 +39,7 @@ body {
 .formContainer {
   display: flex;
   flex-direction: column;
+  gap: 3vh;
   margin: 2vw;
 }
 
@@ -45,8 +52,6 @@ a {
 .classSelector {
   width: 60vw;
 }
-
-
 
 @media only screen and (min-width: 720px) {
   .spanTable {

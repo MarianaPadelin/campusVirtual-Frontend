@@ -7,9 +7,8 @@ import { Typography } from "@mui/material";
 
 //hacer un condicional para celu donde solo se vea el nombre, editar y eliminar
 
-const HomeAdmin = ({ alumnos }) => {
-//eliminarElemento
-  
+const HomeAdmin = ({ alumnos, eliminarElemento }) => {
+  //eliminarElemento
 
   return (
     <div className="basicContainer">
@@ -18,9 +17,9 @@ const HomeAdmin = ({ alumnos }) => {
       </Typography>
       <div className="secondaryContainer">
         {window.innerWidth > 768 ? (
-          <HomeDesktop alumnos={alumnos} />
+          <HomeDesktop alumnos={alumnos} eliminarElemento={eliminarElemento} />
         ) : (
-          <HomeCelu alumnos={alumnos} />
+          <HomeCelu alumnos={alumnos} eliminarElemento={eliminarElemento}/>
         )}
       </div>
     </div>

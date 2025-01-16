@@ -12,12 +12,20 @@ import {
   Typography,
 } from "@mui/material";
 
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-
-const CargarAlumnos = ({ clasesDisponibles, clase, handleChangeClases, año, alumnos, handleChangeAño, handleChange, handleSubmit, values }) => {
- 
-
-
+const CargarAlumnos = ({
+  clasesDisponibles,
+  clase,
+  handleChangeClases,
+  año,
+  alumnos,
+  handleChangeAño,
+  handleChange,
+  handleSubmit,
+  values,
+  borrarAlumnoLista,
+}) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
@@ -63,33 +71,49 @@ const CargarAlumnos = ({ clasesDisponibles, clase, handleChangeClases, año, alu
           </FormControl>
         </span>
         {clase && (
-          <Table>
-            <TableHead>
-              <TableCell>Alumno</TableCell>
-            </TableHead>
-            {alumnos &&
-              alumnos.map((alumno) => (
-                <TableRow key={alumno._id}>
-                  {/* <TableCell name="id_alumno" value={value}>{alumno._id}</TableCell> */}
-
-                  <TableCell name="id_alumno" value={alumno._id}>
-                    {alumno.nombre} {alumno.apellido}
+          <div>
+            <Table>
+              <TableHead>
+                <TableCell colSpan="2">Alumno</TableCell>
+              </TableHead>
+              {alumnos && alumnos.length > 0 ? (
+                alumnos.map((alumno) => (
+                  <TableRow key={alumno._id}>
+                    <TableCell name="id_alumno" value={alumno._id}>
+                      {alumno.nombre} {alumno.apellido}
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={() => {borrarAlumnoLista(alumno._id)}}>
+                        <HighlightOffIcon color="secondary" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell>
+                    <Typography>
+                      No hay alumnos anotados en esta clase
+                    </Typography>
                   </TableCell>
                 </TableRow>
-              ))}
-            <form onSubmit={handleSubmit}>
-              <Typography>Agregar alumno a la clase</Typography>
-              <Input
-                className="inputLista"
-                name="apellido"
-                onChange={handleChange}
-                value={values.apellido}
-              ></Input>
-              <Button type="submit" variant="contained" color="secondary">
-                Enviar
-              </Button>
-            </form>
-          </Table>
+              )}
+            </Table>
+            <div className="inputDiv">
+              <form onSubmit={handleSubmit}>
+                <Typography>Agregar alumno a la clase</Typography>
+                <Input
+                  className="inputLista"
+                  name="apellido"
+                  onChange={handleChange}
+                  value={values.apellido}
+                ></Input>
+                <Button type="submit" variant="contained" color="secondary">
+                  Enviar
+                </Button>
+              </form>
+            </div>
+          </div>
         )}
       </div>
     </div>

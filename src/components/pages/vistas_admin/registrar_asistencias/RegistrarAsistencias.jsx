@@ -7,7 +7,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // import Paper from "@mui/material/Paper";
 import { Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
-const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectStudent, handleSelectAsistencia, handleSubmit, values }) => {
+const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectAsistencia,  handleSubmit, values }) => {
 
   return (
     <div className="basicContainer">
@@ -44,17 +44,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
             </Select>
           </FormControl>
         </span>
-        {/* <Paper
-          sx={{ height: 450, width: "100%" }}
-          className="asistenciasContainer"
-        >
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-          />
-        </Paper> */}
+       
         {clase && (
           <form onSubmit={handleSubmit}>
             <Table>
@@ -67,7 +57,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
                   alumnos.map((alumno) => (
                     <TableRow
                       key={alumno._id}
-                      onClick={() => handleSelectStudent(alumno._id)}
+                      // onClick={() => handleSelectStudent(alumno._id)}
                     >
                       <TableCell name="id_alumno" value={values._id}>
                         {alumno.nombre} {alumno.apellido}
@@ -75,7 +65,9 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
 
                       <TableCell>
                         <Checkbox
-                          onChange={handleSelectAsistencia}
+                          onChange={(e) =>
+                            handleSelectAsistencia(alumno._id, e.target.checked)
+                          }
                           nombre="asistencia"
                           sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
                         />
@@ -104,3 +96,5 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
 };
 
 export default RegistrarAsistencias;
+
+

@@ -16,31 +16,35 @@ const HomeAdminContainer = () => {
   }, []);
 
   const eliminarElemento = (id) => {
-    console.log(id);
     Swal.fire({
-      title: "¿Eliminar alumno?",
-      showDenyButton: true,
+      title: "¿Seguro que desea eliminar al alumno? Quedará borrado de la base de datos de forma permanente",
       showCancelButton: true,
       confirmButtonText: "Sí",
-      denyButtonText: `No`,
+      cancelButtonText: `Cancelar`,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        // const promise = axios.delete(`/alumnos/${id}`);
+        const promise = axios.delete(`/alumnos/${id}`);
 
-        // promise
-        //   .then(() => console.log("Alumno eliminado"))
-        //   //  .then(() => console.log(alumno))
-        //   .catch((err) =>
-        //     console.log(
-        //       "Hubo un error: " + err + ". El id recibido es: " + id
-        //     )
-        //   );
-        Swal.fire(`Alumno ${id} eliminado`);
+        promise
+          .then(() => Swal.fire({
+            icon:"success",
+            text:"Alumno eliminado"
+          }))
+          .then(() => {
+             axios
+               .get(`/alumnos`)
+               .then((res) => setAlumnos(res.data))
+               .catch((err) => console.log(err));
+
+          })
+          .catch((err) =>
+            console.log(
+              "Hubo un error: " + err + ". El id recibido es: " + id
+            )
+          );
       }
-      // else if (result.isDenied) {
-      //   Swal.fire("Changes are not saved", "", "info");
-      // }
+     
     });
   };
   return (
