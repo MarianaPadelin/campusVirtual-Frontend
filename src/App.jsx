@@ -10,9 +10,9 @@ import RegisterContainer from './components/pages/register/RegisterContainer';
 import ResetPasswordContainer from './components/pages/resetPassword/ResetPasswordContainer';
 // import { config } from './config';
 
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL= config.backendURL;
-// axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
+axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 // console.log(axios.defaults.baseURL)
 
 
