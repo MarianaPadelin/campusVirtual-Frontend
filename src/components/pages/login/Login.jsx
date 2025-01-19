@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button, Divider, TextField, Typography } from "@mui/material"
-const Muestra = () => {
+const Login = ({ handleChange, handleSubmit }) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
@@ -10,30 +10,30 @@ const Muestra = () => {
         <Typography className="titles" variant="h5">
           Iniciar sesión
         </Typography>
-        <form className="formContainer">
+        <form className="formContainer" onSubmit={handleSubmit}>
           <TextField
             label="Usuario"
             variant="filled"
             color="secondary"
-            name="usuario"
-            // onChange={handleChange}
+            name="email"
+            onChange={handleChange}
           />
           <TextField
             label="Contraseña"
             variant="filled"
             color="secondary"
-            name="constraseña"
-            // onChange={handleChange}
+            name="password"
+            onChange={handleChange}
           />
 
           <Button variant="contained" color="secondary" type="submit">
             Ingresar
           </Button>
-          <Link>
+          <Link to="/resetPassword">
             <Typography> Olvidé mi contraseña</Typography>
           </Link>
           <Divider />
-          <Link>
+          <Link to="/register">
             <Typography> Registrarme </Typography>
           </Link>
         </form>
@@ -51,4 +51,4 @@ const Muestra = () => {
   );
 }
 
-export default Muestra
+export default Login

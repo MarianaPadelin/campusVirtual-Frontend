@@ -80,9 +80,14 @@ a {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
   gap: 3vw;
 }
 
+.subSpanTable{
+  display: flex;
+  gap: 3vw;
+}
 table {
   min-width: 60vw;
 }

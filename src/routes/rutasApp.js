@@ -1,4 +1,6 @@
 // import Muestra from "../components/pages/muestra_2vistas/Muestra";
+// import LoginContainer from "../components/pages/login/LoginContainer";
+// import RegisterContainer from "../components/pages/register/RegisterContainer";
 import CargarAlumnosContainer from "../components/pages/vistas_admin/cargar_alumnos/CargarAlumnosContainer";
 import CargarMaterialContainer from "../components/pages/vistas_admin/cargar_material/CargarMaterialContainer";
 import HomeAdminContainer from "../components/pages/vistas_admin/home/HomeAdminContainer";
@@ -15,6 +17,17 @@ import PagosContainer from "../components/pages/vistas_alumnos/pagos/PagosContai
 import TpContainer from "../components/pages/vistas_alumnos/tp/TpContainer";
 
 export const rutasApp = [
+  // Inicio
+  // {
+  //   id: "login",
+  //   path: "/",
+  //   Element: LoginContainer,
+  // },
+  // {
+  //   id: "register",
+  //   path: "/register",
+  //   Element: RegisterContainer,
+  // },
   //---Alumnos---
   {
     id: "home",
