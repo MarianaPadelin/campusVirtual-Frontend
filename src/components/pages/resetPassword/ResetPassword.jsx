@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
-import { Button, Divider, TextField, Typography } from "@mui/material";
+import { Button, Divider, InputAdornment, TextField, Typography } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-const ResetPassword = ({ handleChange, handleSubmit, errors }) => {
+const ResetPassword = ({
+  handleChange,
+  handleSubmit,
+  errors,
+  verContraseña,
+  handleViewPass,
+}) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
@@ -21,26 +29,78 @@ const ResetPassword = ({ handleChange, handleSubmit, errors }) => {
             error={errors.email ? true : false}
             helperText={errors.email}
           />
-          <TextField
-            label="Nueva contraseña"
-            variant="filled"
-            color="secondary"
-            name="password"
-            type="password"
-            onChange={handleChange}
-            error={errors.password ? true : false}
-            helperText={errors.password}
-          />
-          <TextField
-            label="Repetir nueva contraseña"
-            variant="filled"
-            color="secondary"
-            name="repeatPassword"
-            type="password"
-            onChange={handleChange}
-            error={errors.repeatPassword ? true : false}
-            helperText={errors.repeatPassword}
-          />
+          {verContraseña ? (
+            <TextField
+              label="Contraseña"
+              variant="filled"
+              color="secondary"
+              name="password"
+              onChange={handleChange}
+              error={errors.password ? true : false}
+              helperText={errors.password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <VisibilityOffIcon onClick={handleViewPass} />
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+          ) : (
+            <TextField
+              label="Contraseña"
+              variant="filled"
+              color="secondary"
+              name="password"
+              type="password"
+              onChange={handleChange}
+              error={errors.password ? true : false}
+              helperText={errors.password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <VisibilityIcon onClick={handleViewPass} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
+          {verContraseña ? (
+            <TextField
+              label="Repetir Contraseña"
+              variant="filled"
+              color="secondary"
+              name="repeatPassword"
+              onChange={handleChange}
+              error={errors.repeatPassword ? true : false}
+              helperText={errors.repeatPassword}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <VisibilityOffIcon onClick={handleViewPass} />
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+          ) : (
+            <TextField
+              label="Repetir Contraseña"
+              variant="filled"
+              color="secondary"
+              name="repeatPassword"
+              type="password"
+              onChange={handleChange}
+              error={errors.repeatPassword ? true : false}
+              helperText={errors.repeatPassword}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <VisibilityIcon onClick={handleViewPass} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
           <Button variant="contained" color="secondary" type="submit">
             Ingresar
           </Button>

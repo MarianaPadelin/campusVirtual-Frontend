@@ -21,7 +21,7 @@ const pages = [
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
   { name: "Ver material didáctico", path: "/alumnos/material" },
-  { name: "Cerrar sesión", path: "/"}
+  { name: "Cerrar sesión", path: "/logout"}
 ];
 
 

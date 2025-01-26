@@ -21,7 +21,7 @@ const pages = [
   { name: "Subir notas", path: "/admin/notas" },
   { name: "Subir pagos", path: "/admin/pagos" },
   { name: "Subir material", path: "/admin/material" },
-  { name: "Cerrar sesión", path: "/" },
+  { name: "Cerrar sesión", path: "/logout" },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavbarAdmin = () => {

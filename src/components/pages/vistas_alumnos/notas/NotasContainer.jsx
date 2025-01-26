@@ -1,30 +1,36 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Notas from "./Notas";
 import axios from "axios";
-import Loader from "../../../common/loader/Loader";
+// import Loader from "../../../common/loader/Loader";
+import { UserContext } from "../../../../context/UserContext";
 
 const NotasContainer = () => {
   const [notas, setNotas] = useState([]);
-  //una vez que agarre el id dinámico, desestructurarlo
-const id = "677c4ea0899ac18cdb7cfcb5";
-    useEffect(() => {
-    const promise = axios
-      .get(`/alumnos/${id}/notas`)
-      promise
-        // .then((res) => console.log(res.data.result))
-        .then((res) => setNotas(res.data.result))
-        .catch((err) => console.log(err));
+  const [año, setAño] = useState(2025);
 
-      console.log(notas);
-  }, [id]);
+  const { id } = useContext(UserContext);
 
-  
-  return (
-    <>
-    {notas.length > 0 ? ( <Notas notas={notas} />) : (<Loader />)}
-     
-    </>
-  );
+   const handleChangeAño = (e) => {
+     const añoSeleccionado = e.target.value;
+     setAño(añoSeleccionado);
+   };
+
+
+  useEffect(() => {
+    const promise = axios.get(`/alumnos/${id}/notas/${año}`);
+    promise
+      // .then((res) => console.log(res.data))
+      .then((res) => {
+        if(res.data.status == 404){
+        setNotas([])
+      }
+      setNotas(res.data.result)
+    })
+      .catch((err) => console.log(err));
+
+  }, [id, año]);
+
+  return <> <Notas notas={notas} año={año} handleChangeAño={handleChangeAño} /></>;
 };
 
 export default NotasContainer;

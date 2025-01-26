@@ -4,8 +4,11 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const RegisterContainer = () => {
+    const [verContraseña, setVerContraseña] = useState(false)
+  
   const navigate = useNavigate();
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
@@ -61,13 +64,17 @@ const RegisterContainer = () => {
       })
       .catch((err) => console.log(err));
   };
-
+const handleViewPass = () => {
+  setVerContraseña(!verContraseña);
+};
   return (
     <div>
       <Register
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         errors={errors}
+        handleViewPass={handleViewPass}
+        verContraseña={verContraseña}
       />
     </div>
   );

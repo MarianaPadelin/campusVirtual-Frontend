@@ -46,12 +46,14 @@ const RegistrarNotasContainer = () => {
     useFormik({
       initialValues: {
         clase: "",
+        año: 2025,
         id_alumno: "",
         notaJulio: 0,
         notaDiciembre: 0,
       },
       onSubmit: (datosIngresados) => {
         datosIngresados.clase = clase;
+        datosIngresados.año = año; 
         console.log(datosIngresados.id_alumno);
         registrarNotas(datosIngresados);
       },
