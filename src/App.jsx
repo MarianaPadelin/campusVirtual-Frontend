@@ -15,7 +15,7 @@ import UserContextProvider from './context/UserContext';
 // axios.defaults.baseURL= config.backendURL;
 axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 // console.log(axios.defaults.baseURL)
-axios.defaults.headers.common['Content-Type'] = 'application/json' // for all requests
+// axios.defaults.headers.common['Content-Type'] = 'application/json' // for all requests
 
 axios.defaults.withCredentials = true;
 function App() {
