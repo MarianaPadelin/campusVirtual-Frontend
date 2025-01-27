@@ -3,6 +3,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Button,
   Table,
+  TableBody,
   TableCell,
   TableHead,
   TableRow,
@@ -13,39 +14,42 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
     <div className="basicContainer">
       <Table>
         <TableHead>
-          <TableCell>Nombre</TableCell>
-          <TableCell>Apellido</TableCell>
-          <TableCell>Email</TableCell>
-          <TableCell>Celular</TableCell>
-          <TableCell>Editar</TableCell>
-          <TableCell>Eliminar</TableCell>
+          <TableRow>
+            <TableCell>Nombre</TableCell>
+            <TableCell>Apellido</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Celular</TableCell>
+            <TableCell>Editar</TableCell>
+            <TableCell>Eliminar</TableCell>
+          </TableRow>
         </TableHead>
-
-        {alumnos &&
-          alumnos.map((alumno) => (
-            <TableRow key={alumno._id}>
-              <TableCell>{alumno.nombre}</TableCell>
-              <TableCell>{alumno.apellido}</TableCell>
-              <TableCell>{alumno.email}</TableCell>
-              <TableCell>{alumno.celular}</TableCell>
-              <TableCell>
-                <Link to={`info/${alumno._id}`}>
-                  <Button color="secondary">
-                    <EditIcon />
+        <TableBody>
+          {alumnos &&
+            alumnos.map((alumno) => (
+              <TableRow key={alumno._id}>
+                <TableCell>{alumno.nombre}</TableCell>
+                <TableCell>{alumno.apellido}</TableCell>
+                <TableCell>{alumno.email}</TableCell>
+                <TableCell>{alumno.celular}</TableCell>
+                <TableCell>
+                  <Link to={`info/${alumno._id}`}>
+                    <Button color="secondary">
+                      <EditIcon />
+                    </Button>
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => {
+                      eliminarElemento(alumno._id);
+                    }}
+                  >
+                    <HighlightOffIcon color="secondary" />
                   </Button>
-                </Link>
-              </TableCell>
-              <TableCell>
-                <Button
-                  onClick={() => {
-                    eliminarElemento(alumno._id);
-                  }}
-                >
-                  <HighlightOffIcon color="secondary" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
       </Table>
     </div>
   );

@@ -1,10 +1,7 @@
 import {
   Button,
-  // FormControl,
-  // InputLabel,
-  // MenuItem,
-  // Select,
   Table,
+  TableBody,
   TableCell,
   TableHead,
   TableRow,
@@ -12,73 +9,67 @@ import {
   Typography,
 } from "@mui/material";
 
-const RegistrarPagos = ({ alumnos, handleChange, handleSelectStudent, handleSubmit, errors }) => {
- 
+const RegistrarPagos = ({
+  alumnos,
+  formik,
+  montoPorAlumno,
+  handleMontoChange,
+}) => {
+  const { handleSubmit, setFieldValue, errors } = formik;
+
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
         Registro de pagos
       </Typography>
       <div className="secondaryContainer">
-        {/* <FormControl color="secondary" className="classSelector">
-          <InputLabel id="label-clase">Mes</InputLabel>
-          <Select
-            labelId="label-clase"
-            // id="demo-simple-select"
-            // value={clase}
-            label="Mes"
-            onChange={handleChangeMes}
-          >
-            {meses.map((mes) => {
-              return (
-                <MenuItem key={mes} value={mes}>
-                  {mes}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl> */}
         <form onSubmit={handleSubmit}>
           <Table>
             <TableHead>
-              <TableCell>Alumno</TableCell>
-              <TableCell>Monto</TableCell>
+              <TableRow>
+                <TableCell>Alumno</TableCell>
+                <TableCell>Monto</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
             </TableHead>
-
-            {alumnos &&
-              alumnos.map((alumno) => (
-                <TableRow
-                  key={alumno._id}
-                  onClick={() => handleSelectStudent(alumno._id)}
-                >
-                  <TableCell>
-                    {alumno.nombre} {alumno.apellido}
-                  </TableCell>
-                  <TableCell>
-                    <span>
-                      <Typography className="signoPesos">$</Typography>
-                      <TextField
-                        variant="outlined"
-                        className="inputPagos"
-                        name="monto"
-                        onChange={handleChange}
-                        error={errors.monto ? true : false}
-                        helperText={errors.monto}
-                      />
-                    </span>
-                  </TableCell>
-                  <span>
-                    <Button
-                      className="buttonForm"
-                      type="submit"
-                      variant="contained"
-                      color="secondary"
-                    >
-                      Enviar
-                    </Button>
-                  </span>
-                </TableRow>
-              ))}
+            <TableBody>
+              {alumnos &&
+                alumnos.map((alumno) => (
+                  <TableRow
+                    key={alumno._id}
+                    onClick={() => setFieldValue("id_alumno", alumno._id)}
+                  >
+                    <TableCell>
+                      {alumno.nombre} {alumno.apellido}
+                    </TableCell>
+                    <TableCell>
+                      <span>
+                        <Typography className="signoPesos">$</Typography>
+                        <TextField
+                          variant="outlined"
+                          className="inputPagos"
+                          name={`monto-${alumno._id}`} // Unique identifier
+                          value={montoPorAlumno[alumno._id] || ""} // Use the specific monto for this alumno
+                          onChange={(e) => handleMontoChange(alumno._id, e.target.value)}
+                          error={errors.monto ? true : false}
+                          helperText={errors.monto}
+                        />
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <span>
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="secondary"
+                        >
+                          Enviar
+                        </Button>
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
           </Table>
         </form>
       </div>

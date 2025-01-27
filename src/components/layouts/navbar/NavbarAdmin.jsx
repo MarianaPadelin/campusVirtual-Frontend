@@ -17,6 +17,7 @@ import { useState } from "react";
 const pages = [
   { name: "Registrar alumno", path: "/admin/registro" },
   { name: "Cargar alumnos", path: "/admin/lista" },
+  { name: "Agregar clase", path: "/admin/clases"},
   { name: "Asistencias", path: "/admin/asistencias" },
   { name: "Subir notas", path: "/admin/notas" },
   { name: "Subir pagos", path: "/admin/pagos" },
@@ -25,24 +26,16 @@ const pages = [
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavbarAdmin = () => {
-    const [anchorElNav, setAnchorElNav] =useState(null)
-    // const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  // const [anchorElUser, setAnchorElUser] = useState(null);
 
-    const handleOpenNavMenu = (e) => {
-      setAnchorElNav(e.currentTarget);
-    };
-    // const handleOpenUserMenu = (e) => {
-    //   setAnchorElUser(e.currentTarget);
-    // };
+  const handleOpenNavMenu = (e) => {
+    setAnchorElNav(e.currentTarget);
+  };
 
-    const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
-      
-    };
-
-    // const handleCloseUserMenu = () => {
-    //   setAnchorElUser(null);
-    // };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
   return (
     <AppBar color="secondary" position="static">
@@ -106,7 +99,6 @@ const NavbarAdmin = () => {
             </Menu>
           </Box>
           <Link to="/admin">
-            {" "}
             <Typography
               variant="h5"
               noWrap
@@ -133,76 +125,9 @@ const NavbarAdmin = () => {
               </Link>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            {/* <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip> */}
-            {/* <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-          </Box>
         </Toolbar>
       </Container>
     </AppBar>
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="static" color="secondary">
-    //     <Toolbar>
-    //       {/* <IconButton
-    //         size="large"
-    //         edge="start"
-    //         color="inherit"
-    //         aria-label="menu"
-    //         sx={{ mr: 2 }}
-    //       >
-    //         <MenuIcon />
-    //       </IconButton> */}
-    //       <Link to="/admin">
-    //         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-    //           Bienvenido Admin
-    //         </Typography>
-    //       </Link>
-
-    //       <Link to="/admin/registro">
-    //         <Button color="inherit">Registrar alumno</Button>
-    //       </Link>
-    //       <Link to="/admin/asistencias">
-    //         <Button color="inherit">Asistencias</Button>
-    //       </Link>
-    //       <Link to="/admin/notas">
-    //         <Button color="inherit">Subir notas</Button>
-    //       </Link>
-    //       <Link to="/admin/pagos">
-    //         <Button color="pagos">Subir pagos</Button>
-    //       </Link>
-    //       <Link to="/admin/material">
-    //         <Button color="inherit">Subir material</Button>
-    //       </Link>
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
   );
 };
 

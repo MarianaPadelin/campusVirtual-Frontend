@@ -2,14 +2,16 @@ import axios from "axios";
 import CargarAlumnos from "./CargarAlumnos";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
 const CargarAlumnosContainer = () => {
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(2025);
   const [alumnos, setAlumnos] = useState([]);
-
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
+  const { rolUsuario } = useContext(UserContext)
 
   useEffect(() => {
     const promise = axios.get(`/clases`);
@@ -124,7 +126,8 @@ const CargarAlumnosContainer = () => {
 
   return (
     <>
-      <CargarAlumnos
+
+    { rolUsuario == "admin" ? ( <CargarAlumnos
         agregarAlumnosLista={agregarAlumnosLista}
         clasesDisponibles={clasesDisponibles}
         clase={clase}
@@ -136,7 +139,8 @@ const CargarAlumnosContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         borrarAlumnoLista={borrarAlumnoLista}
-      />
+      />) : (<Forbidden /> ) }
+     
     </>
   );
 };

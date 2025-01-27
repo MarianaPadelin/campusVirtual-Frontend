@@ -1,36 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Home from "./Home";
-import axios from "axios";
 import Loader from "../../../common/loader/Loader";
 import { UserContext } from "../../../../context/UserContext";
-
-//tengo que crear un contexto para el alumno
+import Forbidden from "../../forbidden/Forbidden";
 
 const HomeContainer = () => {
-  const [alumno, setAlumno] = useState({});
-  const { mostrarDatosAlumno } = useContext(UserContext)
-
-  mostrarDatosAlumno(alumno)
-  useEffect(() => {
-    const promise = axios.get(`/alumno`, { withCredentials: true });
-    promise
-      .then((res) => {
-        if (res.data.user) {
-          const userMail = res.data.user.email;
-          // console.log(userMail)
-          const promise2 = axios.get(`/alumnos/${userMail}`, {
-            withCredentials: true,
-          });
-          promise2
-            .then((res) => setAlumno(res.data.alumno))
-            .catch((err) => console.log(err));
-        }
-      })
-
-      .catch((err) => console.log(err));
-  }, []);
-
-  return <>{(alumno.email) ? <Home alumno={alumno} /> : <Loader />}</>;
+  const { nombre, apellido, email, rolUsuario } = useContext(UserContext);
+  return (
+    <>
+      {rolUsuario.length > 0 ? (  rolUsuario == "alumno" ? (
+        email ? (
+          <Home email={email} nombre={nombre} apellido={apellido} />
+        ) : (
+          <Loader />
+        )
+      ) : (
+        <Forbidden />
+      )) : (<Loader /> )
+      
+    }
+    </>
+  );
 };
 
 export default HomeContainer;

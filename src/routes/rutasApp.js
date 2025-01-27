@@ -1,6 +1,7 @@
 // import Muestra from "../components/pages/muestra_2vistas/Muestra";
 // import LoginContainer from "../components/pages/login/LoginContainer";
 // import RegisterContainer from "../components/pages/register/RegisterContainer";
+import AgregarClaseContainer from "../components/pages/vistas_admin/agregar_clase/AgregarClaseContainer";
 import CargarAlumnosContainer from "../components/pages/vistas_admin/cargar_alumnos/CargarAlumnosContainer";
 import CargarMaterialContainer from "../components/pages/vistas_admin/cargar_material/CargarMaterialContainer";
 import HomeAdminContainer from "../components/pages/vistas_admin/home/HomeAdminContainer";
@@ -90,6 +91,11 @@ export const rutasApp = [
     id: "registroAsistencias",
     path: "/admin/asistencias",
     Element: RegistrarAsistenciasContainer,
+  },
+  {
+    id: "clases",
+    path: "/admin/clases",
+    Element: AgregarClaseContainer,
   },
   {
     id: "registroNotas",

@@ -84,7 +84,7 @@ a {
   gap: 3vw;
 }
 
-.subSpanTable{
+.subSpanTable {
   display: flex;
   gap: 3vw;
 }
@@ -103,10 +103,6 @@ th {
   margin-right: 2vw !important;
 }
 
-.buttonForm {
-  margin-top: 3vh !important;
-  align-self: center !important;
-}
 
 td {
   text-align: center;
@@ -127,4 +123,9 @@ span {
 
 .datePicker {
   width: 60vw;
+}
+
+.css-1u9o2lj-MuiToolbar-root {
+  display: flex;
+  flex-wrap: wrap;
 }

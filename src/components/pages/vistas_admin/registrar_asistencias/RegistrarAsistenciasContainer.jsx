@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RegistrarAsistencias from "./RegistrarAsistencias";
 import axios from "axios";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
+import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
-//falta capturar varias asistencias a la vez
 
 const RegistrarAsistenciasContainer = () => {
+    const { rolUsuario } = useContext(UserContext);
+  
   const [clase, setClase] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [alumnos, setAlumnos] = useState([]);
@@ -56,8 +59,6 @@ const RegistrarAsistenciasContainer = () => {
     initialValues: {
       clase: "",
       fecha: "",
-      // id_alumno: "",
-      // asistencia: false,
     },
     onSubmit: () => {
       // datosIngresados.clase = clase;
@@ -76,10 +77,9 @@ const RegistrarAsistenciasContainer = () => {
     },
   });
 
-  // const handleSelectStudent = (alumnoId) => {
-  //   setFieldValue("id_alumno", alumnoId);
-  // };
 
+
+  //Falta restar las faltas disponibles de la clase
   const handleSelectAsistencia = (id_alumno, asistencia) => {
     setListaAsistencias((prevLista) => {
       const index = prevLista.findIndex(
@@ -97,11 +97,6 @@ const RegistrarAsistenciasContainer = () => {
     });
   };
 
-  // const handleSelectAsistencia = (e) => {
-  //   const isChecked = e.target.checked;
-    
-  //   setFieldValue("asistencia", isChecked);
-  // };
 
   const registrarAsistencias = (data) => {
     const promise = axios.post("/asistencias", { data });
@@ -113,7 +108,7 @@ const RegistrarAsistenciasContainer = () => {
             icon: "success",
             text: "Asistencias registradas con éxito",
           });
-          setListaAsistencias([]); // Clear the list after submission
+          setListaAsistencias([]); // Clear the list after submission, no anda
           return;
         }
         return Swal.fire({
@@ -127,7 +122,7 @@ const RegistrarAsistenciasContainer = () => {
 
   return (
     <div>
-      <RegistrarAsistencias
+      { rolUsuario == "admin" ? ( <RegistrarAsistencias
         clase={clase}
         año={año}
         clasesDisponibles={clasesDisponibles}
@@ -140,7 +135,11 @@ const RegistrarAsistenciasContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         errors={errors}
-      />
+      />) : (
+        <Forbidden />
+      ) }
+
+     
     </div>
   );
 };

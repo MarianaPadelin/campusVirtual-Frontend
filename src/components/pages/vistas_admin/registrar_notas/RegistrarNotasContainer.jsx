@@ -2,12 +2,16 @@ import axios from "axios";
 import RegistrarNotas from "./RegistrarNotas";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
+import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
 //está registrando solo la última nota
 //agarrar el error cuando no existe una clase para un determinado año
 const RegistrarNotasContainer = () => {
+  const { rolUsuario } = useContext(UserContext);
+
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(2025);
   const [alumnos, setAlumnos] = useState([]);
@@ -53,18 +57,18 @@ const RegistrarNotasContainer = () => {
       },
       onSubmit: (datosIngresados) => {
         datosIngresados.clase = clase;
-        datosIngresados.año = año; 
+        datosIngresados.año = año;
         console.log(datosIngresados.id_alumno);
         registrarNotas(datosIngresados);
       },
       validateOnChange: false,
       validationSchema: Yup.object({
         notaJulio: Yup.number()
-          .typeError("Debe ser un número válido") 
+          .typeError("Debe ser un número válido")
           .min(0, "Debe ser un número del 1 al 10")
           .max(10, "Debe ser un número del 1 al 10"),
         notaDiciembre: Yup.number()
-          .typeError("Debe ser un número válido") 
+          .typeError("Debe ser un número válido")
           .min(0, "Debe ser un número del 1 al 10")
           .max(10, "Debe ser un número del 1 al 10"),
       }),
@@ -85,19 +89,23 @@ const RegistrarNotasContainer = () => {
 
   return (
     <>
-      <RegistrarNotas
-        clasesDisponibles={clasesDisponibles}
-        clase={clase}
-        año={año}
-        alumnos={alumnos}
-        handleChange={handleChange}
-        handleChangeClases={handleChangeClases}
-        handleChangeAño={handleChangeAño}
-        handleSelectStudent={handleSelectStudent}
-        handleSubmit={handleSubmit}
-        values={values}
-        errors={errors}
-      />
+      {rolUsuario == "admin" ? (
+        <RegistrarNotas
+          clasesDisponibles={clasesDisponibles}
+          clase={clase}
+          año={año}
+          alumnos={alumnos}
+          handleChange={handleChange}
+          handleChangeClases={handleChangeClases}
+          handleChangeAño={handleChangeAño}
+          handleSelectStudent={handleSelectStudent}
+          handleSubmit={handleSubmit}
+          values={values}
+          errors={errors}
+        />
+      ) : (
+        <Forbidden />
+      )}
     </>
   );
 };

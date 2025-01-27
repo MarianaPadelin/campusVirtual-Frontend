@@ -1,7 +1,7 @@
-import { Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import WarningIcon from "@mui/icons-material/Warning";
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+// import WarningIcon from "@mui/icons-material/Warning";
 
-const Pagos = () => {
+const Pagos = ({ pagos }) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
@@ -10,26 +10,26 @@ const Pagos = () => {
       <div className="secondaryContainer">
         <Table>
           <TableHead>
-            <TableCell>Mes</TableCell>
-            <TableCell>Estado</TableCell>
+            <TableRow>
+              <TableCell>Fecha</TableCell>
+              <TableCell>Monto</TableCell>
+            </TableRow>
           </TableHead>
-          <TableRow>
-            <TableCell>Marzo</TableCell>
-            <TableCell>Pagado</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Abril</TableCell>
-            <TableCell>Pagado</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Mayo</TableCell>
-            <TableCell>Debe</TableCell>
-          </TableRow>
+        <TableBody>
+        {pagos && pagos.map((pago) => (
+        <TableRow key={pago._id}>
+          <TableCell>{pago.fecha}</TableCell>
+          <TableCell>$ {pago.monto}</TableCell>
+        </TableRow>
+
+        )
+        )}
+        </TableBody>
         </Table>
-        <span>
+        {/* <span>
           <WarningIcon color="error" />
           <Typography> Su deuda al día de hoy es: $...</Typography>
-        </span>
+        </span> */}
       </div>
     </div>
   );

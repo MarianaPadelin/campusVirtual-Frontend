@@ -3,12 +3,14 @@ import Notas from "./Notas";
 import axios from "axios";
 // import Loader from "../../../common/loader/Loader";
 import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
 const NotasContainer = () => {
   const [notas, setNotas] = useState([]);
   const [año, setAño] = useState(2025);
 
-  const { id } = useContext(UserContext);
+  const { rolUsuario, id } = useContext(UserContext);
+
 
    const handleChangeAño = (e) => {
      const añoSeleccionado = e.target.value;
@@ -32,7 +34,9 @@ const NotasContainer = () => {
 
   }, [id, año]);
 
-  return <> <Notas notas={notas} año={año} handleChangeAño={handleChangeAño} /></>;
+  return <> 
+    {rolUsuario == "alumno" ? (<Notas notas={notas} año={año} handleChangeAño={handleChangeAño} />) : (<Forbidden />) }
+  </>;
 };
 
 export default NotasContainer;

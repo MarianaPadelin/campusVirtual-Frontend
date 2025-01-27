@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomeAdmin from "./HomeAdmin";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Loader from "../../../common/loader/Loader";
+import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
 const HomeAdminContainer = () => {
+  const { rolUsuario } = useContext(UserContext);
   const [alumnos, setAlumnos] = useState([]);
 
-  // axios.defaults.withCredentials = true;
   useEffect(() => {
     const promise = axios.get(`/alumnos`);
     promise
@@ -17,7 +19,8 @@ const HomeAdminContainer = () => {
 
   const eliminarElemento = (id) => {
     Swal.fire({
-      title: "¿Seguro que desea eliminar al alumno? Quedará borrado de la base de datos de forma permanente",
+      title:
+        "¿Seguro que desea eliminar al alumno? Quedará borrado de la base de datos de forma permanente",
       showCancelButton: true,
       confirmButtonText: "Sí",
       cancelButtonText: `Cancelar`,
@@ -27,33 +30,37 @@ const HomeAdminContainer = () => {
         const promise = axios.delete(`/alumnos/${id}`);
 
         promise
-          .then(() => Swal.fire({
-            icon:"success",
-            text:"Alumno eliminado"
-          }))
+          .then(() =>
+            Swal.fire({
+              icon: "success",
+              text: "Alumno eliminado",
+            })
+          )
           .then(() => {
-             axios
-               .get(`/alumnos`)
-               .then((res) => setAlumnos(res.data))
-               .catch((err) => console.log(err));
-
+            axios
+              .get(`/alumnos`)
+              .then((res) => setAlumnos(res.data))
+              .catch((err) => console.log(err));
           })
           .catch((err) =>
-            console.log(
-              "Hubo un error: " + err + ". El id recibido es: " + id
-            )
+            console.log("Hubo un error: " + err + ". El id recibido es: " + id)
           );
       }
-     
     });
   };
   return (
     <>
-      {alumnos.length > 0 ? (
-        <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
+      { rolUsuario.length > 0 ? (rolUsuario == "admin" ? (
+        alumnos.length > 0 ? (
+          <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
+        ) : (
+          <Loader />
+        )
       ) : (
-        <Loader />
-      )}
+        <Forbidden />
+      )) : (<Loader />)
+      
+      }
     </>
   );
 };

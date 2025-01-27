@@ -1,9 +1,11 @@
-import Asistencias from "./Asistencias"
+import { useContext } from "react";
+import Asistencias from "./Asistencias";
+import { UserContext } from "../../../../context/UserContext";
+import Forbidden from "../../forbidden/Forbidden";
 
 const AsistenciasContainer = () => {
-  return (
-    <><Asistencias /></>
-  )
-}
+  const { rolUsuario } = useContext(UserContext);
+  return <>{rolUsuario == "alumno" ? <Asistencias /> : <Forbidden />}</>;
+};
 
-export default AsistenciasContainer
+export default AsistenciasContainer;

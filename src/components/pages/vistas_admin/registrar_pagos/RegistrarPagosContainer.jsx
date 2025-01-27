@@ -1,50 +1,46 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RegistrarPagos from "./RegistrarPagos";
 import axios from "axios";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
+import Forbidden from "../../forbidden/Forbidden";
+import { UserContext } from "../../../../context/UserContext";
+import Loader from "../../../common/loader/Loader";
 
 const RegistrarPagosContainer = () => {
+  const { rolUsuario } = useContext(UserContext);
   const [alumnos, setAlumnos] = useState([]);
-  // const [mes, setMes] = useState("");
+  const [montoPorAlumno, setMontoPorAlumno] = useState({}); // Manage monto per alumno
 
-  const meses = [
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
   useEffect(() => {
     const promise = axios.get(`/alumnos`);
     promise
       .then((res) => setAlumnos(res.data))
       .catch((err) => console.log(err));
   }, []);
-
-  // const handleChangeMes = (e) => {
-  //   const mesSeleccionado = e.target.value;
-  //   setMes(mesSeleccionado);
-  // };
-  const { handleSubmit, handleChange, setFieldValue, errors } = useFormik({
+  // { handleSubmit, handleChange, setFieldValue, errors }
+  const formik = useFormik({
     initialValues: {
       id_alumno: "",
       fecha: "",
       monto: 0,
     },
-    onSubmit: (datosIngresados) => {
+    onSubmit: async (datosIngresados, { resetForm }) => {
       datosIngresados.fecha = getCurrentDate();
-      registrarPagos(datosIngresados);
+      datosIngresados.monto = montoPorAlumno[datosIngresados.id_alumno] || 0; // Use the specific monto
+
+      const success = await registrarPagos(datosIngresados);
+      if (success) {
+        resetForm();
+        setMontoPorAlumno({}); // Clear the monto values
+      }
     },
     validateOnChange: false,
     validationSchema: Yup.object({
-      monto: Yup.number().typeError("Debe ser un número válido"),
+      monto: Yup.number()
+        .typeError("Debe ser un número válido")
+        .required("Monto es obligatorio"),
     }),
   });
 
@@ -59,42 +55,57 @@ const RegistrarPagosContainer = () => {
     return `${day}/${month}/${year}`;
   };
 
-  // Function to handle student selection and set the _id into Formik
-  const handleSelectStudent = (alumnoId) => {
-    setFieldValue("id_alumno", alumnoId);
-  };
 
-  const registrarPagos = (data) => {
-    console.log(data);
-    const promise = axios.post("/pagos", data);
+  const registrarPagos = async (data) => {
+    try {
+      const res = await axios.post("/pagos", data);
 
-    promise
-      .then((res) => {
-        console.log(res.data)
-        if (res.data.status === 200) {
-          return Swal.fire({
-            icon: "success",
-            text: "Pago registrado con éxito"});
-        }
-        return Swal.fire({
+      if (res.data.status === 200) {
+        Swal.fire({
+          icon: "success",
+          text: "Pago registrado con éxito",
+        });
+        return true;
+      } else {
+        Swal.fire({
           icon: "error",
           text: "Hubo un error cargando el pago",
         });
-      })
-      .catch((err) => console.log("Hubo un error: " + err));
+        return false;
+      }
+    } catch (error) {
+      console.log("Hubo un error: " + error);
+      Swal.fire({
+        icon: "error",
+        text: "Hubo un error en el servidor",
+      });
+      return false;
+    }
   };
+
+    const handleMontoChange = (alumnoId, value) => {
+      setMontoPorAlumno((prevState) => ({
+        ...prevState,
+        [alumnoId]: value,
+      }));
+    };
 
   return (
     <div>
-      <RegistrarPagos
-        alumnos={alumnos}
-        meses={meses}
-        // handleChangeMes={handleChangeMes}
-        handleChange={handleChange}
-        handleSelectStudent={handleSelectStudent}
-        handleSubmit={handleSubmit}
-        errors={errors}
-      />
+      {rolUsuario.length > 0 ? (
+        rolUsuario == "admin" ? (
+          <RegistrarPagos
+            alumnos={alumnos}
+            formik={formik}
+            montoPorAlumno={montoPorAlumno}
+            handleMontoChange={handleMontoChange}
+          />
+        ) : (
+          <Forbidden />
+        )
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

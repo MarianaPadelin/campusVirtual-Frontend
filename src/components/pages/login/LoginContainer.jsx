@@ -3,11 +3,13 @@ import Login from "./Login";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../context/UserContext";
 
 const LoginContainer = () => {
   const [verContraseña, setVerContraseña] = useState(false)
   const navigate = useNavigate();
+  const { seteoUsuario, seteoAlumno } = useContext(UserContext)
 
   const { handleSubmit, handleChange } = useFormik({
     initialValues: {
@@ -25,7 +27,10 @@ const LoginContainer = () => {
     });
     promise
       .then((res) => {
+        // console.log(res.data)
         if (res.data.status == 200) {
+          seteoUsuario(res.data.tokenUser.role)
+          seteoAlumno(res.data.tokenUser.email)
           Swal.fire({
             icon: "success",
             text: "Usuario conectado",
