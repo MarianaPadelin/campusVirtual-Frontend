@@ -12,7 +12,7 @@ const HomeContainer = () => {
 
   mostrarDatosAlumno(alumno)
   useEffect(() => {
-    const promise = axios.get(`/alumno`);
+    const promise = axios.get(`/alumno`, { withCredentials: true });
     promise
       .then((res) => {
         if (res.data.user) {
