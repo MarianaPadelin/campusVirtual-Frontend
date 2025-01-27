@@ -18,7 +18,9 @@ const HomeContainer = () => {
         if (res.data.user) {
           const userMail = res.data.user.email;
           // console.log(userMail)
-          const promise2 = axios.get(`/alumnos/${userMail}`);
+          const promise2 = axios.get(`/alumnos/${userMail}`, {
+            withCredentials: true,
+          });
           promise2
             .then((res) => setAlumno(res.data.alumno))
             .catch((err) => console.log(err));

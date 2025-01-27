@@ -17,7 +17,9 @@ const NotasContainer = () => {
 
 
   useEffect(() => {
-    const promise = axios.get(`/alumnos/${id}/notas/${año}`);
+    const promise = axios.get(`/alumnos/${id}/notas/${año}`, {
+      withCredentials: true,
+    });
     promise
       // .then((res) => console.log(res.data))
       .then((res) => {

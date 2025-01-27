@@ -36,7 +36,9 @@ const RegisterContainer = () => {
   });
 
   const registrarse = (data) => {
-    const promise = axios.post("/session/register", data);
+    const promise = axios.post("/session/register", data, {
+      withCredentials: true,
+    });
 
     promise
       .then((res) => {

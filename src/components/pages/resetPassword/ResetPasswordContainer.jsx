@@ -36,7 +36,9 @@ const ResetPasswordContainer = () => {
      });
 
      const resetPassword = (data) => {
-       const promise = axios.put("/session/resetPassword", data);
+       const promise = axios.put("/session/resetPassword", data, {
+         withCredentials: true,
+       });
 
        promise
          .then((res) => {

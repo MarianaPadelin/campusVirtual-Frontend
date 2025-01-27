@@ -20,7 +20,9 @@ const LoginContainer = () => {
   });
 
   const iniciarSesion = (data) => {
-    const promise = axios.post("/session/login", data);
+    const promise = axios.post("/session/login", data, {
+      withCredentials: true,
+    });
     promise
       .then((res) => {
         if (res.data.status == 200) {
