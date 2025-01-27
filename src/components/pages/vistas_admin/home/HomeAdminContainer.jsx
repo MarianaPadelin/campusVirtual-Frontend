@@ -11,7 +11,9 @@ const HomeAdminContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
 
   useEffect(() => {
-    const promise = axios.get(`/alumnos`);
+    const promise = axios.get(`/alumnos`, {
+      withCredentials: true,
+    });
     promise
       .then((res) => setAlumnos(res.data))
       .catch((err) => console.log(err));
@@ -27,7 +29,9 @@ const HomeAdminContainer = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        const promise = axios.delete(`/alumnos/${id}`);
+        const promise = axios.delete(`/alumnos/${id}`, {
+          withCredentials: true,
+        });
 
         promise
           .then(() =>
