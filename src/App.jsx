@@ -11,8 +11,7 @@ import ResetPasswordContainer from './components/pages/resetPassword/ResetPasswo
 import UserContextProvider from './context/UserContext';
 // import { config } from './config';
 
-// axios.defaults.baseURL = "http://loca
-// lhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL= config.backendURL;
 // console.log(axios.defaults.baseURL)
 axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
