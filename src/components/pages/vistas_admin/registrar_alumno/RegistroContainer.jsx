@@ -4,14 +4,10 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useContext } from "react";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
 
 //alerta cuando el alumno ya esté registrado
 
 const RegistroContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -50,15 +46,11 @@ const RegistroContainer = () => {
 
   return (
     <div>
-      {rolUsuario == "admin" ? (
         <Registro
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           errors={errors}
         />
-      ) : (
-        <Forbidden />
-      )}
     </div>
   );
 };

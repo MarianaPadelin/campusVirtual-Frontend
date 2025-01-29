@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CargarMaterial from "./CargarMaterial";
 import axios from "axios";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
 
+
+//contenido en user.controller de marga
 const CargarMaterialContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
   const [clase, setClase] = useState("");
   const [fileText, setFileText] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
@@ -32,8 +31,6 @@ const CargarMaterialContainer = () => {
   //falta handleSubmit
   return (
     <>
-      {/* { rolUsuario == "admin" ? () : () } */}
-      {rolUsuario == "admin" ? (
         <CargarMaterial
           clase={clase}
           clasesDisponibles={clasesDisponibles}
@@ -41,9 +38,6 @@ const CargarMaterialContainer = () => {
           handleInput={handleInput}
           fileText={fileText}
         />
-      ) : (
-        <Forbidden />
-      )}
     </>
   );
 };

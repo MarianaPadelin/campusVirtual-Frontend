@@ -2,15 +2,13 @@ import axios from "axios";
 import RegistrarNotas from "./RegistrarNotas";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
+
 
 //está registrando solo la última nota
 //agarrar el error cuando no existe una clase para un determinado año
 const RegistrarNotasContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
 
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(2025);
@@ -89,23 +87,21 @@ const RegistrarNotasContainer = () => {
 
   return (
     <>
-      {rolUsuario == "admin" ? (
-        <RegistrarNotas
-          clasesDisponibles={clasesDisponibles}
-          clase={clase}
-          año={año}
-          alumnos={alumnos}
-          handleChange={handleChange}
-          handleChangeClases={handleChangeClases}
-          handleChangeAño={handleChangeAño}
-          handleSelectStudent={handleSelectStudent}
-          handleSubmit={handleSubmit}
-          values={values}
-          errors={errors}
-        />
-      ) : (
-        <Forbidden />
-      )}
+
+          <RegistrarNotas
+            clasesDisponibles={clasesDisponibles}
+            clase={clase}
+            año={año}
+            alumnos={alumnos}
+            handleChange={handleChange}
+            handleChangeClases={handleChangeClases}
+            handleChangeAño={handleChangeAño}
+            handleSelectStudent={handleSelectStudent}
+            handleSubmit={handleSubmit}
+            values={values}
+            errors={errors}
+          />
+       
     </>
   );
 };

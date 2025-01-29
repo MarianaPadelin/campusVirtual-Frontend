@@ -1,16 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RegistrarAsistencias from "./RegistrarAsistencias";
 import axios from "axios";
 import { useFormik } from "formik";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
-
 
 const RegistrarAsistenciasContainer = () => {
-    const { rolUsuario } = useContext(UserContext);
-  
+
   const [clase, setClase] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [alumnos, setAlumnos] = useState([]);
@@ -66,18 +62,15 @@ const RegistrarAsistenciasContainer = () => {
       // console.log(datosIngresados);
       // registrarAsistencias(datosIngresados);
 
-         const asistencias = listaAsistencias.map((entry) => ({
-           ...entry,
-           clase,
-           fecha,
-         }));
+      const asistencias = listaAsistencias.map((entry) => ({
+        ...entry,
+        clase,
+        fecha,
+      }));
 
-         registrarAsistencias(asistencias);
-
+      registrarAsistencias(asistencias);
     },
   });
-
-
 
   //Falta restar las faltas disponibles de la clase
   const handleSelectAsistencia = (id_alumno, asistencia) => {
@@ -97,7 +90,6 @@ const RegistrarAsistenciasContainer = () => {
     });
   };
 
-
   const registrarAsistencias = (data) => {
     const promise = axios.post("/asistencias", { data });
 
@@ -108,7 +100,7 @@ const RegistrarAsistenciasContainer = () => {
             icon: "success",
             text: "Asistencias registradas con éxito",
           });
-          setListaAsistencias([]); // Clear the list after submission, no anda
+          window.location.reload();
           return;
         }
         return Swal.fire({
@@ -122,32 +114,26 @@ const RegistrarAsistenciasContainer = () => {
 
   return (
     <div>
-      { rolUsuario == "admin" ? ( <RegistrarAsistencias
-        clase={clase}
-        año={año}
-        clasesDisponibles={clasesDisponibles}
-        alumnos={alumnos}
-        handleChangeClases={handleChangeClases}
-        handleChangeAño={handleChangeAño}
-        // handleChange={handleChange}
-        // handleSelectStudent={handleSelectStudent}
-        handleSelectAsistencia={handleSelectAsistencia}
-        handleSubmit={handleSubmit}
-        values={values}
-        errors={errors}
-      />) : (
-        <Forbidden />
-      ) }
-
-     
+        <RegistrarAsistencias
+          clase={clase}
+          año={año}
+          clasesDisponibles={clasesDisponibles}
+          alumnos={alumnos}
+          handleChangeClases={handleChangeClases}
+          handleChangeAño={handleChangeAño}
+          // handleChange={handleChange}
+          // handleSelectStudent={handleSelectStudent}
+          handleSelectAsistencia={handleSelectAsistencia}
+          handleSubmit={handleSubmit}
+          values={values}
+          errors={errors}
+        />
+    
     </div>
   );
 };
 
 export default RegistrarAsistenciasContainer;
-
-
-
 
 // ---------------Frontend
 // import React, { useState } from "react";
@@ -181,8 +167,6 @@ export default RegistrarAsistenciasContainer;
 
 //     setAsistencias([...asistencias, nuevaAsistencia]); // Add the new record to the array
 //     console.log("Asistencias acumuladas:", [...asistencias, nuevaAsistencia]);
-
-
 
 //   const handleSelectStudent = (alumnoId) => {
 //     setFieldValue("id_alumno", alumnoId);

@@ -1,15 +1,10 @@
-import { useContext } from "react";
 import AgregarClase from "./AgregarClase";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
-import Loader from "../../../common/loader/Loader";
 import { useFormik } from "formik";
 // import * as Yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const AgregarClaseContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
 
   const formik = useFormik({
     //3 parámetros: los valores iniciales, la función con onsubmit, y las validaciones
@@ -21,7 +16,9 @@ const AgregarClaseContainer = () => {
     },
     onSubmit: async (datosIngresados, { resetForm }) => {
       const success = await registrarClase(datosIngresados);
-      if(success){resetForm()};
+      if (success) {
+        resetForm();
+      }
     },
     validateOnChange: false,
     // validationSchema: Yup.object({
@@ -33,19 +30,18 @@ const AgregarClaseContainer = () => {
   const registrarClase = async (data) => {
     try {
       const res = await axios.post("/clases", data);
-      console.log(res.data.status)
-      if(res.data.status === 200){
-         return Swal.fire({
-           icon: "success",
-           text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
-         });
-      } else if(res.data.status === 500){
+      console.log(res.data.status);
+      if (res.data.status === 200) {
         return Swal.fire({
-            icon: "error",
-            text: "La clase ya existe en la base de datos"
-        })
+          icon: "success",
+          text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
+        });
+      } else if (res.data.status === 500) {
+        return Swal.fire({
+          icon: "error",
+          text: "La clase ya existe en la base de datos",
+        });
       }
-     
     } catch (error) {
       console.error("Error registrando la clase", error);
       Swal.fire({
@@ -56,15 +52,7 @@ const AgregarClaseContainer = () => {
   };
   return (
     <>
-      {rolUsuario.length > 0 ? (
-        rolUsuario == "admin" ? (
-          <AgregarClase formik={formik} />
-        ) : (
-          <Forbidden />
-        )
-      ) : (
-        <Loader />
-      )}
+      <AgregarClase formik={formik} />
     </>
   );
 };

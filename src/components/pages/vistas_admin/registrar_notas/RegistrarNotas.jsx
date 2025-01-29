@@ -5,6 +5,7 @@ import {
   MenuItem,
   Select,
   Table,
+  TableBody,
   TableCell,
   TableHead,
   TableRow,
@@ -65,65 +66,70 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
           <form onSubmit={handleSubmit}>
             <Table>
               <TableHead>
-                <TableCell>Alumno</TableCell>
-                <TableCell>Nota julio</TableCell>
-                <TableCell>Nota diciembre</TableCell>
-              </TableHead>
-
-              {(alumnos && alumnos.length > 0) ? (
-                alumnos.map((alumno) => (
-                  <TableRow
-                    key={alumno._id}
-                    onClick={() => handleSelectStudent(alumno._id)}
-                  >
-
-                    <TableCell name="id_alumno" value={values._id}>
-                      {alumno.nombre} {alumno.apellido}
-                    </TableCell>
-
-                    <TableCell>
-                      <TextField
-                        variant="outlined"
-                        className="inputPagos"
-                        name="notaJulio"
-                        onChange={handleChange}
-                        error={errors.notaJulio ? true : false}
-                        helperText={errors.notaJulio}
-
-                        // value={values.notaJulio}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <TextField
-                        variant="outlined"
-                        className="inputPagos"
-                        name="notaDiciembre"
-                        onChange={handleChange}
-                        error={errors.notaDiciembre ? true : false}
-                        helperText={errors.notaDiciembre}
-
-                        // value={values.notaDiciembre}
-                      />
-                    </TableCell>
-                    <Button
-                      className="buttonForm"
-                      type="submit"
-                      variant="contained"
-                      color="secondary"
-                    >
-                      Enviar
-                    </Button>
-                  </TableRow>
-                ))
-              ) : (
                 <TableRow>
-                  <TableCell colspan="3">
-                    <Typography>
-                      No hay alumnos para la clase {clase} del año {año}
-                    </Typography>
-                  </TableCell>
+                  <TableCell>Alumno</TableCell>
+                  <TableCell>Nota julio</TableCell>
+                  <TableCell>Nota diciembre</TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
-              )}
+              </TableHead>
+              <TableBody>
+                {alumnos && alumnos.length > 0 ? (
+                  alumnos.map((alumno) => (
+                    <TableRow
+                      key={alumno._id}
+                      onClick={() => handleSelectStudent(alumno._id)}
+                    >
+                      <TableCell name="id_alumno" value={values._id}>
+                        {alumno.nombre} {alumno.apellido}
+                      </TableCell>
+
+                      <TableCell>
+                        <TextField
+                          variant="outlined"
+                          className="inputPagos"
+                          name="notaJulio"
+                          onChange={handleChange}
+                          error={errors.notaJulio ? true : false}
+                          helperText={errors.notaJulio}
+
+                          // value={values.notaJulio}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <TextField
+                          variant="outlined"
+                          className="inputPagos"
+                          name="notaDiciembre"
+                          onChange={handleChange}
+                          error={errors.notaDiciembre ? true : false}
+                          helperText={errors.notaDiciembre}
+
+                          // value={values.notaDiciembre}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          className="buttonForm"
+                          type="submit"
+                          variant="contained"
+                          color="secondary"
+                        >
+                          Enviar
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="4">
+                      <Typography>
+                        No hay alumnos para la clase {clase} del año {año}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
             </Table>
           </form>
         )}

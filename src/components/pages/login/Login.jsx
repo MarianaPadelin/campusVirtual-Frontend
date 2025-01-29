@@ -69,7 +69,7 @@ const Login = ({
           <Button variant="contained" color="secondary" type="submit">
             Ingresar
           </Button>
-          <Link to="/resetPassword">
+          <Link to="/sendEmail">
             <Typography> Olvidé mi contraseña</Typography>
           </Link>
           <Divider />

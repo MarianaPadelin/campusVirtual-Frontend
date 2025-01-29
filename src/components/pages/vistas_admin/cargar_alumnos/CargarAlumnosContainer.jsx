@@ -2,16 +2,13 @@ import axios from "axios";
 import CargarAlumnos from "./CargarAlumnos";
 import Swal from "sweetalert2";
 import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
+import { useEffect, useState } from "react";
 
 const CargarAlumnosContainer = () => {
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(2025);
   const [alumnos, setAlumnos] = useState([]);
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
-  const { rolUsuario } = useContext(UserContext)
 
   useEffect(() => {
     const promise = axios.get(`/clases`);
@@ -90,8 +87,7 @@ const CargarAlumnosContainer = () => {
 
   const borrarAlumnoLista = (id) => {
     Swal.fire({
-      title:
-        `¿Desea eliminar al alumno de la clase ${clase} ${año}?` ,
+      title: `¿Desea eliminar al alumno de la clase ${clase} ${año}?`,
       showCancelButton: true,
       confirmButtonText: "Sí",
       cancelButtonText: `Cancelar`,
@@ -126,8 +122,7 @@ const CargarAlumnosContainer = () => {
 
   return (
     <>
-
-    { rolUsuario == "admin" ? ( <CargarAlumnos
+      <CargarAlumnos
         agregarAlumnosLista={agregarAlumnosLista}
         clasesDisponibles={clasesDisponibles}
         clase={clase}
@@ -139,8 +134,7 @@ const CargarAlumnosContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         borrarAlumnoLista={borrarAlumnoLista}
-      />) : (<Forbidden /> ) }
-     
+      />
     </>
   );
 };

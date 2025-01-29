@@ -3,16 +3,14 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-// import Avatar from "@mui/material/Avatar";
-// import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
+import axios from "axios";
 
 
 const pages = [
@@ -21,11 +19,11 @@ const pages = [
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
   { name: "Ver material didáctico", path: "/alumnos/material" },
-  { name: "Cerrar sesión", path: "/logout"}
 ];
 
 const NavbarAlumnos = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (e) => {
     setAnchorElNav(e.currentTarget);
@@ -33,6 +31,20 @@ const NavbarAlumnos = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const logout = async () => {
+    try {
+      const res = await axios.get("/session/logout", {
+        withCredentials: true,
+      });
+      if (res.status == 200) {
+        return navigate("/");
+      }
+      return alert("No se pudo cerrar la sesión");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
@@ -95,6 +107,13 @@ const NavbarAlumnos = () => {
                   </Link>
                 </MenuItem>
               ))}
+              <MenuItem>
+                <Link>
+                  <Button className="navbarButton" onClick={logout}>
+                    Cerrar Sesión
+                  </Button>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <Link to="/alumnos">
@@ -123,8 +142,11 @@ const NavbarAlumnos = () => {
                 </Button>
               </Link>
             ))}
-
-            
+            <Link className="navbarLink">
+              <Button className="navbarButton" onClick={logout}>
+                <Typography className="cerrarSesion"> Cerrar sesión</Typography>
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

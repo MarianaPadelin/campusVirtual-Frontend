@@ -129,3 +129,16 @@ span {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.navbarButton{
+  color: unset!important; 
+}
+
+.navbarLink{
+    align-self: center;
+}
+
+.cerrarSesion{
+  font-size: unset!important;
+}

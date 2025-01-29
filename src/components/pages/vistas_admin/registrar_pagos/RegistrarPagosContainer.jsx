@@ -1,15 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RegistrarPagos from "./RegistrarPagos";
 import axios from "axios";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
-import Forbidden from "../../forbidden/Forbidden";
-import { UserContext } from "../../../../context/UserContext";
-import Loader from "../../../common/loader/Loader";
+
 
 const RegistrarPagosContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
   const [alumnos, setAlumnos] = useState([]);
   const [montoPorAlumno, setMontoPorAlumno] = useState({}); // Manage monto per alumno
 
@@ -55,7 +52,6 @@ const RegistrarPagosContainer = () => {
     return `${day}/${month}/${year}`;
   };
 
-
   const registrarPagos = async (data) => {
     try {
       const res = await axios.post("/pagos", data);
@@ -83,29 +79,23 @@ const RegistrarPagosContainer = () => {
     }
   };
 
-    const handleMontoChange = (alumnoId, value) => {
-      setMontoPorAlumno((prevState) => ({
-        ...prevState,
-        [alumnoId]: value,
-      }));
-    };
+  const handleMontoChange = (alumnoId, value) => {
+    setMontoPorAlumno((prevState) => ({
+      ...prevState,
+      [alumnoId]: value,
+    }));
+  };
 
   return (
     <div>
-      {rolUsuario.length > 0 ? (
-        rolUsuario == "admin" ? (
+
           <RegistrarPagos
             alumnos={alumnos}
             formik={formik}
             montoPorAlumno={montoPorAlumno}
             handleMontoChange={handleMontoChange}
           />
-        ) : (
-          <Forbidden />
-        )
-      ) : (
-        <Loader />
-      )}
+     
     </div>
   );
 };

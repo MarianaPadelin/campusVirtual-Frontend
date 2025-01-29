@@ -1,17 +1,11 @@
-import Tp from "./Tp"
-import { useContext } from "react";
+import Tp from "./Tp";
 
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
 const TpContainer = () => {
-    const { rolUsuario } = useContext(UserContext)
-  
   return (
     <>
-      {rolUsuario == "alumno" ? <Tp /> : <Forbidden />}
-
+      <Tp />
     </>
   );
-}
+};
 
-export default TpContainer
+export default TpContainer;

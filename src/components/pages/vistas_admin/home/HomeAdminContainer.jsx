@@ -1,13 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HomeAdmin from "./HomeAdmin";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Loader from "../../../common/loader/Loader";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
 
 const HomeAdminContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
   const [alumnos, setAlumnos] = useState([]);
 
   useEffect(() => {
@@ -42,7 +39,9 @@ const HomeAdminContainer = () => {
           )
           .then(() => {
             axios
-              .get(`/alumnos`)
+              .get(`/alumnos`, {
+                withCredentials: true,
+              })
               .then((res) => setAlumnos(res.data))
               .catch((err) => console.log(err));
           })
@@ -54,17 +53,11 @@ const HomeAdminContainer = () => {
   };
   return (
     <>
-      { rolUsuario.length > 0 ? (rolUsuario == "admin" ? (
-        alumnos.length > 0 ? (
-          <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
-        ) : (
-          <Loader />
-        )
+      {alumnos.length > 0 ? (
+        <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
       ) : (
-        <Forbidden />
-      )) : (<Loader />)
-      
-      }
+        <Loader />
+      )}
     </>
   );
 };

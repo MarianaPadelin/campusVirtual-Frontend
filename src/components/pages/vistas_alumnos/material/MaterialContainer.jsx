@@ -1,12 +1,11 @@
-import { useContext } from "react"
-import Material from "./Material"
-import { UserContext } from "../../../../context/UserContext"
-import Forbidden from "../../forbidden/Forbidden"
+import Material from "./Material";
 
 const MaterialContainer = () => {
+  return (
+    <>
+      <Material />
+    </>
+  );
+};
 
-  const { rolUsuario } = useContext(UserContext)
-  return <>{rolUsuario == "alumno" ? <Material /> : <Forbidden />}</>;
-}
-
-export default MaterialContainer
+export default MaterialContainer;

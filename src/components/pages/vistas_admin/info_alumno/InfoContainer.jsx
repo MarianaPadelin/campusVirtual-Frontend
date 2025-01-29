@@ -1,16 +1,13 @@
 import { useParams } from "react-router-dom";
 import Info from "./Info";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../../../common/loader/Loader";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { UserContext } from "../../../../context/UserContext";
-import Forbidden from "../../forbidden/Forbidden";
 
 const InfoContainer = () => {
-  const { rolUsuario } = useContext(UserContext);
   const [alumno, setAlumno] = useState({});
   const [showForm, setShowForm] = useState(false);
   const { id } = useParams();
@@ -22,7 +19,6 @@ const InfoContainer = () => {
       .catch((err) => console.log("Hubo un error: " + err));
   }, [id]);
 
-  
   const handleClick = () => {
     setShowForm(!showForm);
   };
@@ -72,22 +68,18 @@ const InfoContainer = () => {
 
   return (
     <>
-      {rolUsuario == "admin" ? (
-        alumno._id ? (
-          <Info
-            alumnoEncontrado={alumno}
-            handleClick={handleClick}
-            showForm={showForm}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            errors={errors}
-            values={values}
-          />
-        ) : (
-          <Loader />
-        )
+      {alumno._id ? (
+        <Info
+          alumnoEncontrado={alumno}
+          handleClick={handleClick}
+          showForm={showForm}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          errors={errors}
+          values={values}
+        />
       ) : (
-        <Forbidden />
+        <Loader />
       )}
     </>
   );

@@ -3,31 +3,27 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-// import Avatar from "@mui/material/Avatar";
-// import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
+import axios from "axios";
 
 const pages = [
   { name: "Registrar alumno", path: "/admin/registro" },
   { name: "Cargar alumnos", path: "/admin/lista" },
-  { name: "Agregar clase", path: "/admin/clases"},
+  { name: "Agregar clase", path: "/admin/clases" },
   { name: "Asistencias", path: "/admin/asistencias" },
   { name: "Subir notas", path: "/admin/notas" },
   { name: "Subir pagos", path: "/admin/pagos" },
   { name: "Subir material", path: "/admin/material" },
-  { name: "Cerrar sesión", path: "/logout" },
 ];
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavbarAdmin = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  // const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (e) => {
     setAnchorElNav(e.currentTarget);
@@ -35,6 +31,20 @@ const NavbarAdmin = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const logout = async () => {
+    try {
+      const res = await axios.get("/session/logout", {
+        withCredentials: true,
+      });
+      if (res.status == 200) {
+        return navigate("/");
+      }
+      return alert("No se pudo cerrar la sesión");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -96,6 +106,11 @@ const NavbarAdmin = () => {
                   </Link>
                 </MenuItem>
               ))}
+              <MenuItem>
+                <Link>
+                  <Button className="navbarButton" onClick={logout}>Cerrar Sesión</Button>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <Link to="/admin">
@@ -124,6 +139,11 @@ const NavbarAdmin = () => {
                 </Button>
               </Link>
             ))}
+            <Link className="navbarLink">
+              <Button className="navbarButton" onClick={logout}>
+                <Typography className="cerrarSesion"> Cerrar sesión</Typography>
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

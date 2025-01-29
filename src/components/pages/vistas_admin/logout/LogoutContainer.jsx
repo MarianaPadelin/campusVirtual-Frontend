@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//mandarlo por onClick y no por path
+//poner un loader
 const LogoutContainer = () => {
   const [cerrar, setCerrar] = useState(false);
   const navigate = useNavigate();
