@@ -13,10 +13,10 @@ import Forbidden from "./components/pages/forbidden/Forbidden";
 import Loader from "./components/common/loader/Loader";
 // import { config } from './config';
 
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL= config.backendURL;
 // console.log(axios.defaults.baseURL)
-// axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
+axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 
 axios.defaults.headers.common["Content-Type"] = "application/json"; // for all requests
 
