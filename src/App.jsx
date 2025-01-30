@@ -21,6 +21,7 @@ import { config } from "./config.js"
 axios.defaults.baseURL= config.backendURL;
 console.log(axios.defaults.baseURL)
 
+
 // axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 
