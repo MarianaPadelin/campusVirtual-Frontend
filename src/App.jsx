@@ -19,12 +19,6 @@ import Swal from "sweetalert2";
 import { config } from "./config.js"
 
 axios.defaults.baseURL= config.backendURL;
-console.log(axios.defaults.baseURL)
-
-
-// axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
-
 axios.defaults.headers.common["Content-Type"] = "application/json"; // for all requests
 
 axios.defaults.withCredentials = true;
