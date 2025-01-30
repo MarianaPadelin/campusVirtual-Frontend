@@ -1,6 +1,10 @@
 import "./App.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { rutasApp } from "./routes/rutasApp";
 import { rutasPublicas } from "./routes/rutasPublicas";
 import Layouts from "./components/layouts/Layouts";
@@ -8,15 +12,17 @@ import Error from "./components/pages/vistas_alumnos/error/Error";
 import axios from "axios";
 
 import UserContextProvider, { UserContext } from "./context/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Forbidden from "./components/pages/forbidden/Forbidden";
 import Loader from "./components/common/loader/Loader";
-// import { config } from './config';
+import Swal from "sweetalert2";
+import { config } from "./config.js"
+
+axios.defaults.baseURL= config.backendURL;
+console.log(axios.defaults.baseURL)
 
 // axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.baseURL= config.backendURL;
-// console.log(axios.defaults.baseURL)
-axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
+// axios.defaults.baseURL = "https://campus-virtual-backend.vercel.app";
 
 axios.defaults.headers.common["Content-Type"] = "application/json"; // for all requests
 
@@ -26,7 +32,6 @@ function App() {
   return (
     <UserContextProvider>
       <BrowserRouter>
-      
         <MainRoutes />
       </BrowserRouter>
     </UserContextProvider>
@@ -34,10 +39,34 @@ function App() {
 }
 
 function MainRoutes() {
-  const { rolUsuario } = useContext(UserContext); 
+  const { rolUsuario } = useContext(UserContext);
+  const [timeoutReached, setTimeoutReached] = useState(false);
 
-//corregir esto para resetPAssword
-  if ((!rolUsuario || (rolUsuario.length === undefined)) && !isPublicRoute()) {
+  useEffect(() => {
+    let timer;
+    console.log(rolUsuario);
+    if (rolUsuario.length === undefined && !isPublicRoute()) {
+      timer = setTimeout(() => {
+        setTimeoutReached(true);
+        Swal.fire({
+          icon: "warning",
+          text: "La sesión expiró",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.replace("/");
+          }
+        });
+      }, 8000);
+    }
+
+    return () => clearTimeout(timer); // Cleanup the timeout if the user logs in before 8 seconds
+  }, [rolUsuario]);
+
+  if (timeoutReached) {
+    return null; // Prevent further rendering after timeout
+  }
+
+  if (rolUsuario.length === undefined && !isPublicRoute()) {
     return <Loader />;
   }
 
@@ -71,11 +100,20 @@ function MainRoutes() {
   // Helper to check if the current route is public
   function isPublicRoute() {
     const currentPath = window.location.pathname;
-    return rutasPublicas.some(({ path }) => currentPath === path);
+
+    return rutasPublicas.some(({ path }) => {
+      // Check if the path has a dynamic parameter (e.g., ":token")
+      const dynamicMatch = path.includes(":")
+        ? currentPath.startsWith(path.split("/:")[0]) // Compare base URL before dynamic param
+        : currentPath === path;
+
+      return dynamicMatch;
+    });
   }
 
   // Helper to check if the role is authorized for the current protected route
   function isRoleAuthorized() {
+    console.log(rolUsuario);
     const currentPath = window.location.pathname;
     return rutasApp.some(
       ({ path, role }) => path === currentPath && role === rolUsuario
@@ -85,7 +123,7 @@ function MainRoutes() {
 
 // function App() {
 //   const { rolUsuario } = useContext(UserContext);
-  
+
 //   return (
 //     <div className="main">
 //       <BrowserRouter>
@@ -98,7 +136,7 @@ function MainRoutes() {
 //               element={<ResetPasswordContainer />}
 //             ></Route>
 //              {rolUsuario.length > 0 ? (
-//               rolUsuario === "admin" ? ( 
+//               rolUsuario === "admin" ? (
 //                 <Route element={<Layouts />}>
 //                   {rutasApp.map(({ id, path, Element, role }) => (
 //                     <Route key={id} path={path} element={<Element />} role={role} />
@@ -109,7 +147,7 @@ function MainRoutes() {
 //               )
 //             ) : (
 //               <Loader />
-//             )} 
+//             )}
 
 //             <Route path="*" element={<Error />} />
 //           </Routes>

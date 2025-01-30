@@ -14,8 +14,18 @@ const ResetPasswordContainer = () => {
        initialValues: {
          email: "",
          password: "",
+         repeatPassword: "",
        },
        onSubmit: (datosIngresados) => {
+         Swal.fire({
+                imageUrl:
+                  "https://res.cloudinary.com/dvxkjikvk/image/upload/v1738096102/campus/ZKZg_fvg2mn.gif",
+                imageWidth: 100,
+                imageHeight: 100,
+                imageAlt: "Cargando",
+                text: "contectando",
+                showConfirmButton: false,
+              });
          resetPassword(datosIngresados);
        },
        validateOnChange: false,
@@ -27,7 +37,7 @@ const ResetPasswordContainer = () => {
          password: Yup.string()
            .min(8, "Debe tener al menos 8 caracteres")
            .required("Campo obligatorio"),
-         repeatPassword: Yup.string().oneOf(
+         repeatPassword: Yup.string().required("Campo obligatorio").oneOf(
            [Yup.ref("password"), null],
            "Debe coincidir con el campo anterior"
          ),

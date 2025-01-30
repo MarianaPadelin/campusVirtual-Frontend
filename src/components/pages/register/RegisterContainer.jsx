@@ -14,8 +14,18 @@ const RegisterContainer = () => {
     initialValues: {
       email: "",
       password: "",
+      repeatPassword: "", 
     },
     onSubmit: (datosIngresados) => {
+       Swal.fire({
+              imageUrl:
+                "https://res.cloudinary.com/dvxkjikvk/image/upload/v1738096102/campus/ZKZg_fvg2mn.gif",
+              imageWidth: 100,
+              imageHeight: 100,
+              imageAlt: "Cargando",
+              text: "contectando",
+              showConfirmButton: false,
+            });
       registrarse(datosIngresados);
     },
     validateOnChange: false,
@@ -27,7 +37,7 @@ const RegisterContainer = () => {
       password: Yup.string()
         .min(8, "Debe tener al menos 8 caracteres")
         .required("Campo obligatorio"),
-      repeatPassword: Yup.string().oneOf(
+      repeatPassword: Yup.string().required("Campo obligatorio").oneOf(
         [Yup.ref("password"), null],
         "Debe coincidir con el campo anterior"
       ),
@@ -35,7 +45,7 @@ const RegisterContainer = () => {
     //poner la validación de email y contraseña
   });
 
-  const registrarse = (data) => {
+  const registrarse =  (data) => {
     const promise = axios.post("/session/register", data, {
       withCredentials: true,
     });
@@ -45,7 +55,7 @@ const RegisterContainer = () => {
         if (res.data.status == 200) {
           Swal.fire({
             icon: "success",
-            text: "Usuario conectado",
+            text: "Usuario registrado",
           }).then(navigate("/"));
         } else if (res.data.status == 400) {
           Swal.fire({

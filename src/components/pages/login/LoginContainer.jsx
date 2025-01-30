@@ -20,8 +20,8 @@ const LoginContainer = () => {
       Swal.fire({
         imageUrl:
           "https://res.cloudinary.com/dvxkjikvk/image/upload/v1738096102/campus/ZKZg_fvg2mn.gif",
-        imageWidth: 200,
-        imageHeight: 200,
+        imageWidth: 100,
+        imageHeight: 100,
         imageAlt: "Cargando",
         text: "contectando",
         showConfirmButton: false,
