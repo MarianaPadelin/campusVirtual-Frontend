@@ -7,8 +7,6 @@ import * as Yup from "yup";
 //alerta cuando el alumno ya esté registrado
 
 const RegistroContainer = () => {
-
-
   const { handleSubmit, handleChange, errors } = useFormik({
     //3 parámetros: los valores iniciales, la función con onsubmit, y las validaciones
     initialValues: {
@@ -32,23 +30,28 @@ const RegistroContainer = () => {
     const promise = axios.post(`/alumnos`, data);
 
     promise
-      .then(() =>
-        Swal.fire({
-          icon: "success",
-          text: `Alumno ${data.nombre} ${data.apellido} registrado con éxito`,
+      .then((res) => {
+        if (res.data.status === 200) {
+          return Swal.fire({
+            icon: "success",
+            text: `Alumno ${data.nombre} ${data.apellido} registrado con éxito`,
+          }).then(window.location.replace("/admin"));
+        } 
+        return Swal.fire({
+          icon: "error",
+          text: ("Hubo un error registrando al alumno: ", res.message)
         })
-      )
-      .then(window.location.replace("/admin"))
+      })
       .catch((err) => console.log("Hubo un error: " + err));
   };
 
   return (
     <div>
-        <Registro
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          errors={errors}
-        />
+      <Registro
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        errors={errors}
+      />
     </div>
   );
 };
