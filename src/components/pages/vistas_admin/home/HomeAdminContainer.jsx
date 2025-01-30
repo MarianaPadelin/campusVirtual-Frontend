@@ -16,7 +16,7 @@ const HomeAdminContainer = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const eliminarElemento = (id) => {
+  const eliminarElemento = (id, email) => {
     Swal.fire({
       title:
         "¿Seguro que desea eliminar al alumno? Quedará borrado de la base de datos de forma permanente",
@@ -31,20 +31,29 @@ const HomeAdminContainer = () => {
         });
 
         promise
-          .then(() =>
-            Swal.fire({
-              icon: "success",
-              text: "Alumno eliminado",
-            })
-          )
           .then(() => {
             axios
-              .get(`/alumnos`, {
-                withCredentials: true,
+              .delete(`/session/${email}`)
+
+              .then((res) => {
+                console.log(res)
+                if (res.data.status === 200) {
+                  return Swal.fire({
+                    icon: "success",
+                    text: "Alumno eliminado",
+                  });
+                }
               })
-              .then((res) => setAlumnos(res.data))
-              .catch((err) => console.log(err));
+              .then(() => {
+                axios
+                  .get(`/alumnos`, {
+                    withCredentials: true,
+                  })
+                  .then((res) => setAlumnos(res.data))
+                  .catch((err) => console.log(err));
+              });
           })
+
           .catch((err) =>
             console.log("Hubo un error: " + err + ". El id recibido es: " + id)
           );

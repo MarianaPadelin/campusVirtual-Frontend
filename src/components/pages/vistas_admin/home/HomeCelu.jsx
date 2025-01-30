@@ -36,7 +36,7 @@ const HomeCelu = ({ alumnos, eliminarElemento }) => {
                 <TableCell>
                   <Button
                     onClick={() => {
-                      eliminarElemento(alumno._id);
+                      eliminarElemento(alumno._id, alumno.email);
                     }}
                   >
                     <HighlightOffIcon color="secondary" />

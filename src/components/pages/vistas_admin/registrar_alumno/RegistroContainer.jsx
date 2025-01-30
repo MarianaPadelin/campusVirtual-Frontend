@@ -1,7 +1,6 @@
 import axios from "axios";
 import Registro from "./Registro";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -9,7 +8,6 @@ import * as Yup from "yup";
 
 const RegistroContainer = () => {
 
-  const navigate = useNavigate();
 
   const { handleSubmit, handleChange, errors } = useFormik({
     //3 parámetros: los valores iniciales, la función con onsubmit, y las validaciones
@@ -40,7 +38,7 @@ const RegistroContainer = () => {
           text: `Alumno ${data.nombre} ${data.apellido} registrado con éxito`,
         })
       )
-      .then(navigate("/admin"))
+      .then(window.location.replace("/admin"))
       .catch((err) => console.log("Hubo un error: " + err));
   };
 
