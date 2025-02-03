@@ -71,6 +71,10 @@ a {
   .datePicker {
     width: 30vw;
   }
+
+  th {
+    font-size: large !important;
+  }
 }
 
 .inputLista {
@@ -95,14 +99,14 @@ th {
   max-width: 6vw;
   flex-wrap: wrap;
   font-weight: bolder !important;
-  font-size: large !important;
+  /* font-size: large !important; */
+  padding: 3vh 0 3vh 0 !important;
 }
 
 .signoPesos {
   align-self: center;
   margin-right: 2vw !important;
 }
-
 
 td {
   text-align: center;
@@ -130,15 +134,14 @@ span {
   flex-wrap: wrap;
 }
 
-
-.navbarButton{
-  color: unset!important; 
+.navbarButton {
+  color: unset !important;
 }
 
-.navbarLink{
-    align-self: center;
+.navbarLink {
+  align-self: center;
 }
 
-.cerrarSesion{
-  font-size: unset!important;
+.cerrarSesion {
+  font-size: unset !important;
 }

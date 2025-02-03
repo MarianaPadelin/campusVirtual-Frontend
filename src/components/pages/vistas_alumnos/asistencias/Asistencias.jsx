@@ -23,20 +23,31 @@ const Asistencias = ({ faltas, año, handleChangeAño }) => {
           </Select>
         </FormControl>
         <Table className="asistencias">
-          <TableHead>
-            <TableCell>Clase</TableCell>
-            <TableCell>Total de faltas</TableCell>
-            <TableCell>Ausentes</TableCell>
-            <TableCell>Faltas disponibles</TableCell>
-          </TableHead>
-   
+          {window.innerWidth > 768 ? (
+            <TableHead>
+              <TableCell>Clase</TableCell>
+              <TableCell>Total de faltas</TableCell>
+              <TableCell>Ausentes</TableCell>
+              <TableCell>Faltas disponibles</TableCell>
+            </TableHead>
+          ) : (
+            <TableHead>
+              <TableCell>Clase</TableCell>
+              <TableCell>Total</TableCell>
+              <TableCell>Ausentes</TableCell>
+              <TableCell>Disponibles</TableCell>
+            </TableHead>
+          )}
+
           {faltas.length > 0 ? (
             faltas.map((falta) => (
               <TableRow key={falta.clase}>
                 <TableCell>{falta.clase}</TableCell>
                 <TableCell>{falta.faltasDisponibles}</TableCell>
                 <TableCell>{falta.totalFaltas}</TableCell>
-                <TableCell>{falta.faltasDisponibles - falta.totalFaltas}</TableCell>
+                <TableCell>
+                  {falta.faltasDisponibles - falta.totalFaltas}
+                </TableCell>
               </TableRow>
             ))
           ) : (
