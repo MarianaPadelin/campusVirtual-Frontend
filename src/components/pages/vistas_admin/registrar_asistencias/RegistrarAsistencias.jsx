@@ -50,7 +50,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
             <Table>
               <TableHead>
                 <TableCell>Alumno</TableCell>
-                <TableCell>Asistencia</TableCell>
+                <TableCell>Ausente</TableCell>
               </TableHead>
               <TableBody>
                 {alumnos && alumnos.length > 0 ? (

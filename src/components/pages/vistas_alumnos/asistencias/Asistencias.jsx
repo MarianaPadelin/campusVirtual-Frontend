@@ -1,33 +1,51 @@
-import { Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
-const Asistencias = () => {
+const Asistencias = ({ faltas, año, handleChangeAño }) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
         Asistencias
       </Typography>
       <div className="secondaryContainer">
+        <FormControl className="classSelector">
+          <InputLabel id="label-año">Año</InputLabel>
+          <Select
+            labelId="label-año"
+            // id="demo-simple-select"
+            value={año}
+            label="Clase"
+            onChange={handleChangeAño}
+          >
+            <MenuItem value={2022}>2022</MenuItem>
+            <MenuItem value={2023}>2023</MenuItem>
+            <MenuItem value={2024}>2024</MenuItem>
+            <MenuItem value={2025}>2025</MenuItem>
+          </Select>
+        </FormControl>
         <Table className="asistencias">
           <TableHead>
             <TableCell>Clase</TableCell>
+            <TableCell>Total de faltas</TableCell>
             <TableCell>Ausentes</TableCell>
             <TableCell>Faltas disponibles</TableCell>
           </TableHead>
-          <TableRow>
-            <TableCell>Acrobacia</TableCell>
-            <TableCell>5</TableCell>
-            <TableCell>8</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Elongación</TableCell>
-            <TableCell>3</TableCell>
-            <TableCell>7</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Danza</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>10</TableCell>
-          </TableRow>
+   
+          {faltas.length > 0 ? (
+            faltas.map((falta) => (
+              <TableRow key={falta.clase}>
+                <TableCell>{falta.clase}</TableCell>
+                <TableCell>{falta.faltasDisponibles}</TableCell>
+                <TableCell>{falta.totalFaltas}</TableCell>
+                <TableCell>{falta.faltasDisponibles - falta.totalFaltas}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4}>
+                No hay asistencias registradas en este año
+              </TableCell>
+            </TableRow>
+          )}
         </Table>
       </div>
     </div>
