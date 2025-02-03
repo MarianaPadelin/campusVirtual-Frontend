@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom"
 // Outlet renderiza los children de navbar
 import NavbarAlumnos from "./navbar/NavbarAlumnos";
 import NavbarAdmin from "./navbar/NavbarAdmin";
-import Footer from "./navbar/Footer";
+// import Footer from "./navbar/Footer";
 
 const Layouts = () => {
   let location = useLocation();
@@ -14,7 +14,7 @@ const Layouts = () => {
 
       <Outlet />
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

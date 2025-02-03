@@ -5,32 +5,31 @@ const ResetIntermedio = ({ handleChange, handleSubmit}) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h4">
-Ingresá tu mail y te enviaremos un correo para restaurar la contraseña      </Typography>
+        Circo de las Artes
+      </Typography>
       <div className="secondaryContainer registro">
-        <Typography className="titles" variant="h5">
-          Iniciar sesión
+        <Typography className="titles" variant="h6">
+          Ingresá tu mail y te enviaremos un correo para restaurar la contraseña{" "}
         </Typography>
         <form className="formContainer" onSubmit={handleSubmit}>
           <TextField
-            label="Usuario"
+            label="Email"
             variant="filled"
             color="secondary"
             name="email"
             onChange={handleChange}
           />
-          
 
           <Button variant="contained" color="secondary" type="submit">
             Enviar
           </Button>
-         
+
           <Divider />
           <Link to="/">
             <Typography> Volver </Typography>
           </Link>
         </form>
       </div>
-  
     </div>
   );
 }

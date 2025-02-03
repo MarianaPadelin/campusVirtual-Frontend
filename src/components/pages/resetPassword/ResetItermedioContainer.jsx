@@ -15,7 +15,7 @@ const ResetItermedioContainer = () => {
         imageWidth: 100,
         imageHeight: 100,
         imageAlt: "Cargando",
-        text: "Enviando",
+        text: "Enviando...",
         showConfirmButton: false,
       });
       let res = await axios.post("/email", datosIngresados);

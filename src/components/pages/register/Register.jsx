@@ -15,7 +15,7 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
         </Typography>
         <form className="formContainer" onSubmit={handleSubmit}>
           <TextField
-            label="Usuario"
+            label="Usuario (email)"
             variant="filled"
             color="secondary"
             name="email"
@@ -104,7 +104,7 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
 
           <Divider />
           <Link to="/">
-            <Typography> Iniciar sesión </Typography>
+            <Typography> ¿Ya tenés una cuenta? Iniciar sesión </Typography>
           </Link>
         </form>
       </div>

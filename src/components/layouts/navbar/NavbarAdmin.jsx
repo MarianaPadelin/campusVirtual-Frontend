@@ -13,6 +13,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const pages = [
+  { name: "Home", path: "/admin" },
   { name: "Registrar alumno", path: "/admin/registro" },
   { name: "Cargar alumnos", path: "/admin/lista" },
   { name: "Agregar clase", path: "/admin/clases" },

@@ -26,7 +26,7 @@ const Login = ({
         </Typography>
         <form className="formContainer" onSubmit={handleSubmit}>
           <TextField
-            label="Usuario"
+            label="Usuario (email)"
             variant="filled"
             color="secondary"
             name="email"
@@ -74,7 +74,7 @@ const Login = ({
           </Link>
           <Divider />
           <Link to="/register">
-            <Typography> Registrarme </Typography>
+            <Typography> ¿Todavía no tenés una cuenta? Registrarme </Typography>
           </Link>
         </form>
       </div>

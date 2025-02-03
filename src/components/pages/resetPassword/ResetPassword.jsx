@@ -21,7 +21,7 @@ const ResetPassword = ({
         </Typography>
         <form className="formContainer" onSubmit={handleSubmit}>
           <TextField
-            label="Usuario"
+            label="Usuario (email)"
             variant="filled"
             color="secondary"
             name="email"
@@ -31,7 +31,7 @@ const ResetPassword = ({
           />
           {verContraseña ? (
             <TextField
-              label="Contraseña"
+              label="Nueva Contraseña"
               variant="filled"
               color="secondary"
               name="password"
@@ -48,7 +48,7 @@ const ResetPassword = ({
             ></TextField>
           ) : (
             <TextField
-              label="Contraseña"
+              label="Nueva Contraseña"
               variant="filled"
               color="secondary"
               name="password"

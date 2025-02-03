@@ -14,6 +14,7 @@ import axios from "axios";
 
 
 const pages = [
+  { name: "Home", path: "/alumnos" },
   { name: "Notas", path: "/alumnos/notas" },
   { name: "Asistencias", path: "/alumnos/asistencias" },
   { name: "Pagos", path: "/alumnos/pagos" },

@@ -23,7 +23,7 @@ const LoginContainer = () => {
         imageWidth: 100,
         imageHeight: 100,
         imageAlt: "Cargando",
-        text: "contectando",
+        text: "Conectando...",
         showConfirmButton: false,
       });
       const response = await loginUser(datosIngresados);
