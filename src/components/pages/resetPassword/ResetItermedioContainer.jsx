@@ -24,11 +24,13 @@ const ResetItermedioContainer = () => {
         Swal.fire({
           icon: "success",
           text: "Email enviado",
+          timer: 1500,
         });
       } else {
         Swal.fire({
           icon: "error",
           text: res.data.message,
+          timer: 1500,
         });
       }
     },

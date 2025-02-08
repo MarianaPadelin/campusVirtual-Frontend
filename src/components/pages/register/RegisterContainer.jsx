@@ -56,21 +56,25 @@ const RegisterContainer = () => {
           Swal.fire({
             icon: "success",
             text: "Usuario registrado",
+            timer: 1500,
           }).then(navigate("/"));
         } else if (res.data.status == 400) {
           Swal.fire({
             icon: "error",
             text: "El usuario ya está registrado",
+            timer: 1500,
           });
         } else if (res.data.status == 500) {
           Swal.fire({
             icon: "error",
             text: "Este email no está registrado como alumno de la escuela, por favor contactarse con recepción",
+            timer: 1500,
           });
         } else {
           Swal.fire({
             icon: "error",
             text: "Error desconocido",
+            timer: 1500,
           });
         }
       })

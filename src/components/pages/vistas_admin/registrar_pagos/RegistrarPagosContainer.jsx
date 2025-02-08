@@ -41,7 +41,7 @@ const RegistrarPagosContainer = () => {
     }),
   });
 
-  const getCurrentDate = () => {
+   const getCurrentDate = () => {
     const today = new Date();
 
     // Extract day, month, and year
@@ -60,12 +60,14 @@ const RegistrarPagosContainer = () => {
         Swal.fire({
           icon: "success",
           text: "Pago registrado con éxito",
+          timer: 1500,
         });
         return true;
       } else {
         Swal.fire({
           icon: "error",
           text: "Hubo un error cargando el pago",
+          timer: 1500,
         });
         return false;
       }
@@ -74,6 +76,7 @@ const RegistrarPagosContainer = () => {
       Swal.fire({
         icon: "error",
         text: "Hubo un error en el servidor",
+        timer: 1500,
       });
       return false;
     }

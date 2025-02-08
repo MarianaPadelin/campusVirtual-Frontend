@@ -35,11 +35,13 @@ const AgregarClaseContainer = () => {
         return Swal.fire({
           icon: "success",
           text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
+          timer: 1500,
         });
       } else if (res.data.status === 500) {
         return Swal.fire({
           icon: "error",
           text: "La clase ya existe en la base de datos",
+          timer: 1500,
         });
       }
     } catch (error) {
@@ -47,6 +49,7 @@ const AgregarClaseContainer = () => {
       Swal.fire({
         icon: "error",
         text: "Error del servidor",
+        timer: 1500,
       });
     }
   };

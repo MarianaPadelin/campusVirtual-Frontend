@@ -43,10 +43,10 @@ const Asistencias = ({ faltas, año, handleChangeAño }) => {
             faltas.map((falta) => (
               <TableRow key={falta.clase}>
                 <TableCell>{falta.clase}</TableCell>
-                <TableCell>{falta.faltasDisponibles}</TableCell>
                 <TableCell>{falta.totalFaltas}</TableCell>
+                <TableCell>{falta.ausentes}</TableCell>
                 <TableCell>
-                  {falta.faltasDisponibles - falta.totalFaltas}
+                  {falta.totalFaltas - falta.ausentes}
                 </TableCell>
               </TableRow>
             ))

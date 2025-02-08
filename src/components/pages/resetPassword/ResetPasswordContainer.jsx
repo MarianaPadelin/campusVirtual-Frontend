@@ -56,21 +56,25 @@ const ResetPasswordContainer = () => {
              Swal.fire({
                icon: "success",
                text: "Contraseña actualizada",
+               timer: 1500,
              }).then(navigate("/"));
            } else if (res.data.status == 400) {
              Swal.fire({
                icon: "error",
                text: "El usuario no existe",
+               timer: 1500,
              });
            } else if (res.data.status == 500) {
              Swal.fire({
                icon: "error",
                text: "Este email no está registrado como alumno de la escuela, por favor contactarse con recepción",
+               timer: 1500,
              });
            } else {
              Swal.fire({
                icon: "error",
                text: "Error desconocido",
+               timer: 1500,
              });
            }
          })

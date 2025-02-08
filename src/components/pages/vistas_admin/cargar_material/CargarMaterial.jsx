@@ -1,11 +1,34 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-
-const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleInput, fileText}) => {
-
+const CargarMaterial = ({
+  clasesDisponibles,
+  año,
+  clase,
+  handleChangeClases,
+  handleChangeAño,
+  formik,
+  handleInput,
+  fileText,
+  archivos,
+  borrarArchivo,
+}) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -23,12 +46,10 @@ const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleIn
       <Typography className="titles" variant="h4">
         Cargar material didáctico
       </Typography>
-      <form>
-        {" "}
+      <form onSubmit={formik.handleSubmit}>
         <span className="spanTable">
           <FormControl color="secondary" className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
-
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -46,8 +67,29 @@ const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleIn
                 })}
             </Select>
           </FormControl>
+          <FormControl color="secondary" className="classSelector">
+            <InputLabel id="label-año">Año</InputLabel>
+            <Select
+              labelId="label-año"
+              value={año}
+              label="Clase"
+              onChange={handleChangeAño}
+            >
+              <MenuItem value={2022}>2022</MenuItem>
+              <MenuItem value={2023}>2023</MenuItem>
+              <MenuItem value={2024}>2024</MenuItem>
+              <MenuItem value={2025}>2025</MenuItem>
+            </Select>
+          </FormControl>
           {clase && (
             <span className="subSpanTable">
+              {/* <input
+                type="file"
+                name="file"
+                onChange={(event) => {
+                  formik.setFieldValue("file", event.currentTarget.files[0]);
+                }}
+              ></input> */}
               <div>
                 <Button
                   color="secondary"
@@ -60,12 +102,15 @@ const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleIn
                   Cargar archivo
                   <VisuallyHiddenInput
                     type="file"
-                    onChange={handleInput}
-                    name="image"
-                    // multiple
+                    onChange={(event) => {
+                      handleInput(event);
+                    }}
+                    name="file"
                   />
                 </Button>
-                {fileText !== "" && <Typography variant="subtitle1" >{fileText}</Typography>}
+                {fileText !== "" && (
+                  <Typography variant="subtitle1">{fileText}</Typography>
+                )}
               </div>
 
               <Button variant="contained" color="secondary" type="submit">
@@ -82,32 +127,40 @@ const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleIn
         </Typography>
         <Table>
           <TableHead>
-            <TableCell>Clase</TableCell>
-            <TableCell>Fecha de subida</TableCell>
-            <TableCell>Archivo</TableCell>
+            <TableRow>
+              <TableCell>Nombre</TableCell>
+              <TableCell>Fecha de subida</TableCell>
+              <TableCell>Archivo</TableCell>
+              <TableCell>Eliminar archivo</TableCell>
+            </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>Acrobacia</TableCell>
-              <TableCell>05/02/25</TableCell>
-              <TableCell>
-                <Link>Descargar archivo</Link>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Preparación física</TableCell>
-              <TableCell>05/03/25</TableCell>
-              <TableCell>
-                <Link>Descargar archivo</Link>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Danza</TableCell>
-              <TableCell>15/03/25</TableCell>
-              <TableCell>
-                <Link>Descargar archivo</Link>
-              </TableCell>
-            </TableRow>
+            {archivos.length > 0 ? (
+              archivos.map((archivo) => (
+                <TableRow key={archivo._id}>
+                  <TableCell>{archivo.nombre}</TableCell>
+                  <TableCell>{archivo.fecha}</TableCell>
+                  <TableCell>
+                    <Link to={archivo.url} target="_blank">
+                      Descargar archivo
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => {
+                        borrarArchivo(archivo._id);
+                      }}
+                    >
+                      <HighlightOffIcon color="secondary" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4}> No se encontraron archivos</TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>
@@ -115,4 +168,4 @@ const CargarMaterial = ({ clasesDisponibles, clase, handleChangeClases, handleIn
   );
 };
 
-export default CargarMaterial
+export default CargarMaterial;

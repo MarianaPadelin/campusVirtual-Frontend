@@ -13,7 +13,6 @@ const UserContextProvider = ({ children }) => {
         withCredentials: true,
       });
       if (res.data.status === 200 || res.data.status === 201) {
-        
         const { role, email } = res.data.tokenUser;
         setRolUsuario(role);
 
@@ -23,10 +22,11 @@ const UserContextProvider = ({ children }) => {
           });
           setAlumno(alumnoRes.data.alumno);
           return { success: true, role, message: "Alumno conectado" };
-
         }
 
         return { success: true, role, message: "Admin conectado" };
+      } else if (res.data.status === 400) {
+        throw new Error("El usuario no está registrado");
       } else if (res.data.status === 401) {
         throw new Error("Usuario o contraseña incorrectos");
       } else {
@@ -55,13 +55,10 @@ const UserContextProvider = ({ children }) => {
         }
       } catch (err) {
         console.error("Error fetching user data:", err);
-      } 
+      }
     };
     fetchUser();
   }, []);
- 
-
-
 
   let data = {
     id: alumno._id,
@@ -74,7 +71,6 @@ const UserContextProvider = ({ children }) => {
     // seteoUsuario,
     rolUsuario,
     loginUser,
-    
   };
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;

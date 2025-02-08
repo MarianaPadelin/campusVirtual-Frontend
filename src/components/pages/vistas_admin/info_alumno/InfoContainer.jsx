@@ -50,11 +50,13 @@ const InfoContainer = () => {
           return Swal.fire({
             icon: "success",
             text: `Alumno modificado con éxito`,
+            timer: 1500,
           });
         }
         return Swal.fire({
           icon: "error",
           text: "Ocurrió un error",
+          timer: 1500,
         });
       })
       .then(() => {

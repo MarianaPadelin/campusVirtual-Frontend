@@ -83,7 +83,11 @@ const CargarAlumnos = ({
                       {alumno.nombre} {alumno.apellido}
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => {borrarAlumnoLista(alumno._id)}}>
+                      <Button
+                        onClick={() => {
+                          borrarAlumnoLista(alumno._id);
+                        }}
+                      >
                         <HighlightOffIcon color="secondary" />
                       </Button>
                     </TableCell>
@@ -102,6 +106,12 @@ const CargarAlumnos = ({
             <div className="inputDiv">
               <form onSubmit={handleSubmit}>
                 <Typography>Agregar alumno a la clase</Typography>
+                <Input
+                  className="inputLista"
+                  name="nombre"
+                  onChange={handleChange}
+                  value={values.nombre}
+                ></Input>
                 <Input
                   className="inputLista"
                   name="apellido"

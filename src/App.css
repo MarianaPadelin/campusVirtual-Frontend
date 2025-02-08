@@ -46,36 +46,13 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  margin: 1vw;
+  /* margin: 1vw; */
 }
 
 .classSelector {
   width: 60vw;
 }
 
-@media only screen and (min-width: 720px) {
-  .spanTable {
-    flex-direction: row !important;
-    width: 100%;
-  }
-
-  .classSelector {
-    width: 25vw;
-    margin: 3vw;
-  }
-
-  .inputPagos {
-    width: 15vw;
-  }
-
-  .datePicker {
-    width: 30vw;
-  }
-
-  th {
-    font-size: large !important;
-  }
-}
 
 .inputLista {
   margin-right: 3vw;
@@ -99,7 +76,6 @@ th {
   max-width: 6vw;
   flex-wrap: wrap;
   font-weight: bolder !important;
-  /* font-size: large !important; */
   padding: 3vh 0 3vh 0 !important;
 }
 
@@ -144,4 +120,30 @@ span {
 
 .cerrarSesion {
   font-size: unset !important;
+}
+
+@media only screen and (min-width: 720px) {
+  .spanTable {
+    flex-direction: row !important;
+    width: 100%;
+  }
+
+  .classSelector {
+    width: 25vw;
+    margin: 3vw;
+  }
+
+  .inputPagos {
+    width: 15vw;
+  }
+
+  .datePicker {
+    width: 30vw;
+  }
+
+  th {
+    font-size: large !important;
+    padding: 3vh 3vh 3vh 3vh !important;
+
+  }
 }

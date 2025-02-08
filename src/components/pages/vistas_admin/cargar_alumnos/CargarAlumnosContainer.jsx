@@ -39,8 +39,25 @@ const CargarAlumnosContainer = () => {
       .catch((err) => console.log(err));
   }, [clase, año]);
 
+
+  const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
+    initialValues: {
+      nombreClase: "",
+      año:"", 
+      nombre: "",
+      apellido: "",
+    },
+    onSubmit: (datosIngresados) => {
+      datosIngresados.nombreClase = clase;
+      datosIngresados.año = año;
+      agregarAlumnosLista(datosIngresados);
+      setFieldValue("apellido", "");
+      setFieldValue("nombre", "");
+    },
+  });
+
   const agregarAlumnosLista = (datos) => {
-    const promise = axios.get(`/clases/add/${clase}/${año}`, { params: datos });
+    const promise = axios.post(`/clases/add`, datos, { withCredentials: true });
 
     promise
       .then((res) => {
@@ -48,21 +65,25 @@ const CargarAlumnosContainer = () => {
           return Swal.fire({
             icon: "error",
             text: "El alumno no se encuentra en la base de datos",
+            timer: 1500,
           });
         } else if (res.data.status == 200) {
           return Swal.fire({
             icon: "success",
             text: `Alumno añadido a la lista de ${clase}`,
+            timer: 1500,
           });
         } else if (res.data.status == 500) {
           return Swal.fire({
             icon: "error",
             text: "El alumno ya está anotado en esta clase",
+            timer: 1500,
           });
         } else {
           return Swal.fire({
             icon: "error",
             text: "Error desconocido",
+            timer: 1500,
           });
         }
       })
@@ -75,15 +96,7 @@ const CargarAlumnosContainer = () => {
       .catch((err) => console.log("Hubo un error: " + err));
   };
 
-  const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
-    initialValues: {
-      apellido: "",
-    },
-    onSubmit: (datosIngresados) => {
-      agregarAlumnosLista(datosIngresados);
-      setFieldValue("apellido", "");
-    },
-  });
+  
 
   const borrarAlumnoLista = (id) => {
     Swal.fire({

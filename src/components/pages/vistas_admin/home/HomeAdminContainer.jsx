@@ -41,6 +41,7 @@ const HomeAdminContainer = () => {
                   return Swal.fire({
                     icon: "success",
                     text: "Alumno eliminado",
+                    timer: 1500,
                   });
                 }
               })

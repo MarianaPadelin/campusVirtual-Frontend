@@ -99,6 +99,7 @@ const RegistrarAsistenciasContainer = () => {
           Swal.fire({
             icon: "success",
             text: "Asistencias registradas con éxito",
+            timer: 1500,
           });
           window.location.reload();
           return;
@@ -106,6 +107,7 @@ const RegistrarAsistenciasContainer = () => {
         return Swal.fire({
           icon: "error",
           text: "Error desconocido",
+          timer: 1500,
         });
       })
 

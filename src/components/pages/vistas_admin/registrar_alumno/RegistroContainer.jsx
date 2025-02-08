@@ -35,12 +35,14 @@ const RegistroContainer = () => {
           return Swal.fire({
             icon: "success",
             text: `Alumno ${data.nombre} ${data.apellido} registrado con éxito`,
+            timer: 1500,
           }).then(window.location.replace("/admin"));
         } 
         return Swal.fire({
           icon: "error",
-          text: ("Hubo un error registrando al alumno: ", res.message)
-        })
+          text: ("Hubo un error registrando al alumno: ", res.message),
+          timer: 1500,
+        });
       })
       .catch((err) => console.log("Hubo un error: " + err));
   };

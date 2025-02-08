@@ -39,7 +39,7 @@ const Notas = ({ notas, año, handleChangeAño }) => {
             <TableCell>Nota julio</TableCell>
             <TableCell>Nota diciembre</TableCell>
           </TableHead>
-          {notas ? (
+          {notas.length > 0 ? (
             notas.map((nota) => (
               <TableRow key={nota._id}>
                 <TableCell>{nota.clase} </TableCell>

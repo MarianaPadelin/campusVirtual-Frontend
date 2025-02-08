@@ -56,7 +56,6 @@ const RegistrarNotasContainer = () => {
       onSubmit: (datosIngresados) => {
         datosIngresados.clase = clase;
         datosIngresados.año = año;
-        console.log(datosIngresados.id_alumno);
         registrarNotas(datosIngresados);
       },
       validateOnChange: false,
@@ -81,7 +80,22 @@ const RegistrarNotasContainer = () => {
     const promise = axios.post("/notas", data);
 
     promise
-      .then(() => Swal.fire("Notas registradas con éxito"))
+      .then((res) =>{
+        if(res.data.status === 200){
+          return Swal.fire({
+            icon: "success",
+            text: "Notas registradas con éxito",
+            timer: 1500,
+          });
+        }
+        return Swal.fire({
+          icon: "error",
+          text: "Error registrando las notas",
+          timer: 1500,
+        })
+      }
+        
+      )
       .catch((err) => console.log("Hubo un error: " + err));
   };
 

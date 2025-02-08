@@ -29,9 +29,10 @@ const LoginContainer = () => {
       const response = await loginUser(datosIngresados);
       console.log(response)
       if (response.success) {
-        Swal.fire({
+       return Swal.fire({
           icon: "success",
           text: response.message,
+          timer: 1500,
         }).then(() => {
           navigate(response.role === "admin" ? "/admin" : "/alumnos");
         });
@@ -39,6 +40,7 @@ const LoginContainer = () => {
         Swal.fire({
           icon: "error",
           text: response.message,
+          timer: 1500,
         });
       }
     },
