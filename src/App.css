@@ -53,7 +53,6 @@ a {
   width: 60vw;
 }
 
-
 .inputLista {
   margin-right: 3vw;
 }
@@ -76,7 +75,8 @@ th {
   max-width: 6vw;
   flex-wrap: wrap;
   font-weight: bolder !important;
-  padding: 3vh 0 3vh 0 !important;
+  padding: 2vh 1vh 2vh 1vw !important;
+  text-align: center !important;
 }
 
 .signoPesos {
@@ -85,8 +85,9 @@ th {
 }
 
 td {
-  text-align: center;
+  text-align: center!important;
   width: 20vw;
+  padding: 2vh 1vh 2vh 1vh !important;
 }
 
 .asistencias td {
@@ -114,12 +115,16 @@ span {
   color: unset !important;
 }
 
-.navbarLink {
+.linkNavbar {
+  margin: 1vw;
   align-self: center;
 }
-
 .cerrarSesion {
   font-size: unset !important;
+}
+
+.buttonEnviarTp{
+  height: min-content;
 }
 
 @media only screen and (min-width: 720px) {
@@ -143,7 +148,12 @@ span {
 
   th {
     font-size: large !important;
-    padding: 3vh 3vh 3vh 3vh !important;
+    padding: 3vh !important;
+    text-align: unset !important;
+  }
 
+  td {
+    padding: 3vh !important;
+    text-align: unset !important;
   }
 }

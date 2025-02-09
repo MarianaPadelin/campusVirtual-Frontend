@@ -4,10 +4,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 
-//contenido en user.controller de marga
 const CargarMaterialContainer = () => {
-  // const hoy = new Date()
-  // const defaultAño = hoy.getFullYear();
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(2025);
   const [fileText, setFileText] = useState("");
@@ -52,7 +49,7 @@ const CargarMaterialContainer = () => {
     initialValues: {
       clase: "",
       año: "",
-      fecha: "", 
+      fecha: "",
       file: null,
     },
     onSubmit: (datosIngresados) => {
@@ -67,12 +64,12 @@ const CargarMaterialContainer = () => {
       });
       datosIngresados.clase = clase;
       datosIngresados.año = año;
-      datosIngresados.fecha= getCurrentDate(); 
-      console.log(datosIngresados.fecha)
+      datosIngresados.fecha = getCurrentDate();
+      console.log(datosIngresados.fecha);
       const formData = new FormData();
       formData.append("clase", datosIngresados.clase);
       formData.append("anio", datosIngresados.año);
-      formData.append("fecha", datosIngresados.fecha)
+      formData.append("fecha", datosIngresados.fecha);
       formData.append("file", datosIngresados.file);
       console.log([...formData]);
 
@@ -123,45 +120,57 @@ const CargarMaterialContainer = () => {
     setFileText("Archivo subido");
   };
 
-const getCurrentDate = () => {
-  console.log("llego a la función fecha");
-  const today = new Date();
+  const getCurrentDate = () => {
+    const today = new Date();
 
-  // Extract day, month, and year
-  const day = String(today.getDate()).padStart(2, "0"); // Ensure 2 digits
-  const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
-  const year = today.getFullYear();
-  console.log(day, month, year);
-  return `${day}/${month}/${year}`;
-};
+    // Extract day, month, and year
+    const day = String(today.getDate()).padStart(2, "0"); // Ensure 2 digits
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const year = today.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   const borrarArchivo = (id) => {
-    const promise = axios.delete(`/material/${id}`, { withCredentials: true })
-    promise.then((res) => {
-      if(res.data.status === 200){
-        return Swal.fire({
-          icon: "success",
-          text: res.data.message
-        })
-      } return Swal.fire({
-          icon: "error",
-          text: "Error eliminando el archivo"
-      })
+    Swal.fire({
+      title: "¿Seguro que desea eliminar el archivo?",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: `Cancelar`,
     })
-    .then(() => {
-      const promise = axios.get(`/material/${clase}/${año}`, {
-        withCredentials: true,
-      });
-
-      promise.then((res) => {
-        if (res.data.status === 200) {
-          return setArchivos(res.data.result);
+      .then((result) => {
+        if (result.isConfirmed) {
+          const promise = axios.delete(`/material/${id}`, {
+            withCredentials: true,
+          });
+          promise.then((res) => {
+            if (res.data.status === 200) {
+              return Swal.fire({
+                icon: "success",
+                text: res.data.message,
+              });
+            }
+            return Swal.fire({
+              icon: "error",
+              text: "Error eliminando el archivo",
+            });
+          });
         }
-        return setArchivos([]);
-      });
-    })
-    .catch((error) => console.log(error))
-  }
+      })
+
+      .then(() => {
+        const promise = axios.get(`/material/${clase}/${año}`, {
+          withCredentials: true,
+        });
+
+        promise.then((res) => {
+          if (res.data.status === 200) {
+            return setArchivos(res.data.result);
+          }
+          return setArchivos([]);
+        });
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <>
       <CargarMaterial

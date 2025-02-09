@@ -22,25 +22,6 @@ const Material = ({ clase, año, handleChangeClases, handleChangeAño, clasesDis
       <div className="secondaryContainer">
         <span className="spanTable">
           <FormControl className="classSelector">
-            <InputLabel id="demo-simple-select-label">Clase</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={clase}
-              label="Clase"
-              onChange={handleChangeClases}
-            >
-              {clasesDisponibles &&
-                clasesDisponibles.map((c) => {
-                  return (
-                    <MenuItem key={c} value={c}>
-                      {c}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </FormControl>
-          <FormControl className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
@@ -54,13 +35,36 @@ const Material = ({ clase, año, handleChangeClases, handleChangeAño, clasesDis
               <MenuItem value={2025}>2025</MenuItem>
             </Select>
           </FormControl>
+          <FormControl className="classSelector">
+            <InputLabel id="demo-simple-select-label">Clase</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={clase}
+              label="Clase"
+              onChange={handleChangeClases}
+            >
+              {clasesDisponibles.length > 0 ?
+              (  clasesDisponibles.map((c) => {
+                  return (
+                    <MenuItem key={c} value={c}>
+                      {c}
+                    </MenuItem>
+                  );
+                })) : (
+                 <MenuItem>No hay clases disponibles</MenuItem>
+                )
+                
+                }
+            </Select>
+          </FormControl>
         </span>
 
         <Table className="asistencias">
           <TableHead>
             <TableRow>
               <TableCell>Clase</TableCell>
-              <TableCell>Fecha de subida</TableCell>
+              <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
             </TableRow>
           </TableHead>
@@ -71,7 +75,9 @@ const Material = ({ clase, año, handleChangeClases, handleChangeAño, clasesDis
                   <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
                   <TableCell>
-                    <Link to={archivo.url} target="_blank">Descargar archivo</Link>
+                    <Link to={archivo.url} target="_blank">
+                      Descargar archivo
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))

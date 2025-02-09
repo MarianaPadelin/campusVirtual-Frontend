@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-
+import DownloadIcon from "@mui/icons-material/Download";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
@@ -113,7 +113,12 @@ const CargarMaterial = ({
                 )}
               </div>
 
-              <Button variant="contained" color="secondary" type="submit">
+              <Button
+                className="buttonEnviarTp"
+                variant="contained"
+                color="secondary"
+                type="submit"
+              >
                 Enviar
               </Button>
             </span>
@@ -129,7 +134,7 @@ const CargarMaterial = ({
           <TableHead>
             <TableRow>
               <TableCell>Nombre</TableCell>
-              <TableCell>Fecha de subida</TableCell>
+              <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
             </TableRow>
@@ -141,9 +146,17 @@ const CargarMaterial = ({
                   <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
                   <TableCell>
-                    <Link to={archivo.url} target="_blank">
-                      Descargar archivo
-                    </Link>
+                    {window.innerWidth > 768 ? (
+                      <Link to={archivo.url} target="_blank">
+                        Descargar archivo
+                      </Link>
+                    ) : (
+                      <Link to={archivo.url} target="_blank">
+                        <Button>
+                          <DownloadIcon color="secondary" />
+                        </Button>
+                      </Link>
+                    )}
                   </TableCell>
                   <TableCell>
                     <Button

@@ -59,6 +59,7 @@ const NavbarAlumnos = () => {
               noWrap
               component="a"
               href="#app-bar-with-responsive-menu"
+              className="linkNavbar"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -134,7 +135,7 @@ const NavbarAlumnos = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link key={page.name} to={page.path}>
+              <Link key={page.name} to={page.path} className="linkNavbar">
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
@@ -143,7 +144,7 @@ const NavbarAlumnos = () => {
                 </Button>
               </Link>
             ))}
-            <Link className="navbarLink">
+            <Link className="linkNavbar">
               <Button className="navbarButton" onClick={logout}>
                 <Typography className="cerrarSesion"> Cerrar sesión</Typography>
               </Button>

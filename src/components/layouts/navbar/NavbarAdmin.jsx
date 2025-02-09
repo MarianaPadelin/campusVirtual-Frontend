@@ -52,7 +52,7 @@ const NavbarAdmin = () => {
     <AppBar color="secondary" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/admin">
+          <Link to="/admin" className="linkNavbar">
             <Typography
               variant="h6"
               noWrap
@@ -109,7 +109,9 @@ const NavbarAdmin = () => {
               ))}
               <MenuItem>
                 <Link>
-                  <Button className="navbarButton" onClick={logout}>Cerrar Sesión</Button>
+                  <Button className="navbarButton" onClick={logout}>
+                    Cerrar Sesión
+                  </Button>
                 </Link>
               </MenuItem>
             </Menu>
@@ -131,7 +133,7 @@ const NavbarAdmin = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link key={page.name} to={page.path}>
+              <Link key={page.name} to={page.path} className="linkNavbar">
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
@@ -140,7 +142,7 @@ const NavbarAdmin = () => {
                 </Button>
               </Link>
             ))}
-            <Link className="navbarLink">
+            <Link className="linkNavbar">
               <Button className="navbarButton" onClick={logout}>
                 <Typography className="cerrarSesion"> Cerrar sesión</Typography>
               </Button>

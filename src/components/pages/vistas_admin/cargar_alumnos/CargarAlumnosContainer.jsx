@@ -28,7 +28,7 @@ const CargarAlumnosContainer = () => {
   };
 
   useEffect(() => {
-    const promise = axios.get(`/clases/${clase}/${año}`);
+    const promise = axios.get(`/clases/admin/${clase}/${año}`);
     promise
       .then((res) => {
         if (res.data.status == 404) {
