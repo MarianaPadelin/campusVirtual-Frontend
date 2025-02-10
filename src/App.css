@@ -62,11 +62,18 @@ a {
   text-align: center;
   justify-content: center;
   gap: 3vw;
+  align-items: center;
 }
 
 .subSpanTable {
   display: flex;
   gap: 3vw;
+}
+
+.spanArchivos{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 table {
   min-width: 60vw;
@@ -125,6 +132,10 @@ span {
 
 .buttonEnviarTp{
   height: min-content;
+}
+
+.buttonWithMargin{
+  margin: 2vw!important;
 }
 
 @media only screen and (min-width: 720px) {

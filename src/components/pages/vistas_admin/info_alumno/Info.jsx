@@ -29,6 +29,15 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
             </Typography>
           </ListItem>
         </List>
+        <Link to={`/admin/historial/${alumnoEncontrado._id}`}>
+          <Button
+            color="secondary"
+            variant="contained"
+            className="buttonWithMargin"
+          >
+            Ver historial de pagos
+          </Button>
+        </Link>
         {showForm && (
           <form className="formContainer" onSubmit={handleSubmit}>
             <TextField

@@ -46,6 +46,7 @@ const RegistrarPagos = ({
                       <span>
                         <Typography className="signoPesos">$</Typography>
                         <TextField
+                        // type="number"
                           variant="outlined"
                           className="inputPagos"
                           name={`monto-${alumno._id}`} // Unique identifier

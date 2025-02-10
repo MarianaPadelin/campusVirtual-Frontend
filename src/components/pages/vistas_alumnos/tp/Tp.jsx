@@ -105,7 +105,9 @@ const Tp = ({
           <TableHead>
             <TableRow>
               <TableCell>Clase</TableCell>
-              <TableCell>Nombre</TableCell>
+              {window.innerWidth > 768 && (
+                <TableCell>Nombre</TableCell>
+              )}
               <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
@@ -116,18 +118,27 @@ const Tp = ({
               archivos.map((archivo) => (
                 <TableRow key={archivo.url}>
                   <TableCell>{archivo.clase}</TableCell>
-                  <TableCell>{archivo.nombre}</TableCell>
+                  {window.innerWidth > 768 && (
+                    <TableCell>{archivo.nombre}</TableCell>
+                  )}
+
                   <TableCell>{archivo.fecha}</TableCell>
                   <TableCell>
-                    <Link to={archivo.url}>
-                    Descargar
-                    <DownloadIcon color="primary" />
-                    </Link>
+                    {window.innerWidth > 768 ? (
+                      <Link to={archivo.url}>
+                        Descargar
+                        <DownloadIcon color="primary" />
+                      </Link>
+                    ) : (
+                      <Link to={archivo.url}>
+                        <DownloadIcon color="primary" />
+                      </Link>
+                    )}
                   </TableCell>
                   <TableCell>
                     <Button
                       onClick={() => {
-                        console.log("en tp", archivo)
+                        console.log("en tp", archivo);
                         borrarArchivo(archivo._id);
                       }}
                     >

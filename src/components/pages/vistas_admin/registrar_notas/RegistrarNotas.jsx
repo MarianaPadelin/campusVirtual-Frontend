@@ -52,7 +52,7 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
             <Select
               labelId="label-año"
               value={año}
-              label="Clase"
+              label="Año"
               onChange={handleChangeAño}
             >
               <MenuItem value={2022}>2022</MenuItem>

@@ -23,6 +23,7 @@ const InfoContainer = () => {
     setShowForm(!showForm);
   };
 
+  
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       nombre: alumno.nombre || "",

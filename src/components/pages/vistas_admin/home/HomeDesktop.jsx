@@ -1,4 +1,4 @@
-import EditIcon from "@mui/icons-material/Edit";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Button,
@@ -19,7 +19,7 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
             <TableCell>Apellido</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Celular</TableCell>
-            <TableCell>Editar</TableCell>
+            <TableCell>Detalles</TableCell>
             <TableCell>Eliminar</TableCell>
           </TableRow>
         </TableHead>
@@ -34,7 +34,7 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
                 <TableCell>
                   <Link to={`info/${alumno._id}`}>
                     <Button color="secondary">
-                      <EditIcon />
+                      <PersonSearchIcon />
                     </Button>
                   </Link>
                 </TableCell>

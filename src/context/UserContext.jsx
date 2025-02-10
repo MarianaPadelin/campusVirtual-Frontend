@@ -17,7 +17,7 @@ const UserContextProvider = ({ children }) => {
         setRolUsuario(role);
 
         if (role === "alumno") {
-          const alumnoRes = await axios.get(`/alumnos/${email}`, {
+          const alumnoRes = await axios.get(`/alumnos/getByEmail/${email}`, {
             withCredentials: true,
           });
           setAlumno(alumnoRes.data.alumno);
@@ -47,7 +47,7 @@ const UserContextProvider = ({ children }) => {
           const { role, email } = res.data.user;
           setRolUsuario(role); // Set the role
           if (role === "alumno") {
-            const alumnoRes = await axios.get(`/alumnos/${email}`, {
+            const alumnoRes = await axios.get(`/alumnos/getByEmail/${email}`, {
               withCredentials: true,
             });
             setAlumno(alumnoRes.data.alumno); // Set alumno data

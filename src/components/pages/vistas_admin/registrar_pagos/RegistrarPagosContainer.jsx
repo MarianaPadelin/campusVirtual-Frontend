@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
 
-
 const RegistrarPagosContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
   const [montoPorAlumno, setMontoPorAlumno] = useState({}); // Manage monto per alumno
@@ -26,11 +25,17 @@ const RegistrarPagosContainer = () => {
     onSubmit: async (datosIngresados, { resetForm }) => {
       datosIngresados.fecha = getCurrentDate();
       datosIngresados.monto = montoPorAlumno[datosIngresados.id_alumno] || 0; // Use the specific monto
-
-      const success = await registrarPagos(datosIngresados);
-      if (success) {
-        resetForm();
-        setMontoPorAlumno({}); // Clear the monto values
+      if (datosIngresados.monto > 0) {
+        const success = await registrarPagos(datosIngresados);
+        if (success) {
+          resetForm();
+          setMontoPorAlumno({}); // Clear the monto values
+        }
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: "Debe ingresar un valor mayor a cero",
+        });
       }
     },
     validateOnChange: false,
@@ -38,10 +43,11 @@ const RegistrarPagosContainer = () => {
       monto: Yup.number()
         .typeError("Debe ser un número válido")
         .required("Monto es obligatorio"),
+      // .moreThan(0, "Debe tener un valor mayor a cero"),
     }),
   });
 
-   const getCurrentDate = () => {
+  const getCurrentDate = () => {
     const today = new Date();
 
     // Extract day, month, and year
@@ -91,14 +97,12 @@ const RegistrarPagosContainer = () => {
 
   return (
     <div>
-
-          <RegistrarPagos
-            alumnos={alumnos}
-            formik={formik}
-            montoPorAlumno={montoPorAlumno}
-            handleMontoChange={handleMontoChange}
-          />
-     
+      <RegistrarPagos
+        alumnos={alumnos}
+        formik={formik}
+        montoPorAlumno={montoPorAlumno}
+        handleMontoChange={handleMontoChange}
+      />
     </div>
   );
 };

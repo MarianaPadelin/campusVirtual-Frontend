@@ -4,12 +4,15 @@
 import AgregarClaseContainer from "../components/pages/vistas_admin/agregar_clase/AgregarClaseContainer";
 import CargarAlumnosContainer from "../components/pages/vistas_admin/cargar_alumnos/CargarAlumnosContainer";
 import CargarMaterialContainer from "../components/pages/vistas_admin/cargar_material/CargarMaterialContainer";
+import HistorialContainer from "../components/pages/vistas_admin/historial_pagos/HistorialContainer";
 import HomeAdminContainer from "../components/pages/vistas_admin/home/HomeAdminContainer";
 import InfoContainer from "../components/pages/vistas_admin/info_alumno/InfoContainer";
 import RegistroContainer from "../components/pages/vistas_admin/registrar_alumno/RegistroContainer";
 import RegistrarAsistenciasContainer from "../components/pages/vistas_admin/registrar_asistencias/RegistrarAsistenciasContainer";
 import RegistrarNotasContainer from "../components/pages/vistas_admin/registrar_notas/RegistrarNotasContainer";
 import RegistrarPagosContainer from "../components/pages/vistas_admin/registrar_pagos/RegistrarPagosContainer";
+import VerPagosContainer from "../components/pages/vistas_admin/ver_pagos/VerPagosContainer";
+import VerTpsContainer from "../components/pages/vistas_admin/ver_tps/VerTpsContainer";
 import AsistenciasContainer from "../components/pages/vistas_alumnos/asistencias/AsistenciasContainer";
 import HomeContainer from "../components/pages/vistas_alumnos/home/HomeContainer";
 import MaterialContainer from "../components/pages/vistas_alumnos/material/MaterialContainer";
@@ -18,7 +21,6 @@ import PagosContainer from "../components/pages/vistas_alumnos/pagos/PagosContai
 import TpContainer from "../components/pages/vistas_alumnos/tp/TpContainer";
 
 export const rutasApp = [
-
   //---Alumnos---
   {
     id: "home",
@@ -26,7 +28,7 @@ export const rutasApp = [
     Element: HomeContainer,
     role: "alumno",
   },
- 
+
   {
     id: "notas",
     path: "/alumnos/notas",
@@ -77,6 +79,13 @@ export const rutasApp = [
     role: "admin",
   },
   {
+    id: "historial",
+    path: "/admin/historial/:id",
+    Element: HistorialContainer,
+    role: "admin",
+  },
+
+  {
     id: "registro",
     path: "/admin/registro",
     Element: RegistroContainer,
@@ -104,6 +113,18 @@ export const rutasApp = [
     id: "registroPagos",
     path: "/admin/pagos",
     Element: RegistrarPagosContainer,
+    role: "admin",
+  },
+  {
+    id: "verPagos",
+    path: "/admin/pagosMensuales",
+    Element: VerPagosContainer,
+    role: "admin",
+  },
+  {
+    id: "verTps",
+    path: "/admin/tps",
+    Element: VerTpsContainer,
     role: "admin",
   },
   {

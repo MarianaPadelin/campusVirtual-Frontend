@@ -16,10 +16,12 @@ const pages = [
   { name: "Home", path: "/admin" },
   { name: "Registrar alumno", path: "/admin/registro" },
   { name: "Cargar alumnos", path: "/admin/lista" },
-  { name: "Agregar clase", path: "/admin/clases" },
+  { name: "Clases", path: "/admin/clases" },
   { name: "Asistencias", path: "/admin/asistencias" },
   { name: "Subir notas", path: "/admin/notas" },
   { name: "Subir pagos", path: "/admin/pagos" },
+  { name: "Ver pagos", path: "/admin/pagosMensuales" },
+  { name: "Ver Tps", path: "/admin/tps" },
   { name: "Subir material", path: "/admin/material" },
 ];
 const NavbarAdmin = () => {

@@ -1,4 +1,4 @@
-import EditIcon from "@mui/icons-material/Edit";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Button,
@@ -16,7 +16,7 @@ const HomeCelu = ({ alumnos, eliminarElemento }) => {
         <TableHead>
           <TableRow>
             <TableCell>Apellido</TableCell>
-            <TableCell>Editar</TableCell>
+            <TableCell>Detalles</TableCell>
             <TableCell>Eliminar</TableCell>
           </TableRow>
         </TableHead>
@@ -29,7 +29,7 @@ const HomeCelu = ({ alumnos, eliminarElemento }) => {
                 <TableCell>
                   <Link to={`info/${alumno._id}`}>
                     <Button color="secondary">
-                      <EditIcon />
+                      <PersonSearchIcon />
                     </Button>
                   </Link>
                 </TableCell>
