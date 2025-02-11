@@ -12,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import axios from "axios";
 
-
 const pages = [
   { name: "Home", path: "/alumnos" },
   { name: "Notas", path: "/alumnos/notas" },
@@ -20,6 +19,7 @@ const pages = [
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
   { name: "Ver material didáctico", path: "/alumnos/material" },
+  { name: "Ver certificado", path: "/alumnos/certificado" },
 ];
 
 const NavbarAlumnos = () => {
@@ -47,7 +47,6 @@ const NavbarAlumnos = () => {
       console.error(error);
     }
   };
-
 
   return (
     <AppBar position="static">

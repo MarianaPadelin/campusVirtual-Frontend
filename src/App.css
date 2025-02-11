@@ -32,6 +32,14 @@ body {
   padding: 3vw;
 }
 
+.oneRowDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
+  margin: 3vw;
+}
+
 .registro {
   width: unset;
 }
@@ -105,6 +113,11 @@ span {
   justify-content: center;
 }
 
+
+iframe{
+  width: 100%;
+  height: 50vw;
+}
 .asistenciasContainer {
   margin: 3vw;
 }
@@ -167,4 +180,11 @@ span {
     padding: 3vh !important;
     text-align: unset !important;
   }
+  .oneRowDiv{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
+  margin: 3vw;
+}
 }

@@ -23,6 +23,7 @@ const pages = [
   { name: "Ver pagos", path: "/admin/pagosMensuales" },
   { name: "Ver Tps", path: "/admin/tps" },
   { name: "Subir material", path: "/admin/material" },
+  { name: "Certificados", path: "/admin/certificados" },
 ];
 const NavbarAdmin = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);

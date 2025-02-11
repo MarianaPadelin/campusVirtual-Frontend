@@ -37,8 +37,9 @@ const AgregarClase = ({
         {showForm ? (
           <span className="spanTable">
             <Typography variant="h6">Editar clase</Typography>
-            <Button onClick={salir}>
-              <HighlightOffIcon color="secondary" />
+            <Button color="secondary" variant="outlined" onClick={salir}>
+              Cancelar
+              {/* <HighlightOffIcon color="secondary" /> */}
             </Button>
           </span>
         ) : (

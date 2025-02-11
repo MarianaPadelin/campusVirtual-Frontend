@@ -85,12 +85,6 @@ const CargarMaterialContainer = () => {
               text: res.data.message,
               timer: 1500,
             });
-          } else if (res.data.status === 404) {
-            Swal.fire({
-              icon: "error",
-              text: res.data.message,
-              timer: 1500,
-            });
           } else {
             Swal.fire({
               icon: "error",

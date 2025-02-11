@@ -108,48 +108,16 @@ function MainRoutes() {
 
   // Helper to check if the role is authorized for the current protected route
   function isRoleAuthorized() {
-    console.log(rolUsuario);
     const currentPath = window.location.pathname;
-    return rutasApp.some(
-      ({ path, role }) => path === currentPath && role === rolUsuario
-    );
+    return rutasApp.some(({ path, role }) => {
+      // Check if the path has a dynamic parameter (e.g., ":id", ":token")
+      const dynamicMatch = path.includes(":")
+        ? currentPath.startsWith(path.split("/:")[0]) // Compare base URL before dynamic param
+        : currentPath === path;
+
+      return dynamicMatch && role === rolUsuario;
+    });
   }
 }
-
-// function App() {
-//   const { rolUsuario } = useContext(UserContext);
-
-//   return (
-//     <div className="main">
-//       <BrowserRouter>
-//         <UserContextProvider>
-//           <Routes>
-//             <Route path="/" element={<LoginContainer />}></Route>
-//             <Route path="/register" element={<RegisterContainer />}></Route>
-//             <Route
-//               path="/resetPassword"
-//               element={<ResetPasswordContainer />}
-//             ></Route>
-//              {rolUsuario.length > 0 ? (
-//               rolUsuario === "admin" ? (
-//                 <Route element={<Layouts />}>
-//                   {rutasApp.map(({ id, path, Element, role }) => (
-//                     <Route key={id} path={path} element={<Element />} role={role} />
-//                   ))}
-//                 </Route>
-//              ) : (
-//                 <Forbidden />
-//               )
-//             ) : (
-//               <Loader />
-//             )}
-
-//             <Route path="*" element={<Error />} />
-//           </Routes>
-//         </UserContextProvider>
-//       </BrowserRouter>
-//     </div>
-//   );
-// }
 
 export default App;

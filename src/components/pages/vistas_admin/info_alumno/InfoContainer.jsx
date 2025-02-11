@@ -13,7 +13,7 @@ const InfoContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const promise = axios.get(`/alumnos/getById/${id}`);
+    const promise = axios.get(`/alumnos/getById/${id}`, { withCredentials: true });
     promise
       .then((res) => setAlumno(res.data.alumno))
       .catch((err) => console.log("Hubo un error: " + err));
