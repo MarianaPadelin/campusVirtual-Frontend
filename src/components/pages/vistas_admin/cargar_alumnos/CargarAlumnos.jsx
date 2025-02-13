@@ -107,12 +107,14 @@ const CargarAlumnos = ({
               <form onSubmit={handleSubmit}>
                 <Typography>Agregar alumno a la clase</Typography>
                 <Input
+                  color="secondary"
                   className="inputLista"
                   name="nombre"
                   onChange={handleChange}
                   value={values.nombre}
                 ></Input>
                 <Input
+                  color="secondary"
                   className="inputLista"
                   name="apellido"
                   onChange={handleChange}

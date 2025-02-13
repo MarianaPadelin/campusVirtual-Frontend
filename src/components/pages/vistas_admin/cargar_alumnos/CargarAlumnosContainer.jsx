@@ -51,7 +51,10 @@ const CargarAlumnosContainer = () => {
       datosIngresados.nombreClase = clase;
       datosIngresados.año = año;
       agregarAlumnosLista(datosIngresados);
-      setFieldValue("apellido", "");
+      setFieldValue("apellido", "")
+        // .toLowerCase()
+        // .trim()
+        // .replace(/^\w/, (c) => c.toUpperCase());
       setFieldValue("nombre", "");
     },
   });
@@ -61,38 +64,27 @@ const CargarAlumnosContainer = () => {
 
     promise
       .then((res) => {
-        if (res.data.status == 404) {
-          return Swal.fire({
-            icon: "error",
-            text: "El alumno no se encuentra en la base de datos",
-            timer: 1500,
-          });
-        } else if (res.data.status == 200) {
+         if (res.data.status == 200) {
           return Swal.fire({
             icon: "success",
             text: `Alumno añadido a la lista de ${clase}`,
             timer: 1500,
+          }).then(() => {
+            axios
+              .get(`/clases/admin/${clase}/${año}`)
+              .then((res) => setAlumnos(res.data.result))
+              .catch((err) => console.log(err));
           });
-        } else if (res.data.status == 500) {
-          return Swal.fire({
-            icon: "error",
-            text: "El alumno ya está anotado en esta clase",
-            timer: 1500,
-          });
+        
         } else {
           return Swal.fire({
             icon: "error",
-            text: "Error desconocido",
+            text: res.data.message,
             timer: 1500,
           });
         }
       })
-      .then(() => {
-        axios
-          .get(`/clases/${clase}/${año}`)
-          .then((res) => setAlumnos(res.data.result))
-          .catch((err) => console.log(err));
-      })
+      
       .catch((err) => console.log("Hubo un error: " + err));
   };
 
@@ -119,7 +111,7 @@ const CargarAlumnosContainer = () => {
             )
             .then(() => {
               axios
-                .get(`/clases/${clase}/${año}`)
+                .get(`/clases/admin/${clase}/${año}`)
                 .then((res) => setAlumnos(res.data.result))
                 .catch((err) => console.log(err));
             })

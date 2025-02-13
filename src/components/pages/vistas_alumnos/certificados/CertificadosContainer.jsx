@@ -18,9 +18,12 @@ const CertificadosContainer = () => {
         if (res.data.status === 200) {
           return setUrl(res.data.certActual.url);
         } 
+        return setUrl("")
       })
       .catch((error) => console.log(error));
   }, [id]);
+
+  console.log(url)
   return (
     <>
       <Certificados url={url}/>
