@@ -17,10 +17,10 @@ const Login = ({
 }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
-        Campus virtual
-      </Typography>
       <div className="secondaryContainer registro">
+        <Typography className="titles" variant="h4">
+          CIRCO DE LAS ARTES
+        </Typography>
         <Typography className="titles" variant="h5">
           Iniciar sesión
         </Typography>
@@ -52,7 +52,6 @@ const Login = ({
               name="password"
               type="password"
               onChange={handleChange}
-              
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
