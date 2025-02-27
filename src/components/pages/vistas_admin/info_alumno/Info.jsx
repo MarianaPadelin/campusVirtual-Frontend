@@ -13,11 +13,11 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
         </Typography>
         <List>
           <ListItem>
-            <Typography color="secondary" variant="h5">
+            <Typography variant="h5">
               {alumnoEncontrado.nombre} {alumnoEncontrado.apellido}
             </Typography>
             <Button onClick={handleClick}>
-              <EditIcon color="secondary" />
+              <EditIcon />
             </Button>
           </ListItem>
           <ListItem>
@@ -31,7 +31,6 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
         </List>
         <Link to={`/admin/historial/${alumnoEncontrado._id}`}>
           <Button
-            color="secondary"
             variant="contained"
             className="buttonWithMargin"
           >
@@ -42,21 +41,18 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
           <form className="formContainer" onSubmit={handleSubmit}>
             <TextField
               label="Nombre"
-              color="secondary"
               name="nombre"
               value={values.nombre}
               onChange={handleChange}
             />
             <TextField
               label="Apellido"
-              color="secondary"
               name="apellido"
               value={values.apellido}
               onChange={handleChange}
             />
             <TextField
               label="Email"
-              color="secondary"
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -66,21 +62,20 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
 
             <TextField
               label="Celular"
-              color="secondary"
               name="celular"
               value={values.celular}
               onChange={handleChange}
               error={errors.celular ? true : false}
               helperText={errors.celular}
             />
-            <Button variant="contained" color="secondary" type="submit">
+            <Button variant="contained" type="submit">
               Modificar
             </Button>
           </form>
         )}
 
         <Link to="/admin">
-          <Button color="secondary" variant="contained">
+          <Button variant="contained">
             Volver al listado de alumnos
           </Button>
         </Link>

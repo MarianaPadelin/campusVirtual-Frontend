@@ -53,10 +53,13 @@ const RegistrarNotasContainer = () => {
         notaJulio: 0,
         notaDiciembre: 0,
       },
-      onSubmit: (datosIngresados) => {
+      onSubmit: async (datosIngresados, { resetForm }) => {
         datosIngresados.clase = clase;
         datosIngresados.año = año;
-        registrarNotas(datosIngresados);
+        const success = await registrarNotas(datosIngresados);
+        if(success){
+          resetForm();
+        }
       },
       validateOnChange: false,
       validationSchema: Yup.object({

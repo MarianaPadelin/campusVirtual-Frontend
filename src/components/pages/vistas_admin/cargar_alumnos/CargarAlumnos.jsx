@@ -33,7 +33,7 @@ const CargarAlumnos = ({
       </Typography>
       <div className="secondaryContainer">
         <span className="spanTable">
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
 
             <Select
@@ -54,7 +54,7 @@ const CargarAlumnos = ({
             </Select>
           </FormControl>
 
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
@@ -88,7 +88,7 @@ const CargarAlumnos = ({
                           borrarAlumnoLista(alumno._id);
                         }}
                       >
-                        <HighlightOffIcon color="secondary" />
+                        <HighlightOffIcon />
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -107,20 +107,20 @@ const CargarAlumnos = ({
               <form onSubmit={handleSubmit}>
                 <Typography>Agregar alumno a la clase</Typography>
                 <Input
-                  color="secondary"
+                  placeholder="Nombre"
                   className="inputLista"
                   name="nombre"
                   onChange={handleChange}
                   value={values.nombre}
                 ></Input>
                 <Input
-                  color="secondary"
+                  placeholder="Apellido"
                   className="inputLista"
                   name="apellido"
                   onChange={handleChange}
                   value={values.apellido}
                 ></Input>
-                <Button type="submit" variant="contained" color="secondary">
+                <Button type="submit" variant="contained">
                   Enviar
                 </Button>
               </form>

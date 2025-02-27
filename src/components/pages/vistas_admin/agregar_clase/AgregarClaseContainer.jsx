@@ -52,6 +52,14 @@ const AgregarClaseContainer = () => {
           icon: "success",
           text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
           timer: 1500,
+        }).then(() => {
+        const promise = axios.get(`/clases/year/${año}`);
+
+        promise
+          .then((res) => {
+            return setDatosClase(res.data.listaClases);
+          })
+          .catch((error) => console.log(error));
         });
       } else if (res.data.status === 201) {
         setShowForm(false);
@@ -60,6 +68,14 @@ const AgregarClaseContainer = () => {
           icon: "success",
           text: `Clase modificada correctamente`,
           timer: 1500,
+        }).then(() => {
+          const promise = axios.get(`/clases/year/${año}`);
+
+          promise
+            .then((res) => {
+              return setDatosClase(res.data.listaClases);
+            })
+            .catch((error) => console.log(error));
         });
       } else if (res.data.status === 500) {
         return Swal.fire({

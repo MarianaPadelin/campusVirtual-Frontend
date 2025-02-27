@@ -23,7 +23,6 @@ const ResetPassword = ({
           <TextField
             label="Usuario (email)"
             variant="filled"
-            color="secondary"
             name="email"
             onChange={handleChange}
             error={errors.email ? true : false}
@@ -33,7 +32,6 @@ const ResetPassword = ({
             <TextField
               label="Nueva Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               onChange={handleChange}
               error={errors.password ? true : false}
@@ -50,7 +48,6 @@ const ResetPassword = ({
             <TextField
               label="Nueva Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               type="password"
               onChange={handleChange}
@@ -69,7 +66,6 @@ const ResetPassword = ({
             <TextField
               label="Repetir Contraseña"
               variant="filled"
-              color="secondary"
               name="repeatPassword"
               onChange={handleChange}
               error={errors.repeatPassword ? true : false}
@@ -86,7 +82,6 @@ const ResetPassword = ({
             <TextField
               label="Repetir Contraseña"
               variant="filled"
-              color="secondary"
               name="repeatPassword"
               type="password"
               onChange={handleChange}
@@ -101,7 +96,7 @@ const ResetPassword = ({
               }}
             />
           )}
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained" type="submit">
             Ingresar
           </Button>
 

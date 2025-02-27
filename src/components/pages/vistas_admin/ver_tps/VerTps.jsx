@@ -31,7 +31,7 @@ const VerTps = ({ tpList }) => {
                   <TableCell>
                     <Link to={tp.url} target="_blank">
                       <span className="spanArchivos">
-                        {tp.nombre} <DownloadIcon color="secondary" />
+                        {tp.nombre} <DownloadIcon />
                       </span>
                     </Link>
                   </TableCell>

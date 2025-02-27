@@ -11,7 +11,7 @@ const Certificados = ({ url }) => {
           />
         </div>
       ) : (
-        <Typography variant="h4">No tienes un certificado</Typography>
+        <Typography variant="h4">Aun no tienes un certificado</Typography>
       )}
     </div>
   );

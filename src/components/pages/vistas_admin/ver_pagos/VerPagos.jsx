@@ -45,7 +45,7 @@ const VerPagos = ({
               </DemoItem>
             </DemoContainer>
           </LocalizationProvider>
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
@@ -88,7 +88,6 @@ const VerPagos = ({
                             variant="outlined"
                             className="inputPagos"
                             name="nuevoMonto"
-                            color="secondary"
                             onChange={(e) =>
                               handleMontoChange(
                                 pago._id, 
@@ -101,7 +100,6 @@ const VerPagos = ({
                           <Button
                             type="submit"
                             variant="contained"
-                            color="secondary"
                           >
                             Enviar
                           </Button>
@@ -117,7 +115,7 @@ const VerPagos = ({
                         editarPago();
                       }}
                     >
-                      <EditIcon color="secondary" />
+                      <EditIcon />
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -126,7 +124,7 @@ const VerPagos = ({
                         eliminarPago(pago._id);
                       }}
                     >
-                      <HighlightOffIcon color="secondary" />
+                      <HighlightOffIcon />
                     </Button>
                   </TableCell>
                 </TableRow>

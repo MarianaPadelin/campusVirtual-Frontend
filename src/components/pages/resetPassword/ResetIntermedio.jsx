@@ -15,12 +15,11 @@ const ResetIntermedio = ({ handleChange, handleSubmit}) => {
           <TextField
             label="Email"
             variant="filled"
-            color="secondary"
             name="email"
             onChange={handleChange}
           />
 
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained"  type="submit">
             Enviar
           </Button>
 

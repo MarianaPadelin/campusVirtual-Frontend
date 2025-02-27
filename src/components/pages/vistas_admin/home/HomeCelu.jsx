@@ -28,7 +28,7 @@ const HomeCelu = ({ alumnos, eliminarElemento }) => {
 
                 <TableCell>
                   <Link to={`info/${alumno._id}`}>
-                    <Button color="secondary">
+                    <Button>
                       <PersonSearchIcon />
                     </Button>
                   </Link>
@@ -39,7 +39,7 @@ const HomeCelu = ({ alumnos, eliminarElemento }) => {
                       eliminarElemento(alumno._id, alumno.email);
                     }}
                   >
-                    <HighlightOffIcon color="secondary" />
+                    <HighlightOffIcon />
                   </Button>
                 </TableCell>
               </TableRow>

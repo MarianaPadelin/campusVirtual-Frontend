@@ -48,7 +48,7 @@ const CargarMaterial = ({
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <span className="spanTable">
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -67,7 +67,7 @@ const CargarMaterial = ({
                 })}
             </Select>
           </FormControl>
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
@@ -92,7 +92,6 @@ const CargarMaterial = ({
               ></input> */}
               <div>
                 <Button
-                  color="secondary"
                   component="label"
                   role={undefined}
                   variant="contained"
@@ -116,7 +115,6 @@ const CargarMaterial = ({
               <Button
                 className="buttonEnviarTp"
                 variant="contained"
-                color="secondary"
                 type="submit"
               >
                 Enviar
@@ -153,7 +151,7 @@ const CargarMaterial = ({
                     ) : (
                       <Link to={archivo.url} target="_blank">
                         <Button>
-                          <DownloadIcon color="secondary" />
+                          <DownloadIcon />
                         </Button>
                       </Link>
                     )}
@@ -164,7 +162,7 @@ const CargarMaterial = ({
                         borrarArchivo(archivo._id);
                       }}
                     >
-                      <HighlightOffIcon color="secondary" />
+                      <HighlightOffIcon />
                     </Button>
                   </TableCell>
                 </TableRow>

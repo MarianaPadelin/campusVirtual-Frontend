@@ -18,14 +18,16 @@ import Loader from "./components/common/loader/Loader";
 import Swal from "sweetalert2";
 import { config } from "./config.js"
 
+
 axios.defaults.baseURL= config.backendURL;
 axios.defaults.headers.common["Content-Type"] = "application/json"; // for all requests
 
 axios.defaults.withCredentials = true;
 
 function App() {
+ 
   return (
-    <UserContextProvider>
+    <UserContextProvider >
       <BrowserRouter>
         <MainRoutes />
       </BrowserRouter>

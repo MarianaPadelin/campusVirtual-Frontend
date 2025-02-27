@@ -37,9 +37,8 @@ const AgregarClase = ({
         {showForm ? (
           <span className="spanTable">
             <Typography variant="h6">Editar clase</Typography>
-            <Button color="secondary" variant="outlined" onClick={salir}>
+            <Button variant="outlined" onClick={salir}>
               Cancelar
-              {/* <HighlightOffIcon color="secondary" /> */}
             </Button>
           </span>
         ) : (
@@ -49,7 +48,6 @@ const AgregarClase = ({
           <TextField
             label="Clase"
             variant="filled"
-            color="secondary"
             name="nombre"
             onChange={handleChange}
             value={values.nombre}
@@ -59,7 +57,6 @@ const AgregarClase = ({
           <TextField
             label="Profesor"
             variant="filled"
-            color="secondary"
             name="profesor"
             onChange={handleChange}
             value={values.profesor}
@@ -67,7 +64,6 @@ const AgregarClase = ({
           <TextField
             label="Año"
             variant="filled"
-            color="secondary"
             name="año"
             onChange={handleChange}
             value={values.año}
@@ -77,7 +73,6 @@ const AgregarClase = ({
           <TextField
             label="Faltas disponibles"
             variant="filled"
-            color="secondary"
             name="faltas"
             onChange={handleChange}
             value={values.faltas}
@@ -85,18 +80,18 @@ const AgregarClase = ({
             helperText={errors.faltas}
           />
           {showForm ? (
-            <Button variant="contained" color="secondary" type="submit">
+            <Button variant="contained" type="submit">
               Modificar
             </Button>
           ) : (
-            <Button variant="contained" color="secondary" type="submit">
+            <Button variant="contained" type="submit">
               Enviar
             </Button>
           )}
         </form>
       </div>
       <div className="secondaryContainer">
-        <FormControl color="secondary" className="classSelector">
+        <FormControl className="classSelector">
           <InputLabel id="label-año">Año</InputLabel>
           <Select
             labelId="label-año"
@@ -142,7 +137,7 @@ const AgregarClase = ({
                         handleClick(dato);
                       }}
                     >
-                      <EditIcon color="secondary" />
+                      <EditIcon />
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -151,7 +146,7 @@ const AgregarClase = ({
                         borrarClase(dato._id);
                       }}
                     >
-                      <HighlightOffIcon color="secondary" />
+                      <HighlightOffIcon />
                     </Button>
                   </TableCell>
                 </TableRow>

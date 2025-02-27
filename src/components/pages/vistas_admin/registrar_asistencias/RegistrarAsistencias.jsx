@@ -24,7 +24,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
               onChange={handleChangeAño}
             />
           </LocalizationProvider>
-          <FormControl color="secondary" className="classSelector">
+          <FormControl  className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -85,7 +85,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
                 )}
               </TableBody>
             </Table>
-            <Button type="submit" variant="contained" color="secondary">
+            <Button type="submit" variant="contained" >
               Enviar
             </Button>
           </form>

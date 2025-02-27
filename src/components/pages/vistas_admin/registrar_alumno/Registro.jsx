@@ -19,21 +19,18 @@ const Registro = ({ handleChange, handleSubmit, errors }) => {
           <TextField
             label="Nombre"
             variant="filled"
-            color="secondary"
             name="nombre"
             onChange={handleChange}
           />
           <TextField
             label="Apellido"
             variant="filled"
-            color="secondary"
             name="apellido"
             onChange={handleChange}
           />
           <TextField
             label="Email"
             variant="filled"
-            color="secondary"
             type="email"
             name="email"
             onChange={handleChange}
@@ -43,13 +40,12 @@ const Registro = ({ handleChange, handleSubmit, errors }) => {
           <TextField
             label="Celular"
             variant="filled"
-            color="secondary"
             name="celular"
             onChange={handleChange}
             error={errors.celular ? true : false}
             helperText={errors.celular}
           />
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained" type="submit">
             Enviar
           </Button>
         </form>

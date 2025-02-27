@@ -62,7 +62,6 @@ const RegistrarPagos = ({
                         <Button
                           type="submit"
                           variant="contained"
-                          color="secondary"
                         >
                           Enviar
                         </Button>

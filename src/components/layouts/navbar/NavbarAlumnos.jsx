@@ -65,7 +65,12 @@ const NavbarAlumnos = () => {
                 fontWeight: 700,
               }}
             >
-              CIRCO DE LAS ARTES
+              <img
+                className="logo"
+                title="Home"
+                alt="logo"
+                src="https://res.cloudinary.com/dvxkjikvk/image/upload/v1740657523/campus/WhatsApp_Image_2025-02-26_at_11.12.53_qcvusd.jpg"
+              />
             </Typography>
           </Link>
 
@@ -128,13 +133,18 @@ const NavbarAlumnos = () => {
                 display: { xs: "flex", md: "none" },
               }}
             >
-              CIRCO DE LAS ARTES
+              <img
+                className="logoMovil"
+                title="Home"
+                alt="logo"
+                src="https://res.cloudinary.com/dvxkjikvk/image/upload/v1740657523/campus/WhatsApp_Image_2025-02-26_at_11.12.53_qcvusd.jpg"
+              />
             </Typography>
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ justifyContent:"space-evenly", flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link key={page.name} to={page.path} className="linkNavbar">
+              <Link key={page.name} title={page.name} to={page.path} className="linkNavbar">
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}

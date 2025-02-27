@@ -33,7 +33,7 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
                 <TableCell>{alumno.celular}</TableCell>
                 <TableCell>
                   <Link to={`info/${alumno._id}`}>
-                    <Button color="secondary">
+                    <Button>
                       <PersonSearchIcon />
                     </Button>
                   </Link>
@@ -44,7 +44,7 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
                       eliminarElemento(alumno._id, alumno.email);
                     }}
                   >
-                    <HighlightOffIcon color="secondary" />
+                    <HighlightOffIcon />
                   </Button>
                 </TableCell>
               </TableRow>

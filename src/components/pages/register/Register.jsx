@@ -17,7 +17,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
           <TextField
             label="Usuario (email)"
             variant="filled"
-            color="secondary"
             name="email"
             onChange={handleChange}
             error={errors.email ? true : false}
@@ -27,7 +26,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
             <TextField
               label="Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               onChange={handleChange}
               error={errors.password ? true : false}
@@ -44,7 +42,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
             <TextField
               label="Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               type="password"
               onChange={handleChange}
@@ -64,7 +61,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
             <TextField
               label="Repetir Contraseña"
               variant="filled"
-              color="secondary"
               name="repeatPassword"
               onChange={handleChange}
               error={errors.repeatPassword ? true : false}
@@ -81,7 +77,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
             <TextField
               label="Repetir Contraseña"
               variant="filled"
-              color="secondary"
               name="repeatPassword"
               type="password"
               onChange={handleChange}
@@ -98,7 +93,7 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
           )}
 
         
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained" type="submit">
             Ingresar
           </Button>
 

@@ -28,7 +28,7 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
 
       <div className="secondaryContainer">
         <span className="spanTable">
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -47,7 +47,7 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
                 })}
             </Select>
           </FormControl>
-          <FormControl color="secondary" className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="label-año">Año</InputLabel>
             <Select
               labelId="label-año"
@@ -113,7 +113,6 @@ const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange,
                           className="buttonForm"
                           type="submit"
                           variant="contained"
-                          color="secondary"
                         >
                           Enviar
                         </Button>

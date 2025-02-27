@@ -100,8 +100,8 @@ const RegistrarAsistenciasContainer = () => {
             icon: "success",
             text: "Asistencias registradas con éxito",
             timer: 1500,
-          });
-          window.location.reload();
+          }).then(window.location.reload());
+          
           return;
         }
         return Swal.fire({

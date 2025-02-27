@@ -28,7 +28,6 @@ const Login = ({
           <TextField
             label="Usuario (email)"
             variant="filled"
-            color="secondary"
             name="email"
             onChange={handleChange}
           />
@@ -36,7 +35,6 @@ const Login = ({
             <TextField
               label="Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               onChange={handleChange}
               InputProps={{
@@ -51,7 +49,6 @@ const Login = ({
             <TextField
               label="Contraseña"
               variant="filled"
-              color="secondary"
               name="password"
               type="password"
               onChange={handleChange}
@@ -66,7 +63,7 @@ const Login = ({
             />
           )}
 
-          <Button variant="contained" color="secondary" type="submit">
+          <Button variant="contained" type="submit">
             Ingresar
           </Button>
           <Link to="/sendEmail">
@@ -78,15 +75,6 @@ const Login = ({
           </Link>
         </form>
       </div>
-      {/* <Link to="/alumnos">
-        <Button variant="contained">Ver perfil de alumno</Button>
-      </Link>
-
-      <Link to="/admin">
-        <Button variant="contained" color="secondary">
-          Ver perfil de admin
-        </Button>
-      </Link> */}
     </div>
   );
 };

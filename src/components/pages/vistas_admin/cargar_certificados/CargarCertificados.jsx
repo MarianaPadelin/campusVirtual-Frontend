@@ -33,7 +33,6 @@ const CargarCertificados = ({
               className="inputLista"
               name="nombreAlumno"
               onChange={formik.handleChange}
-              color="secondary"
               //   value={values.nombre}
               //   error
             ></Input>
@@ -41,7 +40,6 @@ const CargarCertificados = ({
               placeholder="Apellido"
               className="inputLista"
               name="apellidoAlumno"
-              color="secondary"
               onChange={formik.handleChange}
               //   value={values.apellido}
               //   error
@@ -49,7 +47,6 @@ const CargarCertificados = ({
 
             <div>
               <Button
-                color="secondary"
                 component="label"
                 role={undefined}
                 variant="contained"
@@ -72,7 +69,6 @@ const CargarCertificados = ({
             <Button
               className="buttonEnviarTp"
               variant="contained"
-              color="secondary"
               type="submit"
             >
               Enviar
