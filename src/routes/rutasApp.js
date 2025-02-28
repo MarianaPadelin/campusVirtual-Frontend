@@ -15,9 +15,11 @@ import RegistrarPagosContainer from "../components/pages/vistas_admin/registrar_
 import VerPagosContainer from "../components/pages/vistas_admin/ver_pagos/VerPagosContainer";
 import VerTpsContainer from "../components/pages/vistas_admin/ver_tps/VerTpsContainer";
 import AsistenciasContainer from "../components/pages/vistas_alumnos/asistencias/AsistenciasContainer";
+import Calendario from "../components/pages/vistas_alumnos/calendario/Calendario";
 import CertificadosContainer from "../components/pages/vistas_alumnos/certificados/CertificadosContainer";
 import HomeContainer from "../components/pages/vistas_alumnos/home/HomeContainer";
 import MaterialContainer from "../components/pages/vistas_alumnos/material/MaterialContainer";
+import MateriasContainer from "../components/pages/vistas_alumnos/materias/MateriasContainer";
 import NotasContainer from "../components/pages/vistas_alumnos/notas/NotasContainer";
 import PagosContainer from "../components/pages/vistas_alumnos/pagos/PagosContainer";
 import TpContainer from "../components/pages/vistas_alumnos/tp/TpContainer";
@@ -30,7 +32,12 @@ export const rutasApp = [
     Element: HomeContainer,
     role: "alumno",
   },
-
+  {
+    id: "calendario",
+    path: "/alumnos/calendario",
+    Element: Calendario,
+    role: "alumno",
+  },
   {
     id: "notas",
     path: "/alumnos/notas",
@@ -65,6 +72,12 @@ export const rutasApp = [
     id: "certificado",
     path: "/alumnos/certificado",
     Element: CertificadosContainer,
+    role: "alumno",
+  },
+  {
+    id: "materias",
+    path: "/alumnos/materias",
+    Element: MateriasContainer,
     role: "alumno",
   },
   //---Admin---

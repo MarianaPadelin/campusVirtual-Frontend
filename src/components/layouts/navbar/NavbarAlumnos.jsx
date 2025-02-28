@@ -14,12 +14,18 @@ import axios from "axios";
 
 const pages = [
   { name: "Home", path: "/alumnos" },
+  { name: "Calendario académico", path: "/alumnos/calendario" },
+  { name: "Materias", path: "/alumnos/materias" },
   { name: "Notas", path: "/alumnos/notas" },
   { name: "Asistencias", path: "/alumnos/asistencias" },
   { name: "Pagos", path: "/alumnos/pagos" },
   { name: "Trabajos prácticos", path: "/alumnos/tp" },
-  { name: "Ver material didáctico", path: "/alumnos/material" },
+  { name: "Material didáctico", path: "/alumnos/material" },
   { name: "Ver certificado", path: "/alumnos/certificado" },
+  {
+    name: "Ir al sitio web",
+    path: "https://www.circodelasartes.com/#!/-circo-de-las-artes/",
+  },
 ];
 
 const NavbarAlumnos = () => {

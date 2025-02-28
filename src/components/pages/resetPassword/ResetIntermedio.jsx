@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const ResetIntermedio = ({ handleChange, handleSubmit}) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
-        Circo de las Artes
-      </Typography>
       <div className="secondaryContainer registro">
+        <Typography className="titles" variant="h4">
+          CIRCO DE LAS ARTES
+        </Typography>
         <Typography className="titles" variant="h6">
           Ingresá tu mail y te enviaremos un correo para restaurar la contraseña{" "}
         </Typography>
@@ -19,7 +19,7 @@ const ResetIntermedio = ({ handleChange, handleSubmit}) => {
             onChange={handleChange}
           />
 
-          <Button variant="contained"  type="submit">
+          <Button variant="contained" type="submit">
             Enviar
           </Button>
 

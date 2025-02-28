@@ -1,5 +1,5 @@
 body {
-  background-color: #ece5e3;
+  background-color: #dcd3d1;
 }
 
 .titles {
@@ -46,19 +46,11 @@ body {
 
 .mensajeBienvenida{
   margin-top: 10vh;
-  background-color: rgba(253, 253, 253, 0.5);
+  width: 90%;
+  background-color: rgba(253, 253, 253, 0.7);
 }
 
 
-
-
-
-.oswald-mensajeBienvenida {
-  font-family: "Oswald", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
-}
 
 .inputDiv {
   display: flex;
@@ -198,6 +190,10 @@ iframe {
 
 .buttonWithMargin {
   margin: 2vw !important;
+}
+
+.calendario{
+  width: 100%;
 }
 
 @media only screen and (min-width: 720px) {

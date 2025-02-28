@@ -6,10 +6,10 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleViewPass }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
-        Campus virtual
-      </Typography>
       <div className="secondaryContainer registro">
+        <Typography className="titles" variant="h4">
+          CIRCO DE LAS ARTES
+        </Typography>
         <Typography className="titles" variant="h5">
           Registrarse
         </Typography>
@@ -92,7 +92,6 @@ const Register = ({ handleChange, handleSubmit, errors, verContraseña, handleVi
             />
           )}
 
-        
           <Button variant="contained" type="submit">
             Ingresar
           </Button>
