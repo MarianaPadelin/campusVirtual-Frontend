@@ -105,7 +105,7 @@ const Register = ({
           )}
 
           <Button variant="contained" type="submit">
-            Ingresar
+            Registrarse
           </Button>
 
           <Divider />

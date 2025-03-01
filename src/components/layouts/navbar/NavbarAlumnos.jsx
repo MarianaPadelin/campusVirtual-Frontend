@@ -16,7 +16,6 @@ const pages = [
   { name: "Home", path: "/alumnos" },
   { name: "Materias", path: "/alumnos/materias" },
   { name: "Calendario", path: "/alumnos/calendario" },
-
   { name: "Notas", path: "/alumnos/notas" },
   { name: "Asistencias", path: "/alumnos/asistencias" },
   { name: "Pagos", path: "/alumnos/pagos" },
