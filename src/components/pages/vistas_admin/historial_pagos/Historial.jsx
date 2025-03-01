@@ -11,7 +11,7 @@ const Historial = ({ alumno }) => {
   return (
     <div className="basicContainer">
       <div className="secondaryContainer">
-        <Typography className="titles" variant="h4">
+        <Typography className="titles" variant="h3">
           Historial de pagos
         </Typography>
         <Table>

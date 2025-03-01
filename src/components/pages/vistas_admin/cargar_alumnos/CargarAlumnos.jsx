@@ -28,7 +28,7 @@ const CargarAlumnos = ({
 }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Cargar lista de alumnos
       </Typography>
       <div className="secondaryContainer">

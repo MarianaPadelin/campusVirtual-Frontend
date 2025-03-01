@@ -5,12 +5,11 @@ body {
 .titles {
   margin: 2vw !important;
   text-align: center;
-  
 }
 
-.titleHome{
-  margin: 5vw!important;
-  text-align: center; 
+.titleHome {
+  margin: 5vw !important;
+  text-align: center;
 }
 
 .basicContainer {
@@ -22,7 +21,7 @@ body {
 }
 
 .secondaryContainer {
-  background-color: #c6aba5;
+  background-color: #c5b3ae;
   width: 90%;
   padding: 4vw;
   margin-left: 1vw;
@@ -32,25 +31,23 @@ body {
   align-items: center;
 }
 
-.homeAlumno{
+.homeAlumno {
   width: 100%;
   height: 100vh; /* Make sure it covers the full viewport height */
   display: flex;
   justify-content: center;
-  align-items:flex-start;
+  align-items: flex-start;
   background-image: url("https://res.cloudinary.com/dvxkjikvk/image/upload/v1740667601/campus/backgroundmovil.jpg");
   background-size: cover; /* Ensures the image covers the entire div */
   background-position: center; /* Centers the background image */
   background-repeat: no-repeat; /* Prevents tiling */
 }
 
-.mensajeBienvenida{
+.mensajeBienvenida {
   margin-top: 10vh;
   width: 90%;
   background-color: rgba(253, 253, 253, 0.7);
 }
-
-
 
 .inputDiv {
   display: flex;
@@ -64,6 +61,16 @@ body {
   align-items: center;
   gap: 2vw;
   margin: 3vw;
+}
+.login {
+  background-image: url("https://res.cloudinary.com/dvxkjikvk/image/upload/v1740830522/campus/openart-91ac6983-dbf9-42c8-9411-368ea05d48f7_ik24fb.png");
+  background-size: cover;
+  background-color: rgba(220, 211, 209, 0.7);
+  background-blend-mode: lighten;
+  /* Ensures the image covers the entire div */
+  background-position: center;
+  /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents tiling */
 }
 
 .registro {
@@ -160,13 +167,12 @@ iframe {
   width: 60vw;
 }
 
-
-.logo{
-  width: 4vw; 
+.logo {
+  width: 4vw;
   border-radius: 0.3vw;
 }
 
-.logoMovil{
+.logoMovil {
   width: 10vw;
   border-radius: 0.7vw;
   margin: 1vh;
@@ -192,7 +198,7 @@ iframe {
   margin: 2vw !important;
 }
 
-.calendario{
+.calendario {
   width: 100%;
 }
 
@@ -242,13 +248,13 @@ iframe {
     height: 100%;
   }
 
-  .homeAlumno{
+  .homeAlumno {
     background-image: none;
   }
 
-  .mensajeBienvenida{
-  background-color: #ffffff;
-    height: 100%;
+  .mensajeBienvenida {
+    background-color: #ffffff;
+    height: 108.5vh;
     margin-top: 0;
-}
+  }
 }

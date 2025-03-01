@@ -10,7 +10,7 @@ import {
 const Materias = ({ year, materias }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Materias del año {year}
       </Typography>
 
@@ -31,8 +31,7 @@ const Materias = ({ year, materias }) => {
             ) : (
               <TableRow>
                 <TableCell colSpan={3}>
-                  {" "}
-                  No hay notas registradas en este año
+                  El alumno no está anotado a ninguna materia este año
                 </TableCell>
               </TableRow>
             )}

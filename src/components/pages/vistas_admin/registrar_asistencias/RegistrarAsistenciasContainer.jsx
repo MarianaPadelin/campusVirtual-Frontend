@@ -6,11 +6,12 @@ import dayjs from "dayjs";
 import Swal from "sweetalert2";
 
 const RegistrarAsistenciasContainer = () => {
-
+  const today = new Date();
+  const year = today.getFullYear();
   const [clase, setClase] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [alumnos, setAlumnos] = useState([]);
-  const [año, setAño] = useState(2025); //Esto agarrarlo del datePicker
+  const [año, setAño] = useState(year);
   const [fecha, setFecha] = useState("");
   const [listaAsistencias, setListaAsistencias] = useState([]);
 
@@ -101,7 +102,7 @@ const RegistrarAsistenciasContainer = () => {
             text: "Asistencias registradas con éxito",
             timer: 1500,
           }).then(window.location.reload());
-          
+
           return;
         }
         return Swal.fire({
@@ -116,21 +117,20 @@ const RegistrarAsistenciasContainer = () => {
 
   return (
     <div>
-        <RegistrarAsistencias
-          clase={clase}
-          año={año}
-          clasesDisponibles={clasesDisponibles}
-          alumnos={alumnos}
-          handleChangeClases={handleChangeClases}
-          handleChangeAño={handleChangeAño}
-          // handleChange={handleChange}
-          // handleSelectStudent={handleSelectStudent}
-          handleSelectAsistencia={handleSelectAsistencia}
-          handleSubmit={handleSubmit}
-          values={values}
-          errors={errors}
-        />
-    
+      <RegistrarAsistencias
+        clase={clase}
+        año={año}
+        clasesDisponibles={clasesDisponibles}
+        alumnos={alumnos}
+        handleChangeClases={handleChangeClases}
+        handleChangeAño={handleChangeAño}
+        // handleChange={handleChange}
+        // handleSelectStudent={handleSelectStudent}
+        handleSelectAsistencia={handleSelectAsistencia}
+        handleSubmit={handleSubmit}
+        values={values}
+        errors={errors}
+      />
     </div>
   );
 };

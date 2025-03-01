@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { Button, Divider, InputAdornment, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -12,10 +18,10 @@ const ResetPassword = ({
 }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Campus virtual
       </Typography>
-      <div className="secondaryContainer registro">
+      <div className="secondaryContainer registro login">
         <Typography className="titles" variant="h5">
           Cambiar contraseña
         </Typography>

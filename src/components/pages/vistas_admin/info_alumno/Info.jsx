@@ -4,11 +4,19 @@ import EditIcon from "@mui/icons-material/Edit";
 
 //mostrarlo como un formulario, con el placeholder que tenga el dato viejo
 
-const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSubmit, errors, values }) => {
+const Info = ({
+  alumnoEncontrado,
+  handleClick,
+  showForm,
+  handleChange,
+  handleSubmit,
+  errors,
+  values,
+}) => {
   return (
     <div className="basicContainer">
       <div className="secondaryContainer">
-        <Typography className="titles" variant="h4">
+        <Typography className="titles" variant="h3">
           Datos de contacto
         </Typography>
         <List>
@@ -30,10 +38,7 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
           </ListItem>
         </List>
         <Link to={`/admin/historial/${alumnoEncontrado._id}`}>
-          <Button
-            variant="contained"
-            className="buttonWithMargin"
-          >
+          <Button variant="contained" className="buttonWithMargin">
             Ver historial de pagos
           </Button>
         </Link>
@@ -75,9 +80,7 @@ const Info = ({ alumnoEncontrado, handleClick, showForm, handleChange, handleSub
         )}
 
         <Link to="/admin">
-          <Button variant="contained">
-            Volver al listado de alumnos
-          </Button>
+          <Button variant="contained">Volver al listado de alumnos</Button>
         </Link>
       </div>
     </div>

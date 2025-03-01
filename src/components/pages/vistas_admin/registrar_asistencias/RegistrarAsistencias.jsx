@@ -5,13 +5,35 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 // import Paper from "@mui/material/Paper";
-import { Button, Checkbox, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
-const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClases, alumnos, handleChangeAño, handleSelectAsistencia,  handleSubmit, values }) => {
-
+const RegistrarAsistencias = ({
+  clase,
+  año,
+  clasesDisponibles,
+  handleChangeClases,
+  alumnos,
+  handleChangeAño,
+  handleSelectAsistencia,
+  handleSubmit,
+  values,
+}) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Registro de asistencias
       </Typography>
 
@@ -24,7 +46,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
               onChange={handleChangeAño}
             />
           </LocalizationProvider>
-          <FormControl  className="classSelector">
+          <FormControl className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -44,7 +66,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
             </Select>
           </FormControl>
         </span>
-       
+
         {clase && (
           <form onSubmit={handleSubmit}>
             <Table>
@@ -85,7 +107,7 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
                 )}
               </TableBody>
             </Table>
-            <Button type="submit" variant="contained" >
+            <Button type="submit" variant="contained">
               Enviar
             </Button>
           </form>
@@ -96,5 +118,3 @@ const RegistrarAsistencias = ({ clase, año, clasesDisponibles, handleChangeClas
 };
 
 export default RegistrarAsistencias;
-
-

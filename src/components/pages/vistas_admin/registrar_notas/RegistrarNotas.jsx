@@ -14,15 +14,22 @@ import {
 } from "@mui/material";
 // import Loader from "../../../common/loader/Loader";
 
-
-const RegistrarNotas = ({ clasesDisponibles, clase, año, alumnos, handleChange, handleChangeClases, handleChangeAño, handleSelectStudent, handleSubmit, values, errors }) => {
-
-
-   
-        
+const RegistrarNotas = ({
+  clasesDisponibles,
+  clase,
+  año,
+  alumnos,
+  handleChange,
+  handleChangeClases,
+  handleChangeAño,
+  handleSelectStudent,
+  handleSubmit,
+  values,
+  errors,
+}) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Registro de notas
       </Typography>
 

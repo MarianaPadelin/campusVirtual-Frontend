@@ -12,7 +12,7 @@ const HomeAdmin = ({ alumnos, eliminarElemento }) => {
 
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h2">
         Listado de alumnos
       </Typography>
       <div className="secondaryContainer">

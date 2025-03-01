@@ -19,7 +19,7 @@ const RegistrarPagos = ({
 
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Registro de pagos
       </Typography>
       <div className="secondaryContainer">
@@ -46,12 +46,14 @@ const RegistrarPagos = ({
                       <span>
                         <Typography className="signoPesos">$</Typography>
                         <TextField
-                        // type="number"
+                          // type="number"
                           variant="outlined"
                           className="inputPagos"
                           name={`monto-${alumno._id}`} // Unique identifier
                           value={montoPorAlumno[alumno._id] || ""} // Use the specific monto for this alumno
-                          onChange={(e) => handleMontoChange(alumno._id, e.target.value)}
+                          onChange={(e) =>
+                            handleMontoChange(alumno._id, e.target.value)
+                          }
                           error={errors.monto ? true : false}
                           helperText={errors.monto}
                         />
@@ -59,10 +61,7 @@ const RegistrarPagos = ({
                     </TableCell>
                     <TableCell>
                       <span>
-                        <Button
-                          type="submit"
-                          variant="contained"
-                        >
+                        <Button type="submit" variant="contained">
                           Enviar
                         </Button>
                       </span>

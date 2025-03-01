@@ -29,7 +29,7 @@ const AgregarClase = ({
 
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Información sobre las clases
       </Typography>
 

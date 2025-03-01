@@ -17,8 +17,8 @@ const Login = ({
 }) => {
   return (
     <div className="basicContainer">
-      <div className="secondaryContainer registro">
-        <Typography className="titles" variant="h4">
+      <div className="secondaryContainer registro login">
+        <Typography className="titles" variant="h3">
           CIRCO DE LAS ARTES
         </Typography>
         <Typography className="titles" variant="h5">

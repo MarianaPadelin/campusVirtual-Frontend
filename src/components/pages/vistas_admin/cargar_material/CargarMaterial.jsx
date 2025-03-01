@@ -43,7 +43,7 @@ const CargarMaterial = ({
 
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Cargar material didáctico
       </Typography>
       <form onSubmit={formik.handleSubmit}>

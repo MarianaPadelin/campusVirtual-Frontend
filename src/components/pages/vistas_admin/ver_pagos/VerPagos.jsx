@@ -28,20 +28,20 @@ const VerPagos = ({
   eliminarPago,
   pagoEditor,
   handleMontoChange,
-  formik
+  formik,
 }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Ver pagos por mes
       </Typography>
 
       <div className="secondaryContainer">
         <span className="spanTable">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer  components={["MonthCalendar"]}>
+            <DemoContainer components={["MonthCalendar"]}>
               <DemoItem label="Seleccionar Mes">
-                <MonthCalendar  onChange={handleChangeMes} />
+                <MonthCalendar onChange={handleChangeMes} />
               </DemoItem>
             </DemoContainer>
           </LocalizationProvider>
@@ -90,17 +90,14 @@ const VerPagos = ({
                             name="nuevoMonto"
                             onChange={(e) =>
                               handleMontoChange(
-                                pago._id, 
+                                pago._id,
                                 pago.id_alumno,
                                 pago.fecha,
                                 e.target.value
                               )
                             }
                           />
-                          <Button
-                            type="submit"
-                            variant="contained"
-                          >
+                          <Button type="submit" variant="contained">
                             Enviar
                           </Button>
                         </span>

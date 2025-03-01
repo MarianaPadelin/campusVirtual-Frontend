@@ -10,7 +10,7 @@ const Registro = ({ handleChange, handleSubmit, errors }) => {
  
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Ingrese los datos del nuevo alumno
       </Typography>
 

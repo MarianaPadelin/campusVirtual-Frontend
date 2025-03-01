@@ -5,8 +5,10 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 
 const CargarAlumnosContainer = () => {
+   const today = new Date();
+   const year = today.getFullYear();
   const [clase, setClase] = useState("");
-  const [año, setAño] = useState(2025);
+  const [año, setAño] = useState(year);
   const [alumnos, setAlumnos] = useState([]);
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
 

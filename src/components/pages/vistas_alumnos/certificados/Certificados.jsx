@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 const Certificados = ({ url }) => {
-    console.log(url)
+  console.log(url);
   return (
     <div className="basicContainer">
       {url !== "" ? (
@@ -11,7 +11,7 @@ const Certificados = ({ url }) => {
           />
         </div>
       ) : (
-        <Typography variant="h4">Aun no tienes un certificado</Typography>
+        <Typography variant="h3">Aun no tienes un certificado</Typography>
       )}
     </div>
   );

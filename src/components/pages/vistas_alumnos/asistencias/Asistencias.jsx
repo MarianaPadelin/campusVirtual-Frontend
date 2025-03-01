@@ -1,9 +1,19 @@
-import { FormControl, InputLabel, MenuItem, Select, Table, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
 const Asistencias = ({ faltas, año, handleChangeAño }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Asistencias
       </Typography>
       <div className="secondaryContainer">
@@ -45,9 +55,7 @@ const Asistencias = ({ faltas, año, handleChangeAño }) => {
                 <TableCell>{falta.clase}</TableCell>
                 <TableCell>{falta.totalFaltas}</TableCell>
                 <TableCell>{falta.ausentes}</TableCell>
-                <TableCell>
-                  {falta.totalFaltas - falta.ausentes}
-                </TableCell>
+                <TableCell>{falta.totalFaltas - falta.ausentes}</TableCell>
               </TableRow>
             ))
           ) : (

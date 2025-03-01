@@ -2,12 +2,7 @@ import { Button, Input, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-const CargarCertificados = ({
-  handleInput,
-  fileText,
-  formik
-
-}) => {
+const CargarCertificados = ({ handleInput, fileText, formik }) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -21,11 +16,13 @@ const CargarCertificados = ({
   });
   return (
     <div className="basicContainer">
+      <Typography className="titles" variant="h3">
+        Cargar certificado de alumno regular
+      </Typography>
       <div className="secondaryContainer">
-        <Typography className="titles" variant="h4">
-          Cargar certificado de alumno regular
+        <Typography className="titles" variant="h6">
+          Ingresar los datos del alumno
         </Typography>
-
         <form onSubmit={formik.handleSubmit}>
           <span className="oneRowDiv">
             <Input

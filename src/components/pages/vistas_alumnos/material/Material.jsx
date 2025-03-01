@@ -12,10 +12,17 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Material = ({ clase, año, handleChangeClases, handleChangeAño, clasesDisponibles, archivos }) => {
+const Material = ({
+  clase,
+  año,
+  handleChangeClases,
+  handleChangeAño,
+  clasesDisponibles,
+  archivos,
+}) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Ver material didáctico
       </Typography>
 
@@ -44,18 +51,17 @@ const Material = ({ clase, año, handleChangeClases, handleChangeAño, clasesDis
               label="Clase"
               onChange={handleChangeClases}
             >
-              {clasesDisponibles.length > 0 ?
-              (  clasesDisponibles.map((c) => {
+              {clasesDisponibles.length > 0 ? (
+                clasesDisponibles.map((c) => {
                   return (
                     <MenuItem key={c} value={c}>
                       {c}
                     </MenuItem>
                   );
-                })) : (
-                 <MenuItem>No hay clases disponibles</MenuItem>
-                )
-                
-                }
+                })
+              ) : (
+                <MenuItem>No hay clases disponibles</MenuItem>
+              )}
             </Select>
           </FormControl>
         </span>

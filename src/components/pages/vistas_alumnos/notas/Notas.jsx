@@ -13,7 +13,7 @@ import {
 const Notas = ({ notas, año, handleChangeAño }) => {
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Notas
       </Typography>
       <div className="secondaryContainer">
@@ -49,7 +49,9 @@ const Notas = ({ notas, año, handleChangeAño }) => {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={3}> No hay notas registradas en este año</TableCell>
+              <TableCell colSpan={3}>
+                No hay notas registradas en este año
+              </TableCell>
             </TableRow>
           )}
         </Table>

@@ -6,10 +6,10 @@ const Home = ({ nombre, apellido }) => {
       {window.innerWidth > 768 ? (
         <div className="homeAlumno">
           <div className="mensajeBienvenida">
-            <Typography className="titleHome" variant="h3">
+            <Typography className="titleHome" variant="h2">
               CIRCO DE LAS ARTES
             </Typography>
-            <Typography className="titleHome" variant="h4">
+            <Typography className="titleHome" variant="h3">
               Bienvenido {nombre} {apellido}
             </Typography>
           </div>
@@ -23,7 +23,7 @@ const Home = ({ nombre, apellido }) => {
             <Typography className="titleHome" variant="h3">
               CIRCO DE LAS ARTES
             </Typography>
-            <Typography className="titleHome" variant="h4">
+            <Typography className="titleHome" variant="h3">
               Bienvenido {nombre} {apellido}
             </Typography>
           </div>

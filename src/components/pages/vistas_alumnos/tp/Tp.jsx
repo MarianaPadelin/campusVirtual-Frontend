@@ -24,7 +24,7 @@ const Tp = ({
   handleChangeClases,
   clasesDisponibles,
   archivos,
-  borrarArchivo
+  borrarArchivo,
 }) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -39,7 +39,7 @@ const Tp = ({
   });
   return (
     <div className="basicContainer">
-      <Typography className="titles" variant="h4">
+      <Typography className="titles" variant="h3">
         Subir Trabajos Prácticos
       </Typography>
       <form onSubmit={formik.handleSubmit}>
@@ -105,9 +105,7 @@ const Tp = ({
           <TableHead>
             <TableRow>
               <TableCell>Clase</TableCell>
-              {window.innerWidth > 768 && (
-                <TableCell>Nombre</TableCell>
-              )}
+              {window.innerWidth > 768 && <TableCell>Nombre</TableCell>}
               <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
