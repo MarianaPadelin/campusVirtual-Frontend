@@ -26,21 +26,29 @@ const LoginContainer = () => {
         text: "Conectando...",
         showConfirmButton: false,
       });
-      const response = await loginUser(datosIngresados);
-      console.log(response)
-      if (response.success) {
-       return Swal.fire({
-          icon: "success",
-          text: response.message,
-          timer: 1500,
-        }).then(() => {
-          navigate(response.role === "admin" ? "/admin" : "/alumnos");
-        });
-      } else {
+      try {
+        const response = await loginUser(datosIngresados);
+        console.log(response);
+        if (response.success) {
+          return Swal.fire({
+            icon: "success",
+            text: response.message,
+            timer: 1500,
+          }).then(() => {
+            navigate(response.role === "admin" ? "/admin" : "/alumnos");
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: response.message,
+            timer: 1500,
+          });
+        }
+      } catch (error) {
+        console.log(error);
         Swal.fire({
+          text: error,
           icon: "error",
-          text: response.message,
-          timer: 1500,
         });
       }
     },
