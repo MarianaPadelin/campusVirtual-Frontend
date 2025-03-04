@@ -4,6 +4,7 @@ import axios from "axios";
 
 const VerTpsContainer = () => {
   const [tpList, setTpList] = useState([]);
+
   useEffect(() => {
     const promise = axios.get("/tp");
     promise
@@ -15,6 +16,7 @@ const VerTpsContainer = () => {
       })
       .catch((error) => console.log(error));
   }, []);
+  
   return (
     <>
       <VerTps tpList={tpList} />

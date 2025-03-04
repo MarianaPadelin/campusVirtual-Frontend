@@ -10,6 +10,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { Link } from "react-router-dom";
 
 const VerTps = ({ tpList }) => {
+  console.log(tpList)
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h3">
