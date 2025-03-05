@@ -3,6 +3,7 @@ import Asistencias from "./Asistencias";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
 import Loader from "../../../common/loader/Loader";
+import Swal from "sweetalert2";
 
 const AsistenciasContainer = () => {
   const today = new Date();
@@ -17,17 +18,7 @@ const AsistenciasContainer = () => {
     const añoSeleccionado = e.target.value;
     setAño(añoSeleccionado);
   };
-  //  const fetchData = async () => {
-  //    try {
-  //    } catch (error) {
-  //      console.log(error);
-  //    } finally {
-  //      setLoading(false);
-  //    }
-
-  //  };
-  //    fetchData();
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +32,10 @@ const AsistenciasContainer = () => {
         return setFaltas([]);
       } catch (error) {
         console.log(error);
+        Swal.fire({
+          text: "Error del servidor",
+          icon: "error",
+        });
       } finally {
         setLoading(false);
       }
@@ -57,6 +52,7 @@ const AsistenciasContainer = () => {
           faltas={faltas}
           año={año}
           handleChangeAño={handleChangeAño}
+          year={year}
         />
       )}
     </>

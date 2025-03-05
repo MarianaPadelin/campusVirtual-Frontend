@@ -44,6 +44,8 @@ body {
 }
 
 .mensajeBienvenida {
+  display: flex;
+  flex-direction: column;
   margin-top: 10vh;
   width: 90%;
   background-color: rgba(253, 253, 253, 0.7);
@@ -250,13 +252,21 @@ iframe {
 
   .homeAlumno {
     background-image: none;
+    align-items: stretch;
   }
 
   .mensajeBienvenida {
     background-color: #ffffff;
-    height: 108.5vh;
     margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .imgSideBienvenida {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
   }
 }
-
-

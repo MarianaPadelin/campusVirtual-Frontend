@@ -3,6 +3,7 @@ import Materias from "./Materias";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
 import Loader from "../../../common/loader/Loader";
+import Swal from "sweetalert2";
 
 const MateriasContainer = () => {
   const [materias, setMaterias] = useState([]);
@@ -24,6 +25,10 @@ const MateriasContainer = () => {
         return setMaterias([]);
        } catch (error) {
          console.log(error);
+          Swal.fire({
+                     text: "Error del servidor",
+                     icon: "error",
+                   });
        } finally {
          setLoading(false);
        }

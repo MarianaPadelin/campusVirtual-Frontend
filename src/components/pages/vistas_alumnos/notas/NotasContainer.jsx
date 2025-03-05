@@ -4,6 +4,7 @@ import axios from "axios";
 // import Loader from "../../../common/loader/Loader";
 import { UserContext } from "../../../../context/UserContext";
 import Loader from "../../../common/loader/Loader";
+import Swal from "sweetalert2";
 
 const NotasContainer = () => {
   const today = new Date();
@@ -31,6 +32,10 @@ const NotasContainer = () => {
         setNotas(res.data.result);
       } catch (error) {
         console.log(error);
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
       } finally {
         setLoading(false);
       }
@@ -43,7 +48,7 @@ const NotasContainer = () => {
     {loading ? (
         <Loader />
       ) : (
-      <Notas notas={notas} año={año} handleChangeAño={handleChangeAño} />
+      <Notas notas={notas} año={año} handleChangeAño={handleChangeAño} year={year} />
       )}</>
   );
 };

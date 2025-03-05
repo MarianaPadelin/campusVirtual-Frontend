@@ -82,7 +82,7 @@ const RegisterContainer = () => {
       console.log(error);
       Swal.fire({
         icon:"error",
-        text: error
+        text: "Error del servidor"
       })
     }
   };

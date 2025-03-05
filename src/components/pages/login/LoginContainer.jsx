@@ -47,49 +47,12 @@ const LoginContainer = () => {
       } catch (error) {
         console.log(error);
         Swal.fire({
-          text: error,
+          text: "Error del servidor",
           icon: "error",
         });
       }
     },
   });
-
-  // const iniciarSesion = (data) => {
-  //   const promise = axios.post("/session/login", data, {
-  //     withCredentials: true,
-  //   });
-  //   promise
-  //     .then((res) => {
-  //       // console.log(res.data)
-  //       if (res.data.status == 200) {
-  //         seteoUsuario(res.data.tokenUser.role);
-  //         seteoAlumno(res.data.tokenUser.email);
-  //         Swal.fire({
-  //           icon: "success",
-  //           text: "Usuario conectado",
-  //         })
-  //           // .then(() => mostrarDatosAlumno())
-  //           .then(navigate("/alumnos"));
-  //       } else if (res.data.status == 201) {
-  //         seteoUsuario(res.data.tokenUser.role);
-  //         Swal.fire({
-  //           icon: "success",
-  //           text: "Admin conectado",
-  //         }).then(navigate("/admin"));
-  //       } else if (res.data.status == 401) {
-  //         Swal.fire({
-  //           icon: "error",
-  //           text: "Usuario o contraseña incorrectos",
-  //         });
-  //       } else {
-  //         Swal.fire({
-  //           icon: "error",
-  //           text: "Error desconocido",
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   const handleViewPass = () => {
     setVerContraseña(!verContraseña);

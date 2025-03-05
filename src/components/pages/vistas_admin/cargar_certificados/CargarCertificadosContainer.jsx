@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const CargarCertificadosContainer = () => {
-      const [fileText, setFileText] = useState("");
-    
+  const [fileText, setFileText] = useState("");
+
   const getCurrentDate = () => {
     const today = new Date();
 
@@ -62,8 +62,7 @@ const CargarCertificadosContainer = () => {
               icon: "success",
               text: res.data.message,
               timer: 3000,
-            }).then(() => window.location.reload())
-            
+            }).then(() => window.location.reload());
           } else {
             Swal.fire({
               icon: "error",
@@ -72,13 +71,23 @@ const CargarCertificadosContainer = () => {
             });
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            text: "Error del servidor",
+            icon: "error",
+          });
+        });
     },
   });
 
   return (
     <div>
-      <CargarCertificados fileText={fileText} handleInput={handleInput} formik={formik}/>
+      <CargarCertificados
+        fileText={fileText}
+        handleInput={handleInput}
+        formik={formik}
+      />
     </div>
   );
 };

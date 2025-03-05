@@ -24,7 +24,7 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {alumnos &&
+          {alumnos.length > 0 ? (
             alumnos.map((alumno) => (
               <TableRow key={alumno._id}>
                 <TableCell>{alumno.nombre}</TableCell>
@@ -48,7 +48,12 @@ const HomeDesktop = ({ alumnos, eliminarElemento }) => {
                   </Button>
                 </TableCell>
               </TableRow>
-            ))}
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={6}>No hay alumnos registrados </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </div>

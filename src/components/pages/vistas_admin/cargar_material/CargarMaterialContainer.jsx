@@ -107,7 +107,13 @@ const CargarMaterialContainer = () => {
             return setArchivos([]);
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            text: "Error del servidor",
+            icon: "error",
+          });
+        });
     },
   });
 
@@ -165,7 +171,12 @@ const CargarMaterialContainer = () => {
           return setArchivos([]);
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>{ console.log(error)
+         Swal.fire({
+           text: "Error del servidor",
+           icon: "error",
+         });
+      });
   };
   return (
     <>
@@ -180,6 +191,7 @@ const CargarMaterialContainer = () => {
         año={año}
         archivos={archivos}
         borrarArchivo={borrarArchivo}
+        year={year}
       />
     </>
   );

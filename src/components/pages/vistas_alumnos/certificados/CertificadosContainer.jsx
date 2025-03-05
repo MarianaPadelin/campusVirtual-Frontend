@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Certificados from "./Certificados";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
+import Swal from "sweetalert2";
 
 const CertificadosContainer = () => {
   const [url, setUrl] = useState("");
@@ -20,7 +21,12 @@ const CertificadosContainer = () => {
         } 
         return setUrl("")
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error)
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
+      });
   }, [id]);
 
   console.log(url)

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 //mandarlo por onClick y no por path
 //poner un loader
@@ -17,7 +18,12 @@ const LogoutContainer = () => {
       }
       return alert("No se pudo cerrar la sesión");
     })
-    .catch((error) => console.log(error));
+    .catch((error) =>{ console.log(error)
+       Swal.fire({
+                  text: "Error del servidor",
+                  icon: "error",
+                });
+    });
 
   return <></>;
 };

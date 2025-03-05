@@ -114,6 +114,7 @@ const RegistrarNotasContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         errors={errors}
+        year={year}
       />
     </>
   );

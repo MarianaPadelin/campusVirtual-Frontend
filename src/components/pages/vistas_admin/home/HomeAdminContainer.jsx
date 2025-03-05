@@ -6,14 +6,27 @@ import Loader from "../../../common/loader/Loader";
 
 const HomeAdminContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const promise = axios.get(`/alumnos`, {
-      withCredentials: true,
-    });
-    promise
-      .then((res) => setAlumnos(res.data))
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/alumnos`, {
+          withCredentials: true,
+        });
+        setAlumnos(res.data);
+      } catch (error) {
+        console.log(error)
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });;
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const eliminarElemento = (id, email) => {
@@ -36,7 +49,7 @@ const HomeAdminContainer = () => {
               .delete(`/session/${email}`)
 
               .then((res) => {
-                console.log(res)
+                console.log(res);
                 if (res.data.status === 200) {
                   return Swal.fire({
                     icon: "success",
@@ -63,10 +76,10 @@ const HomeAdminContainer = () => {
   };
   return (
     <>
-      {alumnos.length > 0 ? (
-        <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
-      ) : (
+      {loading ? (
         <Loader />
+      ) : (
+        <HomeAdmin alumnos={alumnos} eliminarElemento={eliminarElemento} />
       )}
     </>
   );

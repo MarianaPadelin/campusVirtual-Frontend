@@ -30,7 +30,10 @@ const ResetPassword = ({
             label="Usuario (email)"
             variant="filled"
             name="email"
-            onChange={handleChange}
+            onChange={(e) => {
+              e.target.value = e.target.value.toLowerCase(); // Convert to lowercase
+              handleChange(e); // Pass the modified event to Formik
+            }}
             error={errors.email ? true : false}
             helperText={errors.email}
           />

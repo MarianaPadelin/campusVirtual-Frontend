@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 
 const CargarAlumnosContainer = () => {
-   const today = new Date();
-   const year = today.getFullYear();
+  const today = new Date();
+  const year = today.getFullYear();
   const [clase, setClase] = useState("");
   const [año, setAño] = useState(year);
   const [alumnos, setAlumnos] = useState([]);
@@ -41,23 +41,39 @@ const CargarAlumnosContainer = () => {
       .catch((err) => console.log(err));
   }, [clase, año]);
 
-
   const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
     initialValues: {
       nombreClase: "",
-      año:"", 
+      año: "",
       nombre: "",
       apellido: "",
     },
-    onSubmit: (datosIngresados) => {
-      datosIngresados.nombreClase = clase;
-      datosIngresados.año = año;
-      agregarAlumnosLista(datosIngresados);
-      setFieldValue("apellido", "")
+    onSubmit: async (datosIngresados) => {
+      Swal.fire({
+        imageUrl:
+          "https://res.cloudinary.com/dvxkjikvk/image/upload/v1738096102/campus/ZKZg_fvg2mn.gif",
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: "Cargando",
+        text: "Cargando...",
+        showConfirmButton: false,
+      });
+      try {
+        datosIngresados.nombreClase = clase;
+        datosIngresados.año = año;
+        agregarAlumnosLista(datosIngresados);
+        setFieldValue("apellido", "");
         // .toLowerCase()
         // .trim()
         // .replace(/^\w/, (c) => c.toUpperCase());
-      setFieldValue("nombre", "");
+        setFieldValue("nombre", "");
+      } catch (error) {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          text: error,
+        });
+      }
     },
   });
 
@@ -66,7 +82,7 @@ const CargarAlumnosContainer = () => {
 
     promise
       .then((res) => {
-         if (res.data.status == 200) {
+        if (res.data.status == 200) {
           return Swal.fire({
             icon: "success",
             text: `Alumno añadido a la lista de ${clase}`,
@@ -77,7 +93,6 @@ const CargarAlumnosContainer = () => {
               .then((res) => setAlumnos(res.data.result))
               .catch((err) => console.log(err));
           });
-        
         } else {
           return Swal.fire({
             icon: "error",
@@ -86,11 +101,9 @@ const CargarAlumnosContainer = () => {
           });
         }
       })
-      
+
       .catch((err) => console.log("Hubo un error: " + err));
   };
-
-  
 
   const borrarAlumnoLista = (id) => {
     Swal.fire({
@@ -141,6 +154,7 @@ const CargarAlumnosContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         borrarAlumnoLista={borrarAlumnoLista}
+        year={year}
       />
     </>
   );

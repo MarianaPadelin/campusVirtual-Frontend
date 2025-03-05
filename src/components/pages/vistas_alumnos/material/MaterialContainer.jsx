@@ -3,6 +3,7 @@ import Material from "./Material";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
 import Loader from "../../../common/loader/Loader";
+import Swal from "sweetalert2";
 
 const MaterialContainer = () => {
   const { id } = useContext(UserContext);
@@ -49,6 +50,10 @@ const MaterialContainer = () => {
         return setArchivos([]);
       } catch (error) {
         console.log(error);
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
       } finally {
         setLoading(false);
       }
@@ -68,6 +73,7 @@ const MaterialContainer = () => {
         handleChangeAño={handleChangeAño}
         año={año}
         archivos={archivos}
+        year={year}
       />) }
     </>
   );

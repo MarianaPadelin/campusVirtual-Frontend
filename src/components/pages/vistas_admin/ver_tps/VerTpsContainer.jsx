@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import VerTps from "./VerTps";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const VerTpsContainer = () => {
   const [tpList, setTpList] = useState([]);
@@ -14,7 +15,12 @@ const VerTpsContainer = () => {
         }
         return setTpList([]);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error)
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
+      });
   }, []);
   
   return (

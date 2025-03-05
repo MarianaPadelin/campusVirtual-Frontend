@@ -15,7 +15,7 @@ const TpContainer = () => {
   const today = new Date();
   const año = today.getFullYear();
 
-  console.log(id)
+  console.log(id);
   useEffect(() => {
     const promise = axios.get(`/clases/alumno/${id}/${año}`);
     promise
@@ -28,16 +28,15 @@ const TpContainer = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-
   useEffect(() => {
-    const promise = axios.get(`/tp/${id}`)
+    const promise = axios.get(`/tp/${id}`);
     promise.then((res) => {
-      if(res.data.status === 200){
-        return setArchivos(res.data.tps)
+      if (res.data.status === 200) {
+        return setArchivos(res.data.tps);
       }
-      return setArchivos([])
-    })
-  }, [id])
+      return setArchivos([]);
+    });
+  }, [id]);
   const handleChangeClases = (e) => {
     const claseSeleccionada = e.target.value;
     setClase(claseSeleccionada);
@@ -100,14 +99,20 @@ const TpContainer = () => {
           });
 
           promise.then((res) => {
-            console.log(res)
+            console.log(res);
             if (res.data.status === 200) {
               return setArchivos(res.data.tps);
             }
             return setArchivos([]);
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            text: "Error del servidor",
+            icon: "error",
+          });
+        });
     },
   });
 
@@ -134,7 +139,7 @@ const TpContainer = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          console.log(idTP)
+          console.log(idTP);
           const promise = axios.delete(`/tp/${idTP}`, {
             withCredentials: true,
           });
@@ -163,10 +168,16 @@ const TpContainer = () => {
                 return setArchivos([]);
               });
             })
-            .catch((error) => console.log(error));;
+            .catch((error) => console.log(error));
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          text: "Error del servidor",
+          icon: "error",
+        });
+      });
   };
   return (
     <>

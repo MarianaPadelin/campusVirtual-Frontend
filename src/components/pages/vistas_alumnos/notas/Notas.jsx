@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const Notas = ({ notas, año, handleChangeAño }) => {
+const Notas = ({ notas, año, handleChangeAño, year }) => {
   return (
     <div className="basicContainer">
       <Typography className="titles" variant="h3">
@@ -26,10 +26,10 @@ const Notas = ({ notas, año, handleChangeAño }) => {
             label="Clase"
             onChange={handleChangeAño}
           >
-            <MenuItem value={2022}>2022</MenuItem>
-            <MenuItem value={2023}>2023</MenuItem>
-            <MenuItem value={2024}>2024</MenuItem>
-            <MenuItem value={2025}>2025</MenuItem>
+            <MenuItem value={year - 3}>{year - 3}</MenuItem>
+            <MenuItem value={year - 2}>{year - 2}</MenuItem>
+            <MenuItem value={year - 1}>{year - 1}</MenuItem>
+            <MenuItem value={year}>{year}</MenuItem>
           </Select>
         </FormControl>
 

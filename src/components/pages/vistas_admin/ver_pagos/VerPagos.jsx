@@ -29,6 +29,7 @@ const VerPagos = ({
   pagoEditor,
   handleMontoChange,
   formik,
+  year
 }) => {
   return (
     <div className="basicContainer">
@@ -53,10 +54,10 @@ const VerPagos = ({
               label="Clase"
               onChange={handleChangeAño}
             >
-              <MenuItem value={2022}>2022</MenuItem>
-              <MenuItem value={2023}>2023</MenuItem>
-              <MenuItem value={2024}>2024</MenuItem>
-              <MenuItem value={2025}>2025</MenuItem>
+              <MenuItem value={year - 3}>{year - 3}</MenuItem>
+              <MenuItem value={year - 2}>{year - 2}</MenuItem>
+              <MenuItem value={year - 1}>{year - 1}</MenuItem>
+              <MenuItem value={year}>{year}</MenuItem>
             </Select>
           </FormControl>
         </span>
@@ -75,9 +76,14 @@ const VerPagos = ({
             {pagos.length > 0 ? (
               pagos.map((pago) => (
                 <TableRow key={pago._id}>
-                  <TableCell>
-                    {pago.id_alumno.nombre} {pago.id_alumno.apellido}
-                  </TableCell>
+                  {pago.id_alumno ? (
+                    <TableCell>
+                      {pago.id_alumno.nombre} {pago.id_alumno.apellido}
+                    </TableCell>
+                  ) : (
+                    <TableCell>Alumno eliminado</TableCell>
+                  )}
+
                   <TableCell>{pago.fecha}</TableCell>
                   {pagoEditor ? (
                     <TableCell>

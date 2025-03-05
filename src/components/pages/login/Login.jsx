@@ -29,7 +29,10 @@ const Login = ({
             label="Usuario (email)"
             variant="filled"
             name="email"
-            onChange={handleChange}
+            onChange={(e) => {
+              e.target.value = e.target.value.toLowerCase(); // Convert to lowercase
+              handleChange(e); // Pass the modified event to Formik
+            }}
           />
           {verContraseña ? (
             <TextField

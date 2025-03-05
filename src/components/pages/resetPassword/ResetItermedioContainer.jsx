@@ -18,6 +18,7 @@ const ResetItermedioContainer = () => {
         text: "Enviando...",
         showConfirmButton: false,
       });
+  
       let res = await axios.post("/email", datosIngresados);
       console.log(res);
       if (res.data.status === 200) {

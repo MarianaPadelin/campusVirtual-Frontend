@@ -40,7 +40,7 @@ const RegistroContainer = () => {
         } 
         return Swal.fire({
           icon: "error",
-          text: ("Hubo un error registrando al alumno: ", res.message),
+          text: ("Hubo un error registrando al alumno", res.data.message),
           timer: 1500,
         });
       })

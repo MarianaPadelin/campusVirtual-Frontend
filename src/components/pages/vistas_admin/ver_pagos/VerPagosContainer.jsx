@@ -30,7 +30,12 @@ const VerPagosContainer = () => {
       .then((res) => {
         return setPagos(res.data.pagos);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error)
+         Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
+      });
   }, [mes, año]);
 
   const editarPago = () => {
@@ -98,7 +103,12 @@ const VerPagosContainer = () => {
                   setPagoEditor(false)
                    return setPagos(res.data.pagos);
                  })
-                 .catch((error) => console.log(error));
+                 .catch((error) => {console.log(error)
+                   Swal.fire({
+                              text: "Error del servidor",
+                              icon: "error",
+                            });
+                 });
             }
           )
         }
@@ -134,7 +144,12 @@ const VerPagosContainer = () => {
                 .then((res) => {
                   return setPagos(res.data.pagos);
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => {console.log(error)
+                   Swal.fire({
+                              text: "Error del servidor",
+                              icon: "error",
+                            });
+                });
             });
           }
           return Swal.fire({
@@ -157,6 +172,7 @@ const VerPagosContainer = () => {
         pagoEditor={pagoEditor}
         handleMontoChange={handleMontoChange}
         formik={formik}
+        year={year}
       />
     </>
   );

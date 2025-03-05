@@ -21,6 +21,7 @@ const AgregarClaseContainer = () => {
   const formik = useFormik({
     //3 parámetros: los valores iniciales, la función con onsubmit, y las validaciones
     initialValues: {
+      _id: clase._id || "",
       nombre: clase.nombre || "",
       profesor: clase.profesor || "",
       año: clase.año || "",
@@ -53,13 +54,19 @@ const AgregarClaseContainer = () => {
           text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
           timer: 1500,
         }).then(() => {
-        const promise = axios.get(`/clases/year/${año}`);
+          const promise = axios.get(`/clases/year/${año}`);
 
-        promise
-          .then((res) => {
-            return setDatosClase(res.data.listaClases);
-          })
-          .catch((error) => console.log(error));
+          promise
+            .then((res) => {
+              return setDatosClase(res.data.listaClases);
+            })
+            .catch((error) => {
+              console.log(error);
+              Swal.fire({
+                text: "Error del servidor",
+                icon: "error",
+              });
+            });
         });
       } else if (res.data.status === 201) {
         setShowForm(false);
@@ -75,7 +82,12 @@ const AgregarClaseContainer = () => {
             .then((res) => {
               return setDatosClase(res.data.listaClases);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {console.log(error)
+              Swal.fire({
+                text: "Error del servidor",
+                icon: "error",
+              });
+            });
         });
       } else if (res.data.status === 500) {
         return Swal.fire({
@@ -98,7 +110,12 @@ const AgregarClaseContainer = () => {
     const promise = axios.get(`/clases/year/${año}`, { withCredentials: true });
     promise
       .then((res) => setDatosClase(res.data.listaClases))
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error)
+        Swal.fire({
+          text: "Error del servidor",
+          icon: "error",
+        });
+      });
   }, [año]);
 
   const handleClick = (data) => {
@@ -136,7 +153,12 @@ const AgregarClaseContainer = () => {
                 .then((res) => {
                   return setDatosClase(res.data.listaClases);
                 })
-                .catch((error) => console.log(error));
+                .catch((error) =>{ console.log(error)
+                  Swal.fire({
+                    text: "Error del servidor",
+                    icon: "error",
+                  });
+                });
             });
           }
           return Swal.fire({
@@ -160,6 +182,7 @@ const AgregarClaseContainer = () => {
         showForm={showForm}
         setShowForm={setShowForm}
         salir={salir}
+        year={year}
       />
     </>
   );
