@@ -14,6 +14,7 @@ const RegistrarNotasContainer = () => {
   const [año, setAño] = useState(year);
   const [alumnos, setAlumnos] = useState([]);
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
+  // const [notas, setNotas] = useState([]);
 
   useEffect(() => {
     const promise = axios.get(`/clases`);
@@ -37,12 +38,17 @@ const RegistrarNotasContainer = () => {
     promise
       .then((res) => {
         if (res.data.status == 404) {
-          setAlumnos([]);
+         return setAlumnos([]);
         }
-        setAlumnos(res.data.result);
+        console.log(res.data)
+        // const notas = res.data.result[0].notas.filter((nota) => nota.clase === clase )
+        // console.log(notas)
+       return setAlumnos(res.data.result);
       })
       .catch((err) => console.log(err));
   }, [clase, año]);
+
+  //para cada alumno de esa clase buscar si tiene notas, si es asi renderizarlas, sino mostrar el formulario
 
   const { handleSubmit, handleChange, values, setFieldValue, errors } =
     useFormik({

@@ -14,13 +14,16 @@ const HomeAdminContainer = () => {
         const res = await axios.get(`/alumnos`, {
           withCredentials: true,
         });
-        setAlumnos(res.data);
+        if (res.data.status === 200) {
+          return setAlumnos(res.data.alumnos);
+        }
+        return setAlumnos([]);
       } catch (error) {
-        console.log(error)
-         Swal.fire({
-                    text: "Error del servidor",
-                    icon: "error",
-                  });;
+        console.log(error);
+        Swal.fire({
+          text: "Error del servidor",
+          icon: "error",
+        });
       } finally {
         setLoading(false);
       }

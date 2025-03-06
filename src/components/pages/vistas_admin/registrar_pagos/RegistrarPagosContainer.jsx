@@ -4,18 +4,36 @@ import axios from "axios";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
+import Loader from "../../../common/loader/Loader";
 
 const RegistrarPagosContainer = () => {
   const [alumnos, setAlumnos] = useState([]);
   const [montoPorAlumno, setMontoPorAlumno] = useState({}); // Manage monto per alumno
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const promise = axios.get(`/alumnos`);
-    promise
-      .then((res) => setAlumnos(res.data))
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/alumnos`);
+      if(res.data.status === 200){
+        return setAlumnos(res.data.alumnos);
+
+      }
+      return setAlumnos([])
+      } catch (error) {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          text: "Error del servidor",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
-  // { handleSubmit, handleChange, setFieldValue, errors }
+
+  
   const formik = useFormik({
     initialValues: {
       id_alumno: "",
@@ -96,14 +114,18 @@ const RegistrarPagosContainer = () => {
   };
 
   return (
-    <div>
-      <RegistrarPagos
-        alumnos={alumnos}
-        formik={formik}
-        montoPorAlumno={montoPorAlumno}
-        handleMontoChange={handleMontoChange}
-      />
-    </div>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <RegistrarPagos
+          alumnos={alumnos}
+          formik={formik}
+          montoPorAlumno={montoPorAlumno}
+          handleMontoChange={handleMontoChange}
+        />
+      )}
+    </>
   );
 };
 

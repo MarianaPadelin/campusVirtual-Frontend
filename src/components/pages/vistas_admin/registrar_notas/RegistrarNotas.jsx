@@ -26,7 +26,7 @@ const RegistrarNotas = ({
   handleSubmit,
   values,
   errors,
-  year
+  year,
 }) => {
   return (
     <div className="basicContainer">
@@ -91,7 +91,6 @@ const RegistrarNotas = ({
                       <TableCell name="id_alumno" value={values._id}>
                         {alumno.nombre} {alumno.apellido}
                       </TableCell>
-
                       <TableCell>
                         <TextField
                           variant="outlined"
@@ -104,6 +103,39 @@ const RegistrarNotas = ({
                           // value={values.notaJulio}
                         />
                       </TableCell>
+                      {/* {  alumno.notas.filter((nota) => nota.clase === clase) 
+                         ? (
+                        <TableCell>
+                          <TextField
+                            variant="outlined"
+                            className="inputPagos"
+                            name="notaJulio"
+                            onChange={handleChange}
+                            error={errors.notaJulio ? true : false}
+                            helperText={errors.notaJulio}
+
+                            // value={values.notaJulio}
+                          />
+                        </TableCell>
+                      ) : (
+                        <TableCell>{alumno.notas[0].notaJulio}</TableCell>
+                      )} */}
+                      {/* {alumno.notaDiciembre === 0 ? (
+                        <TableCell>
+                          <TextField
+                            variant="outlined"
+                            className="inputPagos"
+                            name="notaDiciembre"
+                            onChange={handleChange}
+                            error={errors.notaDiciembre ? true : false}
+                            helperText={errors.notaDiciembre}
+
+                            // value={values.notaDiciembre}
+                          />
+                        </TableCell>
+                      ) : (
+                        <TableCell>{alumno.notaDiciembre}</TableCell>
+                      )} */}
                       <TableCell>
                         <TextField
                           variant="outlined"

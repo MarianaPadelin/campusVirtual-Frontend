@@ -3,7 +3,7 @@ import Material from "./Material";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
 import Loader from "../../../common/loader/Loader";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const MaterialContainer = () => {
   const { id } = useContext(UserContext);
@@ -43,17 +43,24 @@ const MaterialContainer = () => {
         const res = await axios.get(`/material/${clase}/${año}`, {
           withCredentials: true,
         });
-
+        console.log(res)
         if (res.data.status === 200) {
           return setArchivos(res.data.result);
         }
-        return setArchivos([]);
+        else if (res.data.status === 404){
+          return setArchivos([]);
+        }
+        else {
+          return setArchivos([]);
+        }
+
+      
       } catch (error) {
         console.log(error);
-         Swal.fire({
-                    text: "Error del servidor",
-                    icon: "error",
-                  });
+        //  Swal.fire({
+        //             text: "Error del servidor",
+        //             icon: "error",
+        //           });
       } finally {
         setLoading(false);
       }

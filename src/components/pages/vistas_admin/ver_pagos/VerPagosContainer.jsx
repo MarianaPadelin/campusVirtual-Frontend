@@ -31,10 +31,10 @@ const VerPagosContainer = () => {
         return setPagos(res.data.pagos);
       })
       .catch((error) => {console.log(error)
-         Swal.fire({
-                    text: "Error del servidor",
-                    icon: "error",
-                  });
+        //  Swal.fire({
+        //             text: "Error del servidor",
+        //             icon: "error",
+        //           });
       });
   }, [mes, año]);
 
