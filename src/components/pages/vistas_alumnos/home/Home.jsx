@@ -5,17 +5,17 @@ const Home = ({ nombre, apellido }) => {
     <div className="basicContainer">
       {window.innerWidth > 768 ? (
         <div className="homeAlumno">
-          <div className="mensajeBienvenida">
+          <section className="mensajeBienvenida">
             <Typography className="titleHome" variant="h2">
               CIRCO DE LAS ARTES
             </Typography>
             <Typography className="titleHome" variant="h3">
               Bienvenido {nombre} {apellido}
             </Typography>
-          </div>
-          <div className="imgSideBienvenida">
+          </section>
+          <section className="imgSideBienvenida">
             <img src="https://res.cloudinary.com/dvxkjikvk/image/upload/v1740659890/campus/WhatsApp_Image_2025-02-26_at_11.09.34_e9lbwq_ad52ae.jpg" />
-          </div>
+          </section>
         </div>
       ) : (
         <div className="homeAlumno">
