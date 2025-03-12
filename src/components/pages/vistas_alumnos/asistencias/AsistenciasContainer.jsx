@@ -26,7 +26,7 @@ const AsistenciasContainer = () => {
           withCredentials: true,
         });
         if (res.data.status === 200) {
-          console.log(res.data.asistenciasPorClase);
+          // console.log(res.data.asistenciasPorClase);
           return setFaltas(res.data.asistenciasPorClase);
         }
         return setFaltas([]);

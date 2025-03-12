@@ -12,6 +12,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 // import Loader from "../../../common/loader/Loader";
 
 const RegistrarNotas = ({
@@ -27,6 +29,7 @@ const RegistrarNotas = ({
   values,
   errors,
   year,
+  borrarNotas
 }) => {
   return (
     <div className="basicContainer">
@@ -91,72 +94,89 @@ const RegistrarNotas = ({
                       <TableCell name="id_alumno" value={values._id}>
                         {alumno.nombre} {alumno.apellido}
                       </TableCell>
-                      <TableCell>
-                        <TextField
-                          variant="outlined"
-                          className="inputPagos"
-                          name="notaJulio"
-                          onChange={handleChange}
-                          error={errors.notaJulio ? true : false}
-                          helperText={errors.notaJulio}
 
-                          // value={values.notaJulio}
-                        />
-                      </TableCell>
-                      {/* {  alumno.notas.filter((nota) => nota.clase === clase) 
-                         ? (
-                        <TableCell>
-                          <TextField
-                            variant="outlined"
-                            className="inputPagos"
-                            name="notaJulio"
-                            onChange={handleChange}
-                            error={errors.notaJulio ? true : false}
-                            helperText={errors.notaJulio}
+                      {(() => {
+                        const foundNota = alumno.notas.find(
+                          (nota) =>
+                            nota.clase === clase &&
+                            nota.año == año &&
+                            nota.notaJulio
+                        );
 
-                            // value={values.notaJulio}
-                          />
-                        </TableCell>
-                      ) : (
-                        <TableCell>{alumno.notas[0].notaJulio}</TableCell>
-                      )} */}
-                      {/* {alumno.notaDiciembre === 0 ? (
-                        <TableCell>
-                          <TextField
-                            variant="outlined"
-                            className="inputPagos"
-                            name="notaDiciembre"
-                            onChange={handleChange}
-                            error={errors.notaDiciembre ? true : false}
-                            helperText={errors.notaDiciembre}
+                        return foundNota ? (
+                          <TableCell>{foundNota.notaJulio}</TableCell>
+                        ) : (
+                          <TableCell>
+                            <TextField
+                              variant="outlined"
+                              className="inputPagos"
+                              name="notaJulio"
+                              onChange={handleChange}
+                              error={errors.notaJulio ? true : false}
+                              helperText={errors.notaJulio}
+                              // value={values.notaJulio}
+                            />
+                          </TableCell>
+                        );
+                      })()}
 
-                            // value={values.notaDiciembre}
-                          />
-                        </TableCell>
-                      ) : (
-                        <TableCell>{alumno.notaDiciembre}</TableCell>
-                      )} */}
-                      <TableCell>
-                        <TextField
-                          variant="outlined"
-                          className="inputPagos"
-                          name="notaDiciembre"
-                          onChange={handleChange}
-                          error={errors.notaDiciembre ? true : false}
-                          helperText={errors.notaDiciembre}
+                      {(() => {
+                        const foundNota = alumno.notas.find(
+                          (nota) =>
+                            nota.clase === clase &&
+                            nota.año == año &&
+                            nota.notaDiciembre
+                        );
 
-                          // value={values.notaDiciembre}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          className="buttonForm"
-                          type="submit"
-                          variant="contained"
-                        >
-                          Enviar
-                        </Button>
-                      </TableCell>
+                        return foundNota ? (
+                          <TableCell>{foundNota.notaDiciembre}</TableCell>
+                        ) : (
+                          <TableCell>
+                            <TextField
+                              variant="outlined"
+                              className="inputPagos"
+                              name="notaDiciembre"
+                              onChange={handleChange}
+                              error={errors.notaDiciembre ? true : false}
+                              helperText={errors.notaDiciembre}
+                            />
+                          </TableCell>
+                        );
+                      })()}
+
+                      {(() => {
+                        const foundNota = alumno.notas.find(
+                          (nota) =>
+                            nota.clase === clase &&
+                            nota.año == año &&
+                            nota.notaDiciembre 
+                        );
+
+                        return foundNota ? (
+                          <TableCell>
+                            <Button title="Eliminar notas">
+                              <HighlightOffIcon
+                                onClick={() =>
+                                  borrarNotas(foundNota._id, alumno._id)
+                                }
+                              />
+                            </Button>
+                          </TableCell>
+                        ) : (
+                          <TableCell>
+                            <Button
+                              className="buttonForm"
+                              type="submit"
+                              variant="contained"
+                              title="Confirmar notas"
+                            >
+                              Enviar
+                            </Button>
+                          </TableCell>
+                        );
+                      })()}
+
+              
                     </TableRow>
                   ))
                 ) : (

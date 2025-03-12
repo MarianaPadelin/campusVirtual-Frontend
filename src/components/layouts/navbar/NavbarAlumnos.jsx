@@ -13,18 +13,19 @@ import { useState } from "react";
 import axios from "axios";
 
 const pages = [
-  { name: "Home", path: "/alumnos" },
-  { name: "Materias", path: "/alumnos/materias" },
-  { name: "Calendario", path: "/alumnos/calendario" },
-  { name: "Notas", path: "/alumnos/notas" },
-  { name: "Asistencias", path: "/alumnos/asistencias" },
-  { name: "Pagos", path: "/alumnos/pagos" },
-  { name: "Trabajos prácticos", path: "/alumnos/tp" },
-  { name: "Material didáctico", path: "/alumnos/material" },
-  { name: "Ver certificado", path: "/alumnos/certificado" },
+  { name: "Home", path: "/alumnos", target: "_self" },
+  { name: "Materias", path: "/alumnos/materias", target: "_self" },
+  { name: "Calendario", path: "/alumnos/calendario", target: "_self" },
+  { name: "Notas", path: "/alumnos/notas", target: "_self" },
+  { name: "Asistencias", path: "/alumnos/asistencias", target: "_self" },
+  { name: "Pagos", path: "/alumnos/pagos", target: "_self" },
+  { name: "Trabajos prácticos", path: "/alumnos/tp", target: "_self" },
+  { name: "Material didáctico", path: "/alumnos/material", target: "_self" },
+  { name: "Ver certificado", path: "/alumnos/certificado", target: "_self" },
   {
     name: "Ir al sitio web",
     path: "https://www.circodelasartes.com/#!/-circo-de-las-artes/",
+    target: "_blank",
   },
 ];
 
@@ -109,7 +110,7 @@ const NavbarAlumnos = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name}>
-                  <Link to={page.path}>
+                  <Link to={page.path} target={page.target}>
                     <Typography
                       sx={{ textAlign: "center" }}
                       onClick={handleCloseNavMenu}
@@ -148,9 +149,20 @@ const NavbarAlumnos = () => {
             </Typography>
           </Link>
 
-          <Box sx={{ justifyContent:"space-evenly", flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              justifyContent: "space-evenly",
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             {pages.map((page) => (
-              <Link key={page.name} title={page.name} to={page.path} className="linkNavbar">
+              <Link
+                key={page.name}
+                title={page.name}
+                to={page.path}
+                className="linkNavbar"
+              >
                 <Button
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
