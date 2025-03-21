@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const UserContext = createContext();
 
-
 const UserContextProvider = ({ children }) => {
   const [alumno, setAlumno] = useState({});
   const [rolUsuario, setRolUsuario] = useState({});
@@ -14,7 +13,7 @@ const UserContextProvider = ({ children }) => {
         withCredentials: true,
       });
       if (res.data.status === 200 || res.data.status === 201) {
-        const { role, email } = res.data.tokenUser;
+        const { role, email } = res.data.user;
         setRolUsuario(role);
 
         if (role === "alumno") {
@@ -44,6 +43,9 @@ const UserContextProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const res = await axios.get("/user", { withCredentials: true });
+        console.log("respuesta de la ruta /user:", res)
+
+        
         if (res.data.user) {
           const { role, email } = res.data.user;
           setRolUsuario(role); // Set the role

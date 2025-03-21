@@ -3,6 +3,7 @@ import LogoutContainer from "../components/pages/vistas_admin/logout/LogoutConta
 import RegisterContainer from "../components/pages/register/RegisterContainer";
 import ResetPasswordContainer from "../components/pages/resetPassword/ResetPasswordContainer";
 import ResetItermedioContainer from "../components/pages/resetPassword/ResetItermedioContainer";
+import Debug from "../components/pages/login/Debug";
 export const rutasPublicas = [
   {
     id: "logout",
@@ -28,5 +29,10 @@ export const rutasPublicas = [
     id: "reset",
     path: "/resetPassword/:token",
     Element: ResetPasswordContainer,
+  },
+  {
+    id: "debug",
+    path: "/session/debug",
+    Element: Debug
   },
 ];

@@ -66,7 +66,7 @@ const HomeAdminContainer = () => {
                   .get(`/alumnos`, {
                     withCredentials: true,
                   })
-                  .then((res) => setAlumnos(res.data))
+                  .then((res) => setAlumnos(res.data.alumnos))
                   .catch((err) => console.log(err));
               });
           })
