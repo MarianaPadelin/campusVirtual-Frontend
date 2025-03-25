@@ -211,7 +211,7 @@ const CargarMaterial = ({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={4}> No se encontraron archivos</TableCell>
+                <TableCell colSpan={5}> No se encontraron archivos</TableCell>
               </TableRow>
             )}
           </TableBody>
