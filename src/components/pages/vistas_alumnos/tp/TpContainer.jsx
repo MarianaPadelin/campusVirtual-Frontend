@@ -14,6 +14,7 @@ const TpContainer = () => {
   const [archivos, setArchivos] = useState([]);
   const today = new Date();
   const año = today.getFullYear();
+  const [link, setLink] = useState(false);
 
   console.log(id);
   useEffect(() => {
@@ -47,6 +48,7 @@ const TpContainer = () => {
       clase: "",
       fecha: "",
       file: null,
+      año: "",
     },
     onSubmit: (datosIngresados) => {
       Swal.fire({
@@ -59,17 +61,32 @@ const TpContainer = () => {
         showConfirmButton: false,
       });
       datosIngresados.fecha = getCurrentDate();
-      console.log(datosIngresados.fecha);
-      const formData = new FormData();
-      formData.append("idAlumno", id);
-      formData.append("clase", clase);
-      formData.append("fecha", datosIngresados.fecha);
-      formData.append("file", datosIngresados.file);
-      console.log([...formData]);
+      datosIngresados.año = año;
+      datosIngresados.clase = clase;
+      let promise;
+      if (link === false) {
+        const formData = new FormData();
+        formData.append("idAlumno", id);
+        formData.append("clase", clase);
+        formData.append("anio", datosIngresados.año);
 
-      const promise = axios.post("/tp", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+        formData.append("fecha", datosIngresados.fecha);
+        formData.append("file", datosIngresados.file);
+        console.log([...formData]);
+
+        promise = axios.post("/tp", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        promise = axios.post("/tp/link", {
+          idAlumno: id,
+          clase: datosIngresados.clase,
+          anio: datosIngresados.año,
+          fecha: datosIngresados.fecha,
+          link: datosIngresados.url,
+          title: datosIngresados.title,
+        });
+      }
 
       promise
         .then((res) => {
@@ -190,6 +207,8 @@ const TpContainer = () => {
         formik={formik}
         archivos={archivos}
         borrarArchivo={borrarArchivo}
+        link={link}
+        setLink={setLink}
       />
     </>
   );

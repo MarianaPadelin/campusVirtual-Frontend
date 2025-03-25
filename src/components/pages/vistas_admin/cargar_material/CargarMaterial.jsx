@@ -9,10 +9,10 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import DownloadIcon from "@mui/icons-material/Download";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
@@ -28,7 +28,9 @@ const CargarMaterial = ({
   fileText,
   archivos,
   borrarArchivo,
-  year
+  year,
+  link,
+  setLink,
 }) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -47,7 +49,7 @@ const CargarMaterial = ({
       <Typography className="titles" variant="h3">
         Cargar material didáctico
       </Typography>
-      <form onSubmit={formik.handleSubmit}>
+      <form className="materialForm" onSubmit={formik.handleSubmit}>
         <span className="spanTable">
           <FormControl className="classSelector">
             <InputLabel id="demo-simple-select-label">Clase</InputLabel>
@@ -83,44 +85,87 @@ const CargarMaterial = ({
             </Select>
           </FormControl>
           {clase && (
-            <span className="subSpanTable">
-              {/* <input
-                type="file"
-                name="file"
-                onChange={(event) => {
-                  formik.setFieldValue("file", event.currentTarget.files[0]);
-                }}
-              ></input> */}
-              <div>
-                <Button
-                  component="label"
-                  role={undefined}
-                  variant="contained"
-                  tabIndex={-1}
-                  startIcon={<CloudUploadIcon />}
-                >
-                  Cargar archivo
-                  <VisuallyHiddenInput
-                    type="file"
-                    onChange={(event) => {
-                      handleInput(event);
-                    }}
-                    name="file"
-                  />
-                </Button>
-                {fileText !== "" && (
-                  <Typography variant="subtitle1">{fileText}</Typography>
-                )}
-              </div>
+            <div className="subSpanTable">
+              {link ? (
+                <div className="linkArchivo">
+                  <TextField
+                    placeholder="Título"
+                    name="title"
+                    onChange={formik.handleChange}
+                  ></TextField>
+                  <div className="uploadVariant">
+                    <TextField
+                      variant="outlined"
+                      placeholder="Link al archivo"
+                      name="url"
+                      onChange={formik.handleChange}
+                    ></TextField>
+                    <Button
+                      className="buttonMetodoCarga"
+                      onClick={() => setLink(false)}
+                    >
+                      Prefiero Cargar archivo
+                    </Button>
+                  </div>
 
-              <Button
-                className="buttonEnviarTp"
-                variant="contained"
-                type="submit"
-              >
-                Enviar
-              </Button>
-            </span>
+                  <TextField
+                    multiline="true"
+                    placeholder="Breve descripción"
+                    name="description"
+                    onChange={formik.handleChange}
+                  ></TextField>
+
+                  <Button
+                    className="buttonEnviarTp"
+                    variant="contained"
+                    type="submit"
+                  >
+                    Enviar
+                  </Button>
+                </div>
+              ) : (
+                <div className="linkArchivo">
+                  <div className="uploadVariant">
+                    <Button
+                      component="label"
+                      role={undefined}
+                      variant="contained"
+                      tabIndex={-1}
+                      startIcon={<CloudUploadIcon />}
+                    >
+                      Cargar archivo
+                      <VisuallyHiddenInput
+                        type="file"
+                        onChange={(event) => {
+                          handleInput(event);
+                        }}
+                        name="file"
+                      />
+                    </Button>
+                    {fileText !== "" && (
+                      <Typography variant="subtitle1">{fileText}</Typography>
+                    )}
+                    <Button onClick={() => setLink(true)}>
+                      Prefiero Pegar link
+                    </Button>
+                  </div>
+
+                  <TextField
+                    multiline="true"
+                    placeholder="Breve descripción"
+                    name="description"
+                    onChange={formik.handleChange}
+                  ></TextField>
+                  <Button
+                    className="buttonEnviarTp"
+                    variant="contained"
+                    type="submit"
+                  >
+                    Enviar
+                  </Button>
+                </div>
+              )}
+            </div>
           )}
         </span>
       </form>
@@ -129,11 +174,12 @@ const CargarMaterial = ({
         <Typography className="titles" variant="h5">
           Material subido
         </Typography>
-        <Table>
+        <Table className="tablaMaterial">
           <TableHead>
             <TableRow>
               <TableCell>Nombre</TableCell>
               <TableCell>Fecha</TableCell>
+              <TableCell>Descripción</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
             </TableRow>
@@ -144,18 +190,13 @@ const CargarMaterial = ({
                 <TableRow key={archivo._id}>
                   <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
+                  {archivo.description ? ( <TableCell>{archivo.description}</TableCell>) : (<TableCell>No hay descripción</TableCell>)}
+                 
                   <TableCell>
-                    {window.innerWidth > 768 ? (
                       <Link to={archivo.url} target="_blank">
-                        Descargar archivo
+                        Ver material
                       </Link>
-                    ) : (
-                      <Link to={archivo.url} target="_blank">
-                        <Button>
-                          <DownloadIcon />
-                        </Button>
-                      </Link>
-                    )}
+                   
                   </TableCell>
                   <TableCell>
                     <Button

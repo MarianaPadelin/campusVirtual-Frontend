@@ -100,6 +100,26 @@ a {
   margin-right: 3vw;
   margin-top: 3vh;
 }
+
+.tablaMaterial{
+  display: block!important;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+  width: 100%; 
+  min-width: 100%;
+}
+
+.tablaMaterial thead,
+.tablaMaterial tbody {
+  width: 100%; /* Keeps headers aligned */
+}
+
+.tablaMaterial th,
+.tablaMaterial td {
+  min-width: 150px; 
+}
+
 .spanTable {
   display: flex;
   flex-direction: column;
@@ -112,6 +132,18 @@ a {
 .subSpanTable {
   display: flex;
   gap: 3vw;
+}
+
+.linkArchivo {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+}
+
+.uploadVariant {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
 }
 
 .spanArchivos {
@@ -207,7 +239,9 @@ iframe {
 @media only screen and (min-width: 720px) {
   .spanTable {
     flex-direction: row !important;
-    width: 100%;
+    width: 95%;
+    align-items: flex-start;
+    gap: 1vw;
   }
 
   .classSelector {
@@ -215,6 +249,20 @@ iframe {
     margin: 3vw;
   }
 
+  .materialForm {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .linkArchivo {
+    flex-direction: row;
+    gap: 1vw;
+  }
+
+  .buttonMetodoCarga{
+    padding: 0!important;
+  }
   .inputPagos {
     width: 15vw;
   }

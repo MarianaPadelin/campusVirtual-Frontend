@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -66,12 +67,15 @@ const Material = ({
             </Select>
           </FormControl>
         </span>
-
-        <Table className="asistencias">
+        <Typography className="titles" variant="h5">
+          Material subido
+        </Typography>
+        <Table className="tablaMaterial">
           <TableHead>
             <TableRow>
               <TableCell>Clase</TableCell>
               <TableCell>Fecha</TableCell>
+              <TableCell>Descripción</TableCell>
               <TableCell>Archivo</TableCell>
             </TableRow>
           </TableHead>
@@ -81,16 +85,21 @@ const Material = ({
                 <TableRow key={archivo._id}>
                   <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
+                  {archivo.description ? (
+                    <TableCell>{archivo.description}</TableCell>
+                  ) : (
+                    <TableCell>No hay descripción</TableCell>
+                  )}
                   <TableCell>
                     <Link to={archivo.url} target="_blank">
-                      Descargar archivo
+                      <Button variant="outlined">Ver material</Button>
                     </Link>
                   </TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={3}> No se encontraron archivos</TableCell>
+                <TableCell colSpan={4}> No se encontraron archivos</TableCell>
               </TableRow>
             )}
           </TableBody>

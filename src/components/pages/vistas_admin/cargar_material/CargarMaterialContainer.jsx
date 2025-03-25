@@ -12,6 +12,8 @@ const CargarMaterialContainer = () => {
   const [fileText, setFileText] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [archivos, setArchivos] = useState([]);
+  const [link, setLink] = useState(false)
+
 
   useEffect(() => {
     const promise = axios.get(`/clases`);
@@ -52,6 +54,7 @@ const CargarMaterialContainer = () => {
       clase: "",
       año: "",
       fecha: "",
+      description: "", 
       file: null,
     },
     onSubmit: (datosIngresados) => {
@@ -67,17 +70,33 @@ const CargarMaterialContainer = () => {
       datosIngresados.clase = clase;
       datosIngresados.año = año;
       datosIngresados.fecha = getCurrentDate();
-      console.log(datosIngresados.fecha);
-      const formData = new FormData();
-      formData.append("clase", datosIngresados.clase);
-      formData.append("anio", datosIngresados.año);
-      formData.append("fecha", datosIngresados.fecha);
-      formData.append("file", datosIngresados.file);
-      console.log([...formData]);
-
-      const promise = axios.post("/material", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      console.log(datosIngresados);
+      
+      let promise; 
+      if(link === false){
+        const formData = new FormData();
+        formData.append("clase", datosIngresados.clase);
+        formData.append("anio", datosIngresados.año);
+        formData.append("description", datosIngresados.description);
+        formData.append("fecha", datosIngresados.fecha);
+        formData.append("file", datosIngresados.file);
+        console.log([...formData]);
+         promise = axios.post("/material", formData, {
+           headers: { "Content-Type": "multipart/form-data" },
+         });
+        
+      } else{
+        console.log("datos:", datosIngresados)
+        promise = axios.post("/material/link", {
+          clase: datosIngresados.clase,
+          anio: datosIngresados.año,
+          fecha: datosIngresados.fecha,
+          description: datosIngresados.description,
+          link: datosIngresados.url,
+          title: datosIngresados.title,
+        });
+      }
+     
 
       promise
         .then((res) => {
@@ -96,11 +115,11 @@ const CargarMaterialContainer = () => {
           }
         })
         .then(() => {
-          const promise = axios.get(`/material/${clase}/${año}`, {
+          const promise2 = axios.get(`/material/${clase}/${año}`, {
             withCredentials: true,
           });
 
-          promise.then((res) => {
+          promise2.then((res) => {
             if (res.data.status === 200) {
               return setArchivos(res.data.result);
             }
@@ -192,6 +211,8 @@ const CargarMaterialContainer = () => {
         archivos={archivos}
         borrarArchivo={borrarArchivo}
         year={year}
+        link={link}
+        setLink={setLink}
       />
     </>
   );

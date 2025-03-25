@@ -9,13 +9,13 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import DownloadIcon from "@mui/icons-material/Download";
 const Tp = ({
   formik,
   fileText,
@@ -25,6 +25,8 @@ const Tp = ({
   clasesDisponibles,
   archivos,
   borrarArchivo,
+  link,
+  setLink,
 }) => {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -63,37 +65,75 @@ const Tp = ({
                 })}
             </Select>
           </FormControl>
-          <span className="subSpanTable">
-            <div>
-              <Button
-                component="label"
-                role={undefined}
-                variant="contained"
-                tabIndex={-1}
-                startIcon={<CloudUploadIcon />}
-              >
-                Cargar archivo
-                <VisuallyHiddenInput
-                  type="file"
-                  onChange={(event) => {
-                    handleInput(event);
-                  }}
-                  name="file"
-                />
-              </Button>
-              {fileText !== "" && (
-                <Typography variant="subtitle1">{fileText}</Typography>
+          {clase && (
+            <div className="subSpanTable">
+              {link ? (
+                <div className="linkArchivo">
+                  <TextField
+                    placeholder="Título"
+                    name="title"
+                    onChange={formik.handleChange}
+                  ></TextField>
+                  <div className="uploadVariant">
+                    <TextField
+                      variant="outlined"
+                      placeholder="Link al archivo"
+                      name="url"
+                      onChange={formik.handleChange}
+                    ></TextField>
+                    <Button
+                      className="buttonMetodoCarga"
+                      onClick={() => setLink(false)}
+                    >
+                      Prefiero Cargar archivo
+                    </Button>
+                  </div>
+
+                  <Button
+                    className="buttonEnviarTp"
+                    variant="contained"
+                    type="submit"
+                  >
+                    Enviar
+                  </Button>
+                </div>
+              ) : (
+                <div className="linkArchivo">
+                  <div className="uploadVariant">
+                    <Button
+                      component="label"
+                      role={undefined}
+                      variant="contained"
+                      tabIndex={-1}
+                      startIcon={<CloudUploadIcon />}
+                    >
+                      Cargar archivo
+                      <VisuallyHiddenInput
+                        type="file"
+                        onChange={(event) => {
+                          handleInput(event);
+                        }}
+                        name="file"
+                      />
+                    </Button>
+                    {fileText !== "" && (
+                      <Typography variant="subtitle1">{fileText}</Typography>
+                    )}
+                    <Button onClick={() => setLink(true)}>
+                      Prefiero Pegar link
+                    </Button>
+                  </div>
+                  <Button
+                    className="buttonEnviarTp"
+                    variant="contained"
+                    type="submit"
+                  >
+                    Enviar
+                  </Button>
+                </div>
               )}
             </div>
-
-            <Button
-              variant="contained"
-              type="submit"
-              className="buttonEnviarTp"
-            >
-              Enviar
-            </Button>
-          </span>
+          )}
         </span>
       </form>
 
@@ -101,11 +141,11 @@ const Tp = ({
         <Typography className="titles" variant="h5">
           Trabajos prácticos subidos
         </Typography>
-        <Table className="asistencias">
+        <Table className="tablaMaterial">
           <TableHead>
             <TableRow>
               <TableCell>Clase</TableCell>
-              {window.innerWidth > 768 && <TableCell>Nombre</TableCell>}
+              <TableCell>Nombre</TableCell>
               <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
@@ -116,22 +156,12 @@ const Tp = ({
               archivos.map((archivo) => (
                 <TableRow key={archivo.url}>
                   <TableCell>{archivo.clase}</TableCell>
-                  {window.innerWidth > 768 && (
-                    <TableCell>{archivo.nombre}</TableCell>
-                  )}
-
+                  <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
                   <TableCell>
-                    {window.innerWidth > 768 ? (
-                      <Link to={archivo.url}>
-                        Descargar
-                        <DownloadIcon color="primary" />
-                      </Link>
-                    ) : (
-                      <Link to={archivo.url}>
-                        <DownloadIcon color="primary" />
-                      </Link>
-                    )}
+                    <Link to={archivo.url} target="_blank">
+                      <Button variant="outlined">Ver TP</Button>
+                    </Link>
                   </TableCell>
                   <TableCell>
                     <Button
