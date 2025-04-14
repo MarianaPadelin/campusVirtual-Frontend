@@ -11,8 +11,10 @@ const RegistrarAsistenciasContainer = () => {
   const [clase, setClase] = useState("");
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
   const [alumnos, setAlumnos] = useState([]);
+  const [asistencias, setAsistencias] = useState([]);
   const [año, setAño] = useState(year);
   const [fecha, setFecha] = useState("");
+  const [fechaSinFormato, setFechaSinFormato] = useState("");
   const [listaAsistencias, setListaAsistencias] = useState([]);
 
   useEffect(() => {
@@ -35,22 +37,47 @@ const RegistrarAsistenciasContainer = () => {
       setAño(añoSeleccionado);
 
       setFecha(fechaFormateada);
+      setFechaSinFormato(date);
       // console.log(fechaFormateada);
     }
   };
 
+  // useEffect(() => {
+
+  //   // acá tendría que buscar si hay asistencias, y sino poner la lista de alumnos
+  //   const promise = axios.get(`/clases/admin/${clase}/${año}`);
+  //   promise
+  //     .then((res) => {
+  //       if (res.data.status == 404) {
+  //         setAlumnos([]);
+  //       }
+  //       setAlumnos(res.data.result);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [clase, año]);
+
   useEffect(() => {
-    // console.log(clase, año);
-    const promise = axios.get(`/clases/admin/${clase}/${año}`);
-    promise
-      .then((res) => {
-        if (res.data.status == 404) {
-          setAlumnos([]);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `/asistencias/${clase}/'${fechaSinFormato}'`
+        );
+        if (res.data.response.length > 0) {
+          return setAsistencias(res.data.response);
+        } else {
+          setAsistencias([]);
+          const res = await axios.get(`/clases/admin/${clase}/${año}`);
+          if (res.data.status == 404) {
+            return setAlumnos([]);
+          }
+          return setAlumnos(res.data.result);
         }
-        setAlumnos(res.data.result);
-      })
-      .catch((err) => console.log(err));
-  }, [clase, año]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [clase, fechaSinFormato, año]);
 
   const { handleSubmit, values, errors } = useFormik({
     initialValues: {
@@ -130,6 +157,7 @@ const RegistrarAsistenciasContainer = () => {
         handleSubmit={handleSubmit}
         values={values}
         errors={errors}
+        asistencias={asistencias}
       />
     </div>
   );

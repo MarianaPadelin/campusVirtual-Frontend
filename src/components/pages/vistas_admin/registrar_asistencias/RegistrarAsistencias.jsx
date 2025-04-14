@@ -4,7 +4,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-// import Paper from "@mui/material/Paper";
 import {
   Button,
   Checkbox,
@@ -30,6 +29,7 @@ const RegistrarAsistencias = ({
   handleSelectAsistencia,
   handleSubmit,
   values,
+  asistencias,
 }) => {
   return (
     <div className="basicContainer">
@@ -71,14 +71,31 @@ const RegistrarAsistencias = ({
           <form onSubmit={handleSubmit}>
             <Table>
               <TableHead>
-                <TableCell>Alumno</TableCell>
-                <TableCell>Ausente</TableCell>
+                <TableRow>
+                  <TableCell>Alumno</TableCell>
+                  <TableCell>Ausente</TableCell>
+                </TableRow>
               </TableHead>
-              <TableBody>
-                {alumnos && alumnos.length > 0 ? (
-                  alumnos.map((alumno) => (
+
+              {asistencias.length > 0 ? (
+                <TableBody>
+                  {asistencias.map((a) => (
+                    <TableRow key={a.id_alumno._id}>
+                      <TableCell>
+                        {a.id_alumno.nombre} {a.id_alumno.apellido}
+                      </TableCell>
+                      <TableCell>
+                        {a.asistencia == true ? "Ausente" : "Presente"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              ) : alumnos && alumnos.length > 0 ? (
+                <TableBody>
+                  {alumnos.map((alumno) => (
                     <TableRow
                       key={alumno._id}
+
                       // onClick={() => handleSelectStudent(alumno._id)}
                     >
                       <TableCell name="id_alumno" value={values._id}>
@@ -95,21 +112,27 @@ const RegistrarAsistencias = ({
                         />
                       </TableCell>
                     </TableRow>
-                  ))
-                ) : (
+                  ))}
                   <TableRow>
-                    <TableCell colspan="2">
+                    <TableCell colSpan={2}>
+                      <Button type="submit" variant="contained">
+                        Enviar
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              ) : (
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan="2">
                       <Typography>
                         No hay alumnos para la clase {clase} del año {año}
                       </Typography>
                     </TableCell>
                   </TableRow>
-                )}
-              </TableBody>
+                </TableBody>
+              )}
             </Table>
-            <Button type="submit" variant="contained">
-              Enviar
-            </Button>
           </form>
         )}
       </div>
