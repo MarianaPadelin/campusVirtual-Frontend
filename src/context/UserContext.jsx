@@ -9,6 +9,11 @@ const UserContextProvider = ({ children }) => {
 
   const loginUser = async (data) => {
     try {
+      const pingRes = await axios.get("/session/ping", {
+        withCredentials: true,
+      });
+      console.log("Ping response:", pingRes.data);
+      // await axios.get("/session/ping", { withCredentials: true });
       const res = await axios.post("/session/login", data, {
         withCredentials: true,
       });
