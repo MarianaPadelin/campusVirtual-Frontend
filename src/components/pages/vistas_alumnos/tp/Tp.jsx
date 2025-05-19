@@ -149,6 +149,8 @@ const Tp = ({
               <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
               <TableCell>Eliminar archivo</TableCell>
+              {/* <TableCell>Nota</TableCell>
+              <TableCell>Devolución</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -173,6 +175,10 @@ const Tp = ({
                       <HighlightOffIcon />
                     </Button>
                   </TableCell>
+                  {/* <TableCell>9</TableCell>
+                  <TableCell>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    <br></br>Voluptatum quas officiis sapiente tempore quibusdam saepe.
+                    <br></br> Provident reiciendis dolorum eveniet</TableCell> */}
                 </TableRow>
               ))
             ) : (

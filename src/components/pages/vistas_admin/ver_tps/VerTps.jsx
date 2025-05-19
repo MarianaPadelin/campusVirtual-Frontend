@@ -1,9 +1,11 @@
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -25,6 +27,9 @@ const VerTps = ({ tpList }) => {
               <TableCell>Fecha</TableCell>
               <TableCell>Alumno</TableCell>
               <TableCell>Archivo</TableCell>
+              <TableCell>Nota</TableCell>
+              <TableCell>Devolución</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -43,11 +48,20 @@ const VerTps = ({ tpList }) => {
                       </span>
                     </Link>
                   </TableCell>
+                  <TableCell>
+                    <TextField variant="outlined"></TextField>
+                  </TableCell>
+                  <TableCell>
+                    <TextField variant="outlined" multiline></TextField>
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="contained">ENVIAR</Button>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5}>
+                <TableCell colSpan={6}>
                   No hay trabajos prácticos para mostrar
                 </TableCell>
               </TableRow>
