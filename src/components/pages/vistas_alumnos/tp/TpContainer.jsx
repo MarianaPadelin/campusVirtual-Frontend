@@ -16,9 +16,10 @@ const TpContainer = () => {
   const año = today.getFullYear();
   const [link, setLink] = useState(false);
 
-  console.log(id);
   useEffect(() => {
-    const promise = axios.get(`/clases/alumno/${id}/${año}`);
+    const promise = axios.get(`/clases/alumno/${id}/${año}`, {
+      withCredentials: true,
+    });
     promise
       .then((res) => {
         if (res.data.status === 200) {
@@ -30,14 +31,39 @@ const TpContainer = () => {
   }, [id]);
 
   useEffect(() => {
-    const promise = axios.get(`/tp/${id}`);
-    promise.then((res) => {
-      if (res.data.status === 200) {
-        return setArchivos(res.data.tps);
+    const controller = new AbortController();
+    //no borrar este log, hace que se refresque la clase seleccionada
+    console.log(clase);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/tp/alumno/${id}/${clase}`, {
+          withCredentials: true,
+          signal: controller.signal,
+        });
+
+        if (res.data.status === 200) {
+          setArchivos(res.data.tps);
+        } else {
+          setArchivos([]);
+        }
+      } catch (error) {
+        if (error.name === "CanceledError") {
+          console.log("Request cancelled");
+        } else {
+          console.error("Error fetching data:", error);
+          setArchivos([]);
+        }
       }
-      return setArchivos([]);
-    });
-  }, [id]);
+    };
+
+    fetchData();
+
+    // Cleanup function to cancel previous request
+    return () => {
+      controller.abort();
+    };
+  }, [clase, id]);
+
   const handleChangeClases = (e) => {
     const claseSeleccionada = e.target.value;
     setClase(claseSeleccionada);
@@ -74,18 +100,27 @@ const TpContainer = () => {
         formData.append("file", datosIngresados.file);
         console.log([...formData]);
 
-        promise = axios.post("/tp", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        promise = axios.post(
+          "/tp",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          },
+          { withCredentials: true }
+        );
       } else {
-        promise = axios.post("/tp/link", {
-          idAlumno: id,
-          clase: datosIngresados.clase,
-          anio: datosIngresados.año,
-          fecha: datosIngresados.fecha,
-          link: datosIngresados.url,
-          title: datosIngresados.title,
-        });
+        promise = axios.post(
+          "/tp/link",
+          {
+            idAlumno: id,
+            clase: datosIngresados.clase,
+            anio: datosIngresados.año,
+            fecha: datosIngresados.fecha,
+            link: datosIngresados.url,
+            title: datosIngresados.title,
+          },
+          { withCredentials: true }
+        );
       }
 
       promise
@@ -111,7 +146,7 @@ const TpContainer = () => {
           }
         })
         .then(() => {
-          const promise = axios.get(`/tp/${id}`, {
+          const promise = axios.get(`/tp/alumno/${id}/${clase}`, {
             withCredentials: true,
           });
 
@@ -174,7 +209,7 @@ const TpContainer = () => {
               });
             })
             .then(() => {
-              const promise = axios.get(`/tp/${id}`, {
+              const promise = axios.get(`/tp/alumno/${id}/${clase}`, {
                 withCredentials: true,
               });
 

@@ -10,7 +10,9 @@ const HistorialContainer = () => {
     console.log(alumno.pagos)
 
      useEffect(() => {
-       const promise = axios.get(`/alumnos/getById/${id}`);
+       const promise = axios.get(`/alumnos/getById/${id}`, {
+         withCredentials: true,
+       });
        promise
          .then((res) => setAlumno(res.data.alumno))
          .catch((err) => console.log("Hubo un error: " + err));

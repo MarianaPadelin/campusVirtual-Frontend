@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 const LogoutContainer = () => {
   const [cerrar, setCerrar] = useState(false);
   const navigate = useNavigate();
-  const promise = axios.get("/session/logout");
+  const promise = axios.get("/session/logout", { withCredentials: true });
   promise
     .then((res) => {
       if (res.status == 200) {

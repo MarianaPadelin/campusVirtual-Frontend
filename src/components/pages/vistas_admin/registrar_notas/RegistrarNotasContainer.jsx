@@ -15,11 +15,10 @@ const RegistrarNotasContainer = () => {
   const [año, setAño] = useState(year);
   const [alumnos, setAlumnos] = useState([]);
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
-  // const [notas, setNotas] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const promise = axios.get(`/clases`);
+    const promise = axios.get(`/clases`, {withCredentials: true});
     promise
       .then((res) => setClasesDisponibles(res.data))
       .catch((err) => console.log(err));
@@ -38,7 +37,7 @@ const RegistrarNotasContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/clases/admin/${clase}/${año}`);
+        const res = await axios.get(`/clases/admin/${clase}/${año}`, {withCredentials: true});
 
         if (res.data.status == 404) {
           return setAlumnos([]);
@@ -100,7 +99,7 @@ const RegistrarNotasContainer = () => {
 
   const registrarNotas = async (data) => {
     try {
-      const res = await axios.post("/notas", data);
+      const res = await axios.post("/notas", data, { withCredentials: true });
 
       if (res.data.status === 200) {
         Swal.fire({
@@ -108,7 +107,9 @@ const RegistrarNotasContainer = () => {
           text: "Notas registradas con éxito",
           timer: 1500,
         });
-        const res = await axios.get(`/clases/admin/${clase}/${año}`);
+        const res = await axios.get(`/clases/admin/${clase}/${año}`, {
+          withCredentials: true,
+        });
 
         return setAlumnos(res.data.result);
       }
@@ -147,7 +148,9 @@ const RegistrarNotasContainer = () => {
             text: "Nota eliminada",
             timer: 1500,
           });
-          const res2 = await axios.get(`/clases/admin/${clase}/${año}`);
+          const res2 = await axios.get(`/clases/admin/${clase}/${año}`, {
+            withCredentials: true,
+          });
 
           return setAlumnos(res2.data.result);
         } Swal.fire({

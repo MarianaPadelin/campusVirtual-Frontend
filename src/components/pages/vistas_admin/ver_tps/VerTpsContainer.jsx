@@ -1,31 +1,71 @@
 import { useEffect, useState } from "react";
 import VerTps from "./VerTps";
 import axios from "axios";
-import Swal from "sweetalert2";
+
+import Loader from "../../../common/loader/Loader";
 
 const VerTpsContainer = () => {
-  const [tpList, setTpList] = useState([]);
+  const today = new Date();
+  const year = today.getFullYear();
+  const [clase, setClase] = useState("");
+  const [año, setAño] = useState(year);
+  const [alumnos, setAlumnos] = useState([]);
+  const [clasesDisponibles, setClasesDisponibles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const promise = axios.get("/tp");
+    const promise = axios.get(`/clases`, { withCredentials: true });
     promise
-      .then((res) => {
-        if (res.data.status === 200) {
-          return setTpList(res.data.listaTps);
-        }
-        return setTpList([]);
-      })
-      .catch((error) => {console.log(error)
-         Swal.fire({
-                    text: "Error del servidor",
-                    icon: "error",
-                  });
-      });
+      .then((res) => setClasesDisponibles(res.data))
+      .catch((err) => console.log(err));
   }, []);
-  
+
+  const handleChangeClases = (e) => {
+    const claseSeleccionada = e.target.value;
+    setClase(claseSeleccionada);
+  };
+
+  const handleChangeAño = (e) => {
+    const añoSeleccionado = e.target.value;
+    setAño(añoSeleccionado);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/clases/admin/${clase}/${año}`, {
+          withCredentials: true,
+        });
+
+        if (res.data.status == 404) {
+          return setAlumnos([]);
+        }
+
+        return setAlumnos(res.data.result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [clase, año]);
+
   return (
     <>
-      <VerTps tpList={tpList} />
+      {loading ? (
+        <Loader />
+      ) : (
+        <VerTps
+          clasesDisponibles={clasesDisponibles}
+          clase={clase}
+          año={año}
+          year={year}
+          alumnos={alumnos}
+          handleChangeClases={handleChangeClases}
+          handleChangeAño={handleChangeAño}
+        />
+      )}
     </>
   );
 };

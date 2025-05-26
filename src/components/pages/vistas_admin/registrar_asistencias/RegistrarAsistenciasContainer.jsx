@@ -18,7 +18,7 @@ const RegistrarAsistenciasContainer = () => {
   const [listaAsistencias, setListaAsistencias] = useState([]);
 
   useEffect(() => {
-    const promise = axios.get(`/clases`);
+    const promise = axios.get(`/clases`, { withCredentials: true });
     promise
       .then((res) => setClasesDisponibles(res.data))
       .catch((err) => console.log(err));
@@ -60,13 +60,16 @@ const RegistrarAsistenciasContainer = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `/asistencias/${clase}/'${fechaSinFormato}'`
+          `/asistencias/${clase}/'${fechaSinFormato}'`,
+          { withCredentials: true }
         );
         if (res.data.response.length > 0) {
           return setAsistencias(res.data.response);
         } else {
           setAsistencias([]);
-          const res = await axios.get(`/clases/admin/${clase}/${año}`);
+          const res = await axios.get(`/clases/admin/${clase}/${año}`, {
+            withCredentials: true,
+          });
           if (res.data.status == 404) {
             return setAlumnos([]);
           }
@@ -119,7 +122,11 @@ const RegistrarAsistenciasContainer = () => {
   };
 
   const registrarAsistencias = (data) => {
-    const promise = axios.post("/asistencias", { data });
+    const promise = axios.post(
+      "/asistencias",
+      { data },
+      { withCredentials: true }
+    );
 
     promise
       .then((res) => {

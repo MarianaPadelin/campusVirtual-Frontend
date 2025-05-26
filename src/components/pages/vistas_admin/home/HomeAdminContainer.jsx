@@ -49,7 +49,7 @@ const HomeAdminContainer = () => {
         promise
           .then(() => {
             axios
-              .delete(`/session/${email}`)
+              .delete(`/session/${email}`, { withCredentials: true })
 
               .then((res) => {
                 console.log(res);

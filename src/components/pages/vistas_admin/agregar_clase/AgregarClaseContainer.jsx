@@ -45,7 +45,7 @@ const AgregarClaseContainer = () => {
 
   const registrarClase = async (data) => {
     try {
-      const res = await axios.post("/clases", data);
+      const res = await axios.post("/clases", data, { withCredentials: true });
       if (res.data.status === 200) {
         setShowForm(false);
         setClase({});
@@ -54,7 +54,9 @@ const AgregarClaseContainer = () => {
           text: `Clase ${res.data.response.nombre} ${res.data.response.año} ingresada correctamente`,
           timer: 1500,
         }).then(() => {
-          const promise = axios.get(`/clases/year/${año}`);
+          const promise = axios.get(`/clases/year/${año}`, {
+            withCredentials: true,
+          });
 
           promise
             .then((res) => {
@@ -76,7 +78,9 @@ const AgregarClaseContainer = () => {
           text: `Clase modificada correctamente`,
           timer: 1500,
         }).then(() => {
-          const promise = axios.get(`/clases/year/${año}`);
+          const promise = axios.get(`/clases/year/${año}`, {
+            withCredentials: true,
+          });
 
           promise
             .then((res) => {
@@ -147,7 +151,9 @@ const AgregarClaseContainer = () => {
               icon: "success",
               text: res.data.message,
             }).then(() => {
-              const promise = axios.get(`/clases/year/${año}`);
+              const promise = axios.get(`/clases/year/${año}`, {
+                withCredentials: true,
+              });
 
               promise
                 .then((res) => {

@@ -14,7 +14,7 @@ const RegistrarPagosContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/alumnos`);
+        const res = await axios.get(`/alumnos`, { withCredentials: true });
       if(res.data.status === 200){
         return setAlumnos(res.data.alumnos);
 
@@ -78,7 +78,7 @@ const RegistrarPagosContainer = () => {
 
   const registrarPagos = async (data) => {
     try {
-      const res = await axios.post("/pagos", data);
+      const res = await axios.post("/pagos", data, { withCredentials: true });
 
       if (res.data.status === 200) {
         Swal.fire({

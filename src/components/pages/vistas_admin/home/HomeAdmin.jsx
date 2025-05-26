@@ -1,14 +1,9 @@
 import "./HomeAdmin.css"
-
 import HomeDesktop from "./HomeDesktop";
 import HomeCelu from "./HomeCelu";
 import { Typography } from "@mui/material";
 
-
-//hacer un condicional para celu donde solo se vea el nombre, editar y eliminar
-
 const HomeAdmin = ({ alumnos, eliminarElemento }) => {
-  //eliminarElemento
 
   return (
     <div className="basicContainer">

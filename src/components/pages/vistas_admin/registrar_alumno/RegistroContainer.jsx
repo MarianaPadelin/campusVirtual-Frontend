@@ -27,7 +27,7 @@ const RegistroContainer = () => {
 
   const registrarAlumno = (data) => {
     //el segundo parámetro es lo que quiero mandar en el body del POST
-    const promise = axios.post(`/alumnos`, data);
+    const promise = axios.post(`/alumnos`, data, { withCredentials: true });
 
     promise
       .then((res) => {

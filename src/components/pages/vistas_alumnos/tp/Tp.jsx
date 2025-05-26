@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   InputLabel,
@@ -148,15 +149,15 @@ const Tp = ({
               <TableCell>Nombre</TableCell>
               <TableCell>Fecha</TableCell>
               <TableCell>Archivo</TableCell>
+              <TableCell>Nota</TableCell>
+              <TableCell>Devolución</TableCell>
               <TableCell>Eliminar archivo</TableCell>
-              {/* <TableCell>Nota</TableCell>
-              <TableCell>Devolución</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
             {archivos.length > 0 ? (
               archivos.map((archivo) => (
-                <TableRow key={archivo.url}>
+                <TableRow key={archivo._id}>
                   <TableCell>{archivo.clase}</TableCell>
                   <TableCell>{archivo.nombre}</TableCell>
                   <TableCell>{archivo.fecha}</TableCell>
@@ -165,25 +166,41 @@ const Tp = ({
                       <Button variant="outlined">Ver TP</Button>
                     </Link>
                   </TableCell>
-                  <TableCell>
-                    <Button
-                      onClick={() => {
-                        console.log("en tp", archivo);
-                        borrarArchivo(archivo._id);
-                      }}
-                    >
-                      <HighlightOffIcon />
-                    </Button>
-                  </TableCell>
-                  {/* <TableCell>9</TableCell>
-                  <TableCell>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    <br></br>Voluptatum quas officiis sapiente tempore quibusdam saepe.
-                    <br></br> Provident reiciendis dolorum eveniet</TableCell> */}
+                  {archivo.nota ? (
+                    <TableCell>{archivo.nota}</TableCell>
+                  ) : (
+                    <TableCell></TableCell>
+                  )}
+                  {archivo.devolucion ? (
+                    <TableCell>
+                      <Box className="devoluciones">{archivo.devolucion}</Box>
+                    </TableCell>
+                  ) : (
+                    <TableCell></TableCell>
+                  )}
+
+                  {archivo.nota ? (
+                    <TableCell>
+                      No se puede eliminar un archivo corregido
+                    </TableCell>
+                  ) : (
+                    <TableCell>
+                      <Button
+                        title="Eliminar Archivo"
+                        onClick={() => {
+                          console.log("en tp", archivo);
+                          borrarArchivo(archivo._id);
+                        }}
+                      >
+                        <HighlightOffIcon />
+                      </Button>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5}> No se encontraron archivos</TableCell>
+                <TableCell colSpan={7}> No se encontraron archivos</TableCell>
               </TableRow>
             )}
           </TableBody>

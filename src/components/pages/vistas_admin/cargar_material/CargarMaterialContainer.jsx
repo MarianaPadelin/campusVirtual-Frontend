@@ -16,7 +16,7 @@ const CargarMaterialContainer = () => {
 
 
   useEffect(() => {
-    const promise = axios.get(`/clases`);
+    const promise = axios.get(`/clases`, { withCredentials: true });
     promise
       .then((res) => setClasesDisponibles(res.data))
       .catch((err) => console.log(err));

@@ -13,7 +13,7 @@ const CargarAlumnosContainer = () => {
   const [clasesDisponibles, setClasesDisponibles] = useState([]);
 
   useEffect(() => {
-    const promise = axios.get(`/clases`);
+    const promise = axios.get(`/clases`, { withCredentials: true });
     promise
       .then((res) => setClasesDisponibles(res.data))
       .catch((err) => console.log(err));
@@ -30,7 +30,9 @@ const CargarAlumnosContainer = () => {
   };
 
   useEffect(() => {
-    const promise = axios.get(`/clases/admin/${clase}/${año}`);
+    const promise = axios.get(`/clases/admin/${clase}/${año}`, {
+      withCredentials: true,
+    });
     promise
       .then((res) => {
         if (res.data.status == 404) {
@@ -89,7 +91,7 @@ const CargarAlumnosContainer = () => {
             timer: 1500,
           }).then(() => {
             axios
-              .get(`/clases/admin/${clase}/${año}`)
+              .get(`/clases/admin/${clase}/${año}`, { withCredentials: true })
               .then((res) => setAlumnos(res.data.result))
               .catch((err) => console.log(err));
           });
@@ -115,7 +117,9 @@ const CargarAlumnosContainer = () => {
       .then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          const promise = axios.delete(`/clases/${clase}/${año}/${id}`);
+          const promise = axios.delete(`/clases/${clase}/${año}/${id}`, {
+            withCredentials: true,
+          });
 
           promise
             .then(() =>
@@ -126,7 +130,7 @@ const CargarAlumnosContainer = () => {
             )
             .then(() => {
               axios
-                .get(`/clases/admin/${clase}/${año}`)
+                .get(`/clases/admin/${clase}/${año}`, { withCredentials: true })
                 .then((res) => setAlumnos(res.data.result))
                 .catch((err) => console.log(err));
             })

@@ -6,7 +6,9 @@ const Debug = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const msg = await axios.get("/session/debug");
+        const msg = await axios.get("/session/debug", {
+          withCredentials: true,
+        });
         console.log(msg.data);
         setMessage(msg.data)
       } catch (error) {

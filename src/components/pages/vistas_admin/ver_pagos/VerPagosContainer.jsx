@@ -24,7 +24,9 @@ const VerPagosContainer = () => {
   };
 
   useEffect(() => {
-    const promise = axios.get(`/pagos/mes/${mes}/${año}`);
+    const promise = axios.get(`/pagos/mes/${mes}/${año}`, {
+      withCredentials: true,
+    });
 
     promise
       .then((res) => {
@@ -88,35 +90,35 @@ const VerPagosContainer = () => {
  
   const actualizarPago = (data) => {
     axios
-      .put(`/pagos/${data._id}`, data)
+      .put(`/pagos/${data._id}`, data, { withCredentials: true })
       .then((res) => {
-        if(res.data.status === 200){
-         return Swal.fire({
+        if (res.data.status === 200) {
+          return Swal.fire({
             icon: "success",
-            text: res.data.message
-          }).then(
-            () => {
-               const promise = axios.get(`/pagos/mes/${mes}/${año}`);
+            text: res.data.message,
+          }).then(() => {
+            const promise = axios.get(`/pagos/mes/${mes}/${año}`, {
+              withCredentials: true,
+            });
 
-               promise
-                 .then((res) => {
-                  setPagoEditor(false)
-                   return setPagos(res.data.pagos);
-                 })
-                 .catch((error) => {console.log(error)
-                   Swal.fire({
-                              text: "Error del servidor",
-                              icon: "error",
-                            });
-                 });
-            }
-          )
+            promise
+              .then((res) => {
+                setPagoEditor(false);
+                return setPagos(res.data.pagos);
+              })
+              .catch((error) => {
+                console.log(error);
+                Swal.fire({
+                  text: "Error del servidor",
+                  icon: "error",
+                });
+              });
+          });
         }
         return Swal.fire({
           icon: "error",
           text: res.data.message,
         });
-
       })
       .catch((err) => console.log(err));
   };
@@ -138,7 +140,9 @@ const VerPagosContainer = () => {
               icon: "success",
               text: res.data.message,
             }).then(() => {
-              const promise = axios.get(`/pagos/mes/${mes}/${año}`);
+              const promise = axios.get(`/pagos/mes/${mes}/${año}`, {
+                withCredentials: true,
+              });
 
               promise
                 .then((res) => {

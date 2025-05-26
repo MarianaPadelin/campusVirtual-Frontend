@@ -43,7 +43,9 @@ const InfoContainer = () => {
   });
 
   const modificarAlumno = (data) => {
-    const promise = axios.put(`alumnos/${alumno._id}`, data);
+    const promise = axios.put(`alumnos/${alumno._id}`, data, {
+      withCredentials: true,
+    });
 
     promise
       .then((res) => {
@@ -62,7 +64,7 @@ const InfoContainer = () => {
       })
       .then(() => {
         axios
-          .get(`/alumnos/${id}`)
+          .get(`/alumnos/${id}`, { withCredentials: true })
           .then((res) => setAlumno(res.data.alumno[0]))
           .catch((err) => console.log("Hubo un error: " + err));
       })

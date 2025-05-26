@@ -13,6 +13,7 @@ import RegistrarAsistenciasContainer from "../components/pages/vistas_admin/regi
 import RegistrarNotasContainer from "../components/pages/vistas_admin/registrar_notas/RegistrarNotasContainer";
 import RegistrarPagosContainer from "../components/pages/vistas_admin/registrar_pagos/RegistrarPagosContainer";
 import VerPagosContainer from "../components/pages/vistas_admin/ver_pagos/VerPagosContainer";
+import TpAlumnoContainer from "../components/pages/vistas_admin/ver_tps/TpAlumnoContainer";
 import VerTpsContainer from "../components/pages/vistas_admin/ver_tps/VerTpsContainer";
 import AsistenciasContainer from "../components/pages/vistas_alumnos/asistencias/AsistenciasContainer";
 import Calendario from "../components/pages/vistas_alumnos/calendario/Calendario";
@@ -146,6 +147,12 @@ export const rutasApp = [
     id: "verTps",
     path: "/admin/tps",
     Element: VerTpsContainer,
+    role: "admin",
+  },
+  {
+    id: "tpAlumno",
+    path: "/admin/tps/:id/:clase/:year",
+    Element: TpAlumnoContainer,
     role: "admin",
   },
   {

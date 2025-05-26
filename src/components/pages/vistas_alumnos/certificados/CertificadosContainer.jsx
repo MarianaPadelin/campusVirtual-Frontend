@@ -12,7 +12,9 @@ const CertificadosContainer = () => {
   const year = date.getFullYear();
   console.log(year);
   useEffect(() => {
-    const promise = axios.get(`/material/certificado/${id}/${year}`);
+    const promise = axios.get(`/material/certificado/${id}/${year}`, {
+      withCredentials: true,
+    });
     promise
       .then((res) => {
         console.log(res)

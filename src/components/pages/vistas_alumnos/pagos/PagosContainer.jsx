@@ -13,7 +13,7 @@ const PagosContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/pagos/${id}`);
+        const res = await axios.get(`/pagos/${id}`, { withCredentials: true });
         if (res.data.status === 200) {
           return setPagos(res.data.pagos);
         }
